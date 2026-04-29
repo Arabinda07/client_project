@@ -10,19 +10,19 @@ export const ProductBadges: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
       {product.stockStatus === 'out_of_stock' && (
-        <span className="bg-gray-800 text-white text-[10px] uppercase tracking-widest px-2 py-1 rounded">Sold Out</span>
+        <span className="bg-gray-800 text-white type-overline px-2 py-1 rounded">Sold Out</span>
       )}
       {product.isSale && product.stockStatus !== 'out_of_stock' && (
-        <span className="bg-terracotta text-white text-[10px] uppercase tracking-widest px-2 py-1 rounded">Sale</span>
+        <span className="bg-terracotta text-white type-overline px-2 py-1 rounded">Sale</span>
       )}
       {product.isNew && (
-        <span className="bg-terracotta-dark text-white text-[10px] uppercase tracking-widest px-2 py-1 rounded">New</span>
+        <span className="bg-terracotta-dark text-white type-overline px-2 py-1 rounded">New</span>
       )}
       {product.isBestseller && (
-        <span className="bg-antique-gold text-white text-[10px] uppercase tracking-widest px-2 py-1 rounded">Bestseller</span>
+        <span className="bg-antique-gold text-white type-overline px-2 py-1 rounded">Bestseller</span>
       )}
       {product.isCustomisable && (
-        <span className="bg-warm-ivory text-terracotta border border-terracotta text-[10px] uppercase tracking-widest px-2 py-1 rounded">Customisable</span>
+        <span className="bg-warm-ivory text-terracotta border border-terracotta type-overline px-2 py-1 rounded">Customisable</span>
       )}
     </div>
   );
@@ -55,7 +55,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               onClick={handleAddToCart}
               disabled={product.stockStatus === 'out_of_stock'}
               className={cn(
-                "w-full py-3 bg-white/90 backdrop-blur-sm shadow-sm text-gray-900 border border-gray-200 flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-widest transition-all hover:bg-terracotta hover:text-white hover:border-terracotta",
+                "w-full py-3 bg-white/90 backdrop-blur-sm shadow-sm text-gray-900 border border-gray-200 flex items-center justify-center gap-2 type-overline transition-all hover:bg-terracotta hover:text-white hover:border-terracotta",
                 product.stockStatus === 'out_of_stock' && "opacity-50 cursor-not-allowed hover:bg-white/90 hover:text-gray-900"
               )}
             >
@@ -65,10 +65,10 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </div>
         </div>
         <div className="flex flex-col items-center text-center px-2">
-          <h3 className="font-serif text-lg lg:text-xl text-gray-900 group-hover:text-terracotta transition-colors line-clamp-1 mb-1">
+          <h3 className="type-h3 text-gray-900 group-hover:text-terracotta transition-colors line-clamp-1 mb-1">
             {product.name}
           </h3>
-          <p className="text-[10px] text-gray-500 uppercase tracking-[0.2em] mb-2">{product.subCategory}</p>
+          <p className="type-overline text-gray-500 mb-2">{product.subCategory}</p>
           <div className="flex items-center justify-center gap-2">
             <span className="text-sm text-gray-900 font-medium">{formatPrice(product.price)}</span>
             {product.originalPrice && (

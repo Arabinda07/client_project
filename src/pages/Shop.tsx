@@ -12,9 +12,6 @@ export const Shop = () => {
 
   const mainCategories = categories.map(cat => cat.name);
   
-  // TODO: Replace this mock logic with a Supabase query.
-  // const { data: products } = await supabase.from('products').select('*');
-  
   // Extract all unique subcategories for the current main category, or all if no main category
   const availableSubCategories = useMemo(() => {
     let products = mockProducts;
@@ -44,7 +41,6 @@ export const Shop = () => {
         break;
       case 'latest':
       default:
-        // Assuming mock data is somewhat chronologically ordered, or just reverse it
         result.sort((a, b) => (a.isNew === b.isNew ? 0 : a.isNew ? -1 : 1));
         break;
     }
@@ -57,6 +53,34 @@ export const Shop = () => {
     setSelectedSubCategory(null);
   }, [categoryName]);
 
+  const getIntroText = () => {
+    // Some subcategories have slight variations in the product data, matching them here.
+    const key = selectedSubCategory || categoryName || 'All';
+    switch (key) {
+      case 'Terracotta Set':
+        return "Complete statements of wearable art. Our necklace sets bring traditional motifs to life, perfect for when you want to carry a piece of heritage with you.";
+      case 'Earring':
+        return "From traditional jhumkas to modern textured drops. Lightweight, face-framing art pieces for every occasion.";
+      case 'Gen-Z Set':
+      case 'Gen-Z':
+        return "Playful, abstract, and bold. Earthen clay reimagined for the modern wardrobe.";
+      case 'Abstract Set':
+      case 'Abstract':
+        return "Fluid shapes and unconventional forms. For those who wear art as their signature.";
+      case 'Hansuli':
+        return "A homage to the timeless choker. Solid, striking, and elegantly curved to rest perfectly on the collarbone.";
+      case '3D-Art':
+      case '3D-Art Earring':
+        return "Intricate sculpting that rises from the clay. Every petal and bead shaped with meticulous attention to detail.";
+      case 'Painted Set':
+      case 'Painted Earring':
+        return "Canvas on clay. Delicate brushstrokes and rich colors applied by hand to traditional Indian motifs.";
+      default:
+        if (categoryName) return `Discover our curated collection of handmade ${categoryName}s. sculpted and painted by hand.`;
+        return "Discover our complete range of handmade terracotta creations. Every piece is sculpted and painted by hand.";
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-12">
       <SEO 
@@ -65,14 +89,14 @@ export const Shop = () => {
       />
       <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-gray-200 pb-8">
         <div>
-          <span className="text-terracotta uppercase tracking-[0.2em] text-xs font-bold mb-2 block">
-            {categoryName ? 'Category' : 'Explore'}
+          <span className="text-terracotta type-overline mb-2 block">
+            {selectedSubCategory ? categoryName : (categoryName ? 'Category' : 'Explore')}
           </span>
-          <h1 className="font-serif text-4xl lg:text-5xl text-gray-900 mb-2 italic">
-            {categoryName ? `${categoryName}s` : 'All Creations'}
+          <h1 className="type-display text-gray-900 mb-4 italic">
+            {selectedSubCategory || (categoryName ? `${categoryName}s` : 'All Creations')}
           </h1>
-          <p className="text-gray-500 text-sm max-w-md">
-            Discover our complete range of handmade terracotta creations. Every piece is sculpted and painted by hand.
+          <p className="text-gray-500 type-body-large">
+            {getIntroText()}
           </p>
         </div>
         
@@ -80,7 +104,7 @@ export const Shop = () => {
           <select 
             value={sortBy} 
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-6 py-3 border border-gray-200 text-xs font-bold uppercase tracking-widest text-gray-700 bg-white focus:outline-none focus:border-terracotta transition-colors shadow-sm cursor-pointer"
+            className="px-6 py-3 border border-gray-200 type-overline text-gray-700 bg-white focus:outline-none focus:border-terracotta transition-colors shadow-sm cursor-pointer"
           >
             <option value="latest">Sort by: Latest</option>
             <option value="price_low">Sort by: Price (Low - High)</option>
@@ -95,16 +119,16 @@ export const Shop = () => {
           <div className="sticky top-32 space-y-12">
             {!categoryName && (
               <div>
-                <h3 className="font-sans font-bold text-gray-900 mb-6 uppercase tracking-widest text-[11px] border-b border-gray-100 pb-2">Collections</h3>
+                <h3 className="type-overline text-gray-900 mb-6 border-b border-gray-100 pb-2">Collections</h3>
                 <ul className="space-y-4">
                   <li>
-                    <Link to="/shop" className="text-xs font-semibold tracking-wider text-terracotta transition-colors uppercase">
+                    <Link to="/shop" className="type-caption uppercase tracking-widest font-semibold text-terracotta transition-colors">
                       All Products
                     </Link>
                   </li>
                   {mainCategories.map(cat => (
                     <li key={cat}>
-                      <Link to={`/category/${cat}`} className="text-xs tracking-wider text-gray-500 hover:text-gray-900 transition-colors uppercase">
+                      <Link to={`/category/${cat}`} className="type-caption uppercase tracking-widest text-gray-500 hover:text-gray-900 transition-colors">
                         {cat}
                       </Link>
                     </li>
@@ -115,12 +139,12 @@ export const Shop = () => {
 
             {availableSubCategories.length > 0 && (
               <div>
-                <h3 className="font-sans font-bold text-gray-900 mb-6 uppercase tracking-widest text-[11px] border-b border-gray-100 pb-2">Styles</h3>
+                <h3 className="type-overline text-gray-900 mb-6 border-b border-gray-100 pb-2">Styles</h3>
                 <ul className="space-y-4">
                   <li>
                     <button 
                       onClick={() => setSelectedSubCategory(null)}
-                      className={`text-left w-full text-xs tracking-wider transition-colors uppercase ${selectedSubCategory === null ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
+                      className={`text-left w-full type-caption uppercase tracking-widest transition-colors ${selectedSubCategory === null ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
                     >
                       All Styles
                     </button>
@@ -129,7 +153,7 @@ export const Shop = () => {
                     <li key={sub}>
                       <button 
                         onClick={() => setSelectedSubCategory(sub)}
-                        className={`text-left w-full text-xs tracking-wider transition-colors uppercase ${selectedSubCategory === sub ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
+                        className={`text-left w-full type-caption uppercase tracking-widest transition-colors ${selectedSubCategory === sub ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
                       >
                         {sub}
                       </button>
@@ -145,9 +169,9 @@ export const Shop = () => {
         <div className="flex-1">
           {filteredProducts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-32 text-center bg-gray-50/50 border border-t-0 lg:border-t border-gray-100">
-              <span className="text-terracotta uppercase tracking-[0.2em] text-[10px] font-bold mb-4 block">No Results</span>
-              <h2 className="font-serif text-3xl italic text-gray-900 mb-4">Awaiting creation</h2>
-              <p className="text-gray-500 text-sm mb-8 max-w-sm leading-relaxed">We don't have any pieces matching this criteria right now. Check back soon or clear your filters to explore more.</p>
+              <span className="text-terracotta type-overline mb-4 block">No Results</span>
+              <h2 className="type-h2 italic text-gray-900 mb-4">Awaiting creation</h2>
+              <p className="text-gray-500 type-body mb-8 max-w-sm">We don't have any pieces matching this criteria right now. Check back soon or clear your filters to explore more.</p>
               <Button variant="outline" onClick={() => setSelectedSubCategory(null)}>View All Styles</Button>
             </div>
           ) : (

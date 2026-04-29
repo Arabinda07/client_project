@@ -78,23 +78,23 @@ export const ProductDetail = () => {
 
         {/* Info */}
         <div className="flex flex-col">
-          <div className="mb-2 text-sm text-gray-500 uppercase tracking-widest">{product.subCategory}</div>
-          <h1 className="font-serif text-3xl md:text-5xl text-gray-900 mb-4">{product.name}</h1>
+          <div className="mb-2 type-overline text-gray-500">{product.subCategory}</div>
+          <h1 className="type-display text-gray-900 mb-4">{product.name}</h1>
           
           <div className="flex items-center gap-4 mb-6">
-            <span className="text-2xl font-medium text-gray-900">{formatPrice(product.price)}</span>
+            <span className="type-h3 text-gray-900">{formatPrice(product.price)}</span>
             {product.originalPrice && (
               <span className="text-lg text-gray-400 line-through">{formatPrice(product.originalPrice)}</span>
             )}
           </div>
 
-          <p className="text-gray-600 leading-relaxed mb-8">
+          <p className="type-body-large text-gray-600 mb-8">
             {product.longDescription || product.shortDescription}
           </p>
 
           <div className="border-t border-gray-200 py-8 mb-8 space-y-6">
             <div className="flex items-center gap-6">
-              <span className="font-medium text-gray-900 w-24">Quantity</span>
+              <span className="type-overline text-gray-900 w-24">Quantity</span>
               <div className="flex items-center border border-gray-300 rounded-full bg-white">
                 <button 
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
@@ -122,7 +122,7 @@ export const ProductDetail = () => {
             </Button>
             
             {product.stockStatus === 'made_to_order' && (
-              <div className="flex items-center gap-2 text-amber-600 text-sm">
+             <div className="flex items-center gap-2 text-amber-600 type-caption mt-2">
                 <AlertCircle size={16} />
                 <span>This item is made to order. Please allow 7-10 days for crafting.</span>
               </div>
@@ -132,23 +132,23 @@ export const ProductDetail = () => {
           {/* Details Accordion style display (simplified) */}
           <div className="space-y-6 border-t border-gray-200 pt-8">
             <div>
-              <h3 className="font-medium text-gray-900 mb-2">Materials</h3>
-              <ul className="list-disc list-inside text-gray-600 text-sm space-y-1">
+              <h3 className="type-overline text-gray-900 mb-2">Materials</h3>
+              <ul className="list-disc list-inside type-body text-gray-600 space-y-1">
                 {product.materials.map((m, i) => <li key={i}>{m}</li>)}
               </ul>
             </div>
             {product.careInstructions && (
               <div>
-                <h3 className="font-medium text-gray-900 mb-2">Care Instructions</h3>
-                <p className="text-gray-600 text-sm">{product.careInstructions}</p>
+                <h3 className="type-overline text-gray-900 mb-2">Care Instructions</h3>
+                <p className="type-body text-gray-600">{product.careInstructions}</p>
               </div>
             )}
             <div className="grid grid-cols-2 gap-4 border-t border-gray-100 pt-6">
-              <div className="flex items-center gap-3 text-sm text-gray-600">
+              <div className="flex items-center gap-3 type-caption text-gray-600">
                 <Truck className="text-terracotta" size={20} />
                 <span>Free shipping over ₹2000</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-gray-600">
+              <div className="flex items-center gap-3 type-caption text-gray-600">
                 <RotateCcw className="text-terracotta" size={20} />
                 <span>7-day return policy</span>
               </div>

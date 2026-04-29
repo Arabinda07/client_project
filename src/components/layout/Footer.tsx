@@ -8,8 +8,8 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="lg:col-span-1">
-            <h2 className="font-serif text-3xl mb-6">Mitty <span className="italic font-light opacity-80">&</span> Co</h2>
-            <p className="text-warm-ivory/80 text-sm leading-relaxed mb-6 max-w-sm">
+            <h2 className="type-h2 mb-6">Goonjaa</h2>
+            <p className="text-warm-ivory/80 type-body mb-6 max-w-sm">
               Handcrafted terracotta jewellery from the heart of India. Every piece is sculpted with love and painted by hand, making it uniquely yours.
             </p>
             <div className="flex space-x-4">
@@ -20,8 +20,8 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-6 uppercase tracking-wider text-antique-gold">Shop</h3>
-            <ul className="space-y-4 text-sm text-warm-ivory/80">
+            <h3 className="type-overline text-antique-gold mb-6">Shop</h3>
+            <ul className="space-y-4 type-body text-warm-ivory/80">
               <li><Link to="/category/Terracotta Set" className="hover:text-white transition-colors">Terracotta Sets</Link></li>
               <li><Link to="/category/Earring" className="hover:text-white transition-colors">Earrings</Link></li>
               <li><Link to="/category/Accessories" className="hover:text-white transition-colors">Accessories</Link></li>
@@ -30,8 +30,8 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-6 uppercase tracking-wider text-antique-gold">Brand</h3>
-            <ul className="space-y-4 text-sm text-warm-ivory/80">
+            <h3 className="type-overline text-antique-gold mb-6">Brand</h3>
+            <ul className="space-y-4 type-body text-warm-ivory/80">
               <li><Link to="/about" className="hover:text-white transition-colors">Our Story</Link></li>
               <li><Link to="/custom-orders" className="hover:text-white transition-colors">Custom Orders</Link></li>
               <li><Link to="/testimonials" className="hover:text-white transition-colors">Happy Customers</Link></li>
@@ -40,8 +40,8 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-6 uppercase tracking-wider text-antique-gold">Policies</h3>
-            <ul className="space-y-4 text-sm text-warm-ivory/80">
+            <h3 className="type-overline text-antique-gold mb-6">Policies</h3>
+            <ul className="space-y-4 type-body text-warm-ivory/80">
               <li><Link to="/policies/shipping" className="hover:text-white transition-colors">Shipping & Returns</Link></li>
               <li><Link to="/policies/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
               <li><Link to="/policies/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
@@ -49,8 +49,8 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-warm-ivory/60">
-          <p>&copy; {new Date().getFullYear()} Mitty & Co. All rights reserved.</p>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 type-caption text-warm-ivory/60">
+          <p>&copy; {new Date().getFullYear()} Goonjaa. All rights reserved.</p>
           <div className="flex items-center gap-2">
             <span>Made with love in India</span>
           </div>

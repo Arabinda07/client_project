@@ -38,7 +38,7 @@ export const Policy = () => {
       content = (
         <>
           <h3>Handmade Disclaimer</h3>
-          <p>By purchasing from Mitty & Co, you acknowledge that our products are handcrafted using natural earthen clay. Slight imperfections, variations in glaze, or paint are inherent to the process and celebrated as unique characteristics.</p>
+          <p>By purchasing from Goonjaa, you acknowledge that our products are handcrafted using natural earthen clay. Slight imperfections, variations in glaze, or paint are inherent to the process and celebrated as unique characteristics.</p>
           <h3>Product Care</h3>
           <p>Terracotta is porous and fragile if dropped. We are not responsible for damage caused by improper handling after delivery. Please refer to our care instructions included with every package.</p>
         </>

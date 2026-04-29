@@ -18,9 +18,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const sizes = {
-      sm: 'px-6 py-3 text-[10px] tracking-[0.2em]',
-      md: 'px-8 py-4 text-xs tracking-widest',
-      lg: 'px-10 py-5 text-sm tracking-widest',
+      sm: 'px-6 py-3 type-overline text-[10px]',
+      md: 'px-8 py-4 type-overline',
+      lg: 'px-10 py-5 type-overline text-sm',
     };
 
     return (

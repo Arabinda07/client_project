@@ -37,7 +37,7 @@ export const Header = () => {
   return (
     <>
       {/* Announcement Bar */}
-      <div className="bg-terracotta text-white text-xs font-medium tracking-wider text-center py-2 px-4 uppercase">
+      <div className="bg-terracotta text-white type-overline tracking-wider text-center py-2 px-4 uppercase">
         Handmade terracotta jewellery crafted with love
       </div>
 
@@ -64,7 +64,7 @@ export const Header = () => {
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  'text-xs font-semibold tracking-widest transition-colors uppercase',
+                  'type-overline transition-colors uppercase',
                   location.pathname === link.path ? 'text-terracotta' : 'text-gray-900 hover:text-terracotta'
                 )}
               >
@@ -74,8 +74,8 @@ export const Header = () => {
           </div>
 
           <Link to="/" className="flex-shrink-0 text-center">
-            <h1 className="font-serif text-3xl italic tracking-tighter text-terracotta-dark">
-              Mitty <span className="text-xs block text-center font-sans tracking-[0.3em] uppercase not-italic text-terracotta -mt-1">& Co</span>
+            <h1 className="type-h1 text-4xl italic tracking-tighter text-terracotta-dark">
+              Goonjaa
             </h1>
           </Link>
 
@@ -86,7 +86,7 @@ export const Header = () => {
                   key={link.name}
                   to={link.path}
                   className={cn(
-                    'text-xs font-semibold tracking-widest transition-colors uppercase',
+                    'type-overline transition-colors uppercase',
                     location.pathname === link.path ? 'text-terracotta' : 'text-gray-900 hover:text-terracotta'
                   )}
                 >
@@ -126,7 +126,7 @@ export const Header = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-50 lg:hidden"
+              className="fixed inset-0 bg-gray-950/50 z-50 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -138,7 +138,7 @@ export const Header = () => {
             >
               <div className="p-6">
                 <div className="flex justify-between items-center mb-8">
-                  <h2 className="font-serif text-2xl font-bold text-gray-900">Mitty & Co</h2>
+                  <h2 className="type-h3 text-gray-900">Goonjaa</h2>
                   <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-500 hover:text-terracotta">
                     <X size={24} />
                   </button>
@@ -148,7 +148,7 @@ export const Header = () => {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className="text-lg font-medium text-gray-800 hover:text-terracotta uppercase tracking-wider"
+                      className="type-overline text-gray-800 hover:text-terracotta"
                     >
                       {link.name}
                     </Link>
