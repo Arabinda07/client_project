@@ -8,7 +8,7 @@ export const CustomOrders = () => {
         <span className="text-terracotta type-overline mb-4 block">Bespoke By Goonjaa</span>
         <h1 className="type-display text-gray-900 mb-6 italic">Commission Wearable Art</h1>
         <p className="text-gray-500 max-w-lg mx-auto">
-          Have a specific saree you'd like to match? A distinctive modern dress that needs a bold, earthly statement? We'd love to collaborate and bring your vision to life in clay. Every bespoke journey is personal and unhurried.
+          Have a specific saree you'd like to match? A distinctive modern dress that needs a bold, earthly statement? We'd love to collaborate and bring your vision to life in clay. Every bespoke order is personal and unhurried.
         </p>
       </div>
 

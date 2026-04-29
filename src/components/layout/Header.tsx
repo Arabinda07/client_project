@@ -95,7 +95,7 @@ export const Header = () => {
               ))}
             </div>
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/goonjaa.srijita"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:block p-1 text-gray-900 hover:text-terracotta transition-colors"
@@ -155,7 +155,7 @@ export const Header = () => {
                   ))}
                   <div className="w-full h-px bg-gray-200 my-4" />
                   <a
-                    href="https://instagram.com"
+                    href="https://instagram.com/goonjaa.srijita"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 text-gray-600 hover:text-terracotta"

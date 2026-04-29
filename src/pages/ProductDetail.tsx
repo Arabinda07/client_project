@@ -40,26 +40,38 @@ export const ProductDetail = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-24 sm:py-32">
       <SEO 
         title={product.name}
         description={product.shortDescription}
         image={product.images?.[0]}
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+      <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
         {/* Images */}
-        <div className="space-y-4">
-          <div className="relative aspect-[3/4] bg-warm-ivory rounded-2xl overflow-hidden">
+        <div className="w-full lg:w-5/12 space-y-6">
+          <div className="relative aspect-[3/4] bg-warm-ivory rounded-none overflow-hidden">
             <ProductBadges product={product} />
-            <motion.img 
-              key={activeImage}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              src={product.images[activeImage]} 
-              alt={product.name} 
-              className="w-full h-full object-cover" 
-            />
+            {product.images[activeImage].includes('placehold.co') ? (
+              <motion.div 
+                key={activeImage}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="w-full h-full flex flex-col items-center justify-center p-6 text-center text-terracotta border border-gray-200"
+              >
+                <span className="type-caption uppercase tracking-widest">{decodeURIComponent(product.images[activeImage].split('text=')[1] || '').replace(/\+/g, ' ')}</span>
+              </motion.div>
+            ) : (
+              <motion.img 
+                key={activeImage}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                src={product.images[activeImage]} 
+                alt={product.name} 
+                className="w-full h-full object-cover" 
+              />
+            )}
           </div>
           {product.images.length > 1 && (
             <div className="flex gap-4 overflow-x-auto pb-2">
@@ -69,7 +81,13 @@ export const ProductDetail = () => {
                   onClick={() => setActiveImage(idx)}
                   className={`relative w-20 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 ${activeImage === idx ? 'border-terracotta' : 'border-transparent'}`}
                 >
-                  <img src={img} alt={`${product.name} thumbnail`} className="w-full h-full object-cover" />
+                  {img.includes('placehold.co') ? (
+                    <div className="w-full h-full bg-warm-ivory flex items-center justify-center p-2 text-center border-r border-b border-gray-200">
+                      <span className="text-[8px] uppercase tracking-widest text-terracotta leading-tight">{decodeURIComponent(img.split('text=')[1] || '').replace(/\+/g, ' ')}</span>
+                    </div>
+                  ) : (
+                    <img src={img} alt={`${product.name} thumbnail`} className="w-full h-full object-cover" />
+                  )}
                 </button>
               ))}
             </div>
@@ -77,9 +95,9 @@ export const ProductDetail = () => {
         </div>
 
         {/* Info */}
-        <div className="flex flex-col">
-          <div className="mb-2 type-overline text-gray-500">{product.subCategory}</div>
-          <h1 className="type-display text-gray-900 mb-4">{product.name}</h1>
+        <div className="w-full lg:w-7/12 flex flex-col pt-8 lg:pt-16">
+          <div className="mb-4 type-overline text-gray-500">{product.subCategory}</div>
+          <h1 className="type-display text-gray-900 mb-6">{product.name}</h1>
           
           <div className="flex items-center gap-4 mb-6">
             <span className="type-h3 text-gray-900">{formatPrice(product.price)}</span>

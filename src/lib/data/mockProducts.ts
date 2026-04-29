@@ -36,7 +36,7 @@ export const mockProducts: Product[] = [
   {
     id: 'ts-001', slug: 'mridula-painted-terracotta-set', name: 'Mridula Painted Terracotta Set', price: 1850, mainCategory: 'Terracotta Set', subCategory: 'Painted Set', collection: ['Festive Wear', 'Statement Pieces'],
     shortDescription: 'Hand-painted terracotta necklace featuring traditional Indian motifs.',
-    longDescription: "The Mridula set is a testament to the artisan's skill, featuring delicate brushstrokes outlining traditional motifs on earthen clay. The set includes a statement necklace and matching statement jhumkas. Perfect for festive occasions and pairs beautifully with handloom sarees.",
+    longDescription: "The Mridula set features delicate brushstrokes outlining traditional motifs on earthen clay. The set includes a statement necklace and matching statement jhumkas. Perfect for festive occasions and pairs beautifully with handloom sarees.",
     images: ['https://placehold.co/600x800/dccfc7/6b2323?text=Mridula+Set', 'https://placehold.co/600x800/e8d5cc/6b2323?text=Detail+1'],
     materials: ['Baked Earthen Clay', 'Acrylic Paint', 'Cotton Thread', 'Brass Findings'],
     dimensions: 'Necklace length: Adjustable up to 24 inches', weight: '85g', careInstructions: careInstructionsDefault,

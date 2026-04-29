@@ -111,8 +111,14 @@ export const Checkout = () => {
             <ul className="space-y-4 mb-6">
               {items.map(item => (
                 <li key={item.cartItemId} className="flex gap-4">
-                  <div className="w-16 h-20 bg-warm-ivory rounded-md overflow-hidden flex-shrink-0">
-                    <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" />
+                  <div className="w-16 h-20 bg-warm-ivory rounded-md overflow-hidden flex-shrink-0 border border-gray-200">
+                    {item.images[0].includes('placehold.co') ? (
+                      <div className="w-full h-full flex flex-col items-center justify-center text-center p-1">
+                        <span className="text-[6px] uppercase tracking-widest text-terracotta leading-tight">{decodeURIComponent(item.images[0].split('text=')[1] || '').replace(/\+/g, ' ')}</span>
+                      </div>
+                    ) : (
+                      <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" />
+                    )}
                   </div>
                   <div className="flex-1 text-sm">
                     <p className="font-medium text-gray-900 leading-tight">{item.name}</p>

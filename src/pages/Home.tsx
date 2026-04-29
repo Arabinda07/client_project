@@ -22,19 +22,19 @@ export const Home = () => {
         keywords="terracotta jewellery, handmade, indian artisan, goonjaa, terracotta necklace"
       />
       {/* Hero Section */}
-      <section className="flex flex-col lg:flex-row min-h-[90vh] bg-warm-ivory w-full relative overflow-hidden">
-        <div className="w-full lg:w-1/2 p-8 lg:p-16 flex flex-col justify-center z-10">
+      <section className="flex flex-col lg:flex-row min-h-screen bg-warm-ivory w-full relative overflow-hidden pt-24 lg:pt-0">
+        <div className="w-full lg:w-5/12 p-6 sm:p-12 lg:p-20 xl:p-32 flex flex-col justify-center z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="w-16 h-[1px] bg-terracotta mb-6"
+            className="w-12 h-[2px] bg-terracotta mb-10"
           />
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-terracotta type-overline mb-6 block"
+            className="text-terracotta type-overline mb-8 block"
           >
             Artisan Handcrafted Jewelry
           </motion.span>
@@ -42,16 +42,16 @@ export const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="type-display mb-8 text-gray-900"
+            className="type-display mb-10 text-gray-900"
           >
             Soulful clay,<br/>
-            <span className="italic text-terracotta-dark">sculpted by hand.</span>
+            <span className="italic text-terracotta">sculpted by hand.</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-gray-600 max-w-md mb-10 type-body-large"
+            className="text-gray-600 max-w-md mb-12 type-body-large"
           >
             Discover our collection of premium, lightweight terracotta jewellery that bridges traditional Indian motifs with contemporary elegance. A woman-led studio celebrating the raw beauty of earth.
           </motion.p>
@@ -59,71 +59,63 @@ export const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-6"
+            className="flex flex-col sm:flex-row gap-8 items-start sm:items-center"
           >
             <Link to="/shop">
-              <Button size="lg" className="w-full sm:w-auto uppercase text-xs tracking-widest px-8">Explore Collection</Button>
+              <Button size="lg" className="w-full sm:w-auto uppercase type-caption tracking-widest px-10 py-5 h-auto">Explore Collection</Button>
             </Link>
             <Link to="/about">
-              <Button variant="ghost" size="lg" className="w-full sm:w-auto uppercase text-xs tracking-widest">Our Story</Button>
+              <Button variant="ghost" size="lg" className="w-full sm:w-auto uppercase type-caption tracking-widest px-0 hover:bg-transparent hover:text-terracotta">Our Story</Button>
             </Link>
           </motion.div>
         </div>
 
-        <div className="w-full lg:w-1/2 relative min-h-[500px] lg:min-h-full">
+        <div className="w-full lg:w-7/12 relative min-h-[60vh] lg:min-h-screen mt-12 lg:mt-0">
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+            className="absolute inset-y-12 lg:inset-y-24 right-4 lg:right-12 left-4 lg:left-0 overflow-hidden bg-gray-200 border border-gray-300 flex items-center justify-center p-8 text-center"
           >
-            <img 
-              src="https://placehold.co/1200x1600/D9D1C1/7D2E24?text=Editorial+Shot" 
-              alt="Editorial Terracotta Jewellery" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-warm-ivory via-transparent to-transparent lg:w-1/4"></div>
+             <span className="type-h3 italic text-terracotta">Editorial Hero Showcase</span>
           </motion.div>
         </div>
       </section>
 
       {/* Shop by Category */}
-      <section className="py-24 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto w-full">
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="text-terracotta type-overline mb-4">Curated Selections</span>
-          <h2 className="type-h1 text-gray-900 italic">Signature Styles</h2>
+      <section className="py-32 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto w-full">
+        <div className="flex flex-col items-center text-center mb-20 lg:mb-24">
+          <span className="text-terracotta type-overline mb-6 block">Curated Selections</span>
+          <h2 className="type-display text-gray-900 italic">Signature Styles</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-4 lg:gap-8 h-auto md:h-[600px] lg:h-[700px]">
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-4 lg:gap-8 h-auto md:h-[600px] lg:h-[800px]">
           {[
-            { title: 'Necklace Sets', img: 'https://placehold.co/800x1200/E5E1D8/7D2E24?text=Necklace+Sets', link: '/category/Terracotta Set', gridClass: 'md:col-span-6 md:row-span-2' },
-            { title: 'Statement Earrings', img: 'https://placehold.co/800x1200/D9D1C1/2D2926?text=Earrings', link: '/category/Earring', gridClass: 'md:col-span-6 md:row-span-1' },
-            { title: 'Rings & Bangles', img: 'https://placehold.co/800x1200/F5F2ED/5C554E?text=Rings+%26+Bangles', link: '/shop?collection=statement-pieces', gridClass: 'md:col-span-3 md:row-span-1' },
-            { title: 'Hair Accessories', img: 'https://placehold.co/800x1200/FDFCF8/B35C38?text=Hair+Accessories', link: '/category/Hair Pin', gridClass: 'md:col-span-3 md:row-span-1' }
+            { title: 'Necklace Sets', link: '/category/Terracotta Set', gridClass: 'md:col-span-6 md:row-span-2' },
+            { title: 'Statement Earrings', link: '/category/Earring', gridClass: 'md:col-span-5 md:col-start-8 md:row-span-1 mt-0 md:mt-12' },
+            { title: 'Rings & Bangles', link: '/shop?collection=statement-pieces', gridClass: 'md:col-span-3 md:col-start-7 md:row-span-1 mb-0 md:mb-12' },
+            { title: 'Hair Accessories', link: '/category/Hair Pin', gridClass: 'md:col-span-3 md:col-start-10 md:row-span-1 mt-0 md:mt-16' }
           ].map((cat, i) => (
-            <Link key={i} to={cat.link} className={`group relative overflow-hidden block aspect-square md:aspect-auto ${cat.gridClass}`}>
-              <img src={cat.img} alt={cat.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 mix-blend-multiply" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-gray-900/10 to-transparent flex flex-col justify-end p-8">
-                <span className="text-white type-h3 mb-2 group-hover:text-terracotta transition-colors">{cat.title}</span>
-                <span className="text-white/80 type-caption uppercase tracking-widest font-bold">Discover</span>
-              </div>
+            <Link key={i} to={cat.link} className={`group relative overflow-hidden block aspect-[4/5] md:aspect-auto bg-gray-200 border border-gray-100 flex flex-col items-center justify-center p-8 lg:p-10 text-center hover:bg-gray-300 transition-colors ${cat.gridClass}`}>
+              <span className="text-gray-900 type-h2 mb-4 font-serif italic group-hover:text-terracotta transition-colors">{cat.title}</span>
+              <span className="text-gray-600 type-caption uppercase tracking-widest font-bold">Discover</span>
             </Link>
           ))}
         </div>
       </section>
 
       {/* New Arrivals */}
-      <section className="py-24 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto w-full border-t border-gray-100">
-        <div className="flex justify-between items-end mb-12">
+      <section className="py-32 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto w-full border-t border-gray-100">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 gap-6">
           <div>
-            <span className="text-terracotta type-overline mb-4 block">Fresh from the kiln</span>
-            <h2 className="type-h1 text-gray-900">New Arrivals</h2>
+            <span className="text-terracotta type-overline mb-6 block">Fresh from the kiln</span>
+            <h2 className="type-display text-gray-900">New Arrivals</h2>
           </div>
-          <Link to="/shop?sort=newest" className="hidden sm:inline-flex items-center type-caption uppercase tracking-widest font-bold text-terracotta hover:text-gray-900 transition-colors">
+          <Link to="/shop?sort=newest" className="hidden sm:inline-flex items-center type-caption uppercase tracking-widest font-bold text-terracotta hover:text-gray-900 transition-colors border-b border-terracotta pb-1 hover:border-gray-900">
             View All Collection →
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 gap-y-16">
           {newArrivals.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -136,25 +128,27 @@ export const Home = () => {
       </section>
 
       {/* Meet the Artist Preview */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 border-t border-gray-100">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="order-1 flex flex-col">
-            <span className="text-terracotta type-overline mb-6 block">Meet the Artist Behind the Jewellery</span>
-            <h2 className="type-h1 text-gray-900 mb-6 italic">A lifelong symphony of music and clay.</h2>
-            <p className="text-gray-600 mb-6">
+      <section className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 border-t border-gray-100">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-center">
+          <div className="order-1 lg:order-1 w-full lg:w-5/12 flex flex-col">
+            <span className="text-terracotta type-overline mb-8 block">Meet the Artist Behind the Jewellery</span>
+            <h2 className="type-h1 text-gray-900 mb-8 italic">A lifelong symphony of music and clay.</h2>
+            <p className="type-body-large text-gray-600 mb-8">
               "I have been learning classical music since I was two and a half years old. For me, shaping clay is no different from singing a Raag. Both require patience, devotion, and a deep respect for roots."
             </p>
-            <p className="text-gray-600 mb-10">
+            <p className="type-body text-gray-600 mb-12">
               During the stillness of the pandemic, a lifelong love for drawing and design found its way into terracotta. Today, every piece of Goonjaa is a single artisan's exploration of traditional shapes crafted for modern wardrobes. No two pieces are ever exactly the same.
             </p>
             <div>
               <Link to="/about">
-                <Button variant="outline" className="text-xs tracking-widest uppercase px-8 flex gap-2 items-center">Read the Full Story <ArrowRight size={16} /></Button>
+                <Button variant="outline" className="type-caption tracking-widest uppercase px-10 py-4 h-auto flex gap-3 items-center w-max hover:bg-gray-50">
+                  Read the Full Story <ArrowRight size={16} />
+                </Button>
               </Link>
             </div>
           </div>
-          <div className="order-2 relative aspect-[4/5] bg-gray-100 overflow-hidden group">
-            <img src="https://placehold.co/1000x1200/E5E1D8/7D2E24?text=Founder+Portrait" alt="Goonjaa Founder" className="w-full h-full object-cover mix-blend-multiply opacity-90 transition-transform duration-1000 group-hover:scale-105" />
+          <div className="order-2 lg:order-2 w-full lg:w-6/12 lg:ml-auto relative aspect-[4/5] bg-warm-ivory border border-gray-200 overflow-hidden flex flex-col items-center justify-center p-8 text-center">
+            <span className="type-h3 italic text-terracotta">Portrait of the Founder</span>
           </div>
         </div>
       </section>
@@ -165,7 +159,7 @@ export const Home = () => {
           <span className="text-terracotta type-overline mb-8 block">Our Philosophy</span>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 border-t border-white/10 pt-16">
             <div className="lg:col-span-7">
-               <h2 className="type-display mb-12 font-light">
+               <h2 className="type-h2 mb-12 font-light leading-relaxed">
                  Each piece is a <span className="italic text-terracotta">labor of love</span>, carefully molded, sun-dried, baked, and painted by a single woman artisan preserving the heritage of Indian terracotta art.
                </h2>
             </div>
@@ -191,20 +185,20 @@ export const Home = () => {
       </section>
 
       {/* Featured Highlight */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="order-2 lg:order-1 relative aspect-[4/5] bg-gray-100 overflow-hidden">
-            <img src="https://placehold.co/1000x1200/F5F2ED/5C554E?text=Bespoke+Orders" alt="Custom Terracotta Orders" className="w-full h-full object-cover mix-blend-multiply opacity-90" />
+      <section className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+          <div className="order-2 lg:order-1 w-full lg:w-5/12 relative aspect-[4/5] bg-warm-ivory border border-gray-200 overflow-hidden flex flex-col items-center justify-center p-8 text-center text-terracotta">
+             <span className="type-h3 italic">Bespoke Ordering Process</span>
           </div>
-          <div className="order-1 lg:order-2 flex flex-col lg:pl-12">
-            <span className="text-terracotta type-overline mb-6 block">Bespoke Creations</span>
-            <h2 className="type-h1 text-gray-900 mb-6 italic">Commission a one-of-a-kind masterpiece.</h2>
-            <p className="text-gray-600 mb-10">
-              Can't find exactly what you're looking for? We specialize in custom-made terracotta jewellery perfectly color-matched to your festive or bridal wear. From concept sketch to final painted details, experience a personalized artisan journey.
+          <div className="order-1 lg:order-2 w-full lg:w-6/12 flex flex-col lg:pl-12">
+            <span className="text-terracotta type-overline mb-8 block">Bespoke Creations</span>
+            <h2 className="type-h1 text-gray-900 mb-8 italic">Commission a one-of-a-kind masterpiece.</h2>
+            <p className="type-body-large text-gray-600 mb-12">
+              Can't find exactly what you're looking for? We specialize in custom-made terracotta jewellery perfectly color-matched to your festive or bridal wear. From concept sketches to final painted details, we create every piece specifically for you.
             </p>
             <div>
               <Link to="/custom-orders">
-                <Button variant="outline" className="text-xs tracking-widest uppercase px-8">Inquire Now</Button>
+                <Button variant="outline" className="type-caption tracking-widest uppercase px-12 py-4 h-auto w-max hover:bg-gray-50">Inquire Now</Button>
               </Link>
             </div>
           </div>
@@ -212,18 +206,18 @@ export const Home = () => {
       </section>
 
       {/* Instagram Feed / Community */}
-      <section className="py-20 bg-warm-ivory/50">
+      <section className="py-32 bg-warm-ivory/50 border-t border-gray-200">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
-            <span className="text-terracotta type-overline mb-4 block">Join the community</span>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="inline-block group mb-12">
-              <h2 className="type-h1 text-gray-900 group-hover:text-terracotta transition-colors">@goonjaa.srijita</h2>
+            <span className="text-terracotta type-overline mb-6 block">Join the community</span>
+            <a href="https://instagram.com/goonjaa.srijita" target="_blank" rel="noopener noreferrer" className="inline-block group mb-16">
+              <h2 className="type-display text-gray-900 group-hover:text-terracotta transition-colors">@goonjaa.srijita</h2>
             </a>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
               {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="aspect-square bg-gray-200 relative overflow-hidden group border border-gray-100">
-                  <img src={`https://placehold.co/400x400/D9D1C1/7D2E24?text=IG+Post+${i}`} alt="Instagram Post" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 mix-blend-multiply" />
-                  <div className="absolute inset-0 bg-gray-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="text-white type-overline border-b border-white pb-1">Shop Look</span>
+                <div key={i} className={`aspect-[4/5] bg-warm-ivory relative overflow-hidden group border border-gray-200 flex flex-col items-center justify-center p-6 text-center ${i % 2 === 0 ? 'mt-0 md:mt-12' : 'mt-0'}`}>
+                  <span className="type-body text-terracotta italic mb-4">Instagram Post {i}</span>
+                  <div className="absolute inset-0 bg-gray-950/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
+                    <span className="text-gray-900 type-caption tracking-widest uppercase border-b border-gray-900 pb-1">Shop Look</span>
                   </div>
                 </div>
               ))}
@@ -232,18 +226,18 @@ export const Home = () => {
       </section>
 
       {/* Newsletter */}
-      <section className="bg-warm-ivory py-24 px-4 text-center">
-        <div className="max-w-2xl mx-auto space-y-6 flex flex-col items-center">
-          <h2 className="type-h1 text-gray-900">Join our Studio</h2>
-          <p className="text-gray-600">Subscribe for early access to new collections, exclusive discounts, and peeks into our firing process.</p>
-          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-4" onSubmit={(e) => { e.preventDefault(); alert('Subscribed!'); }}>
+      <section className="bg-warm-ivory py-32 px-4 text-center border-t border-gray-200">
+        <div className="max-w-2xl mx-auto space-y-8 flex flex-col items-center">
+          <h2 className="type-display text-gray-900 italic">Join our Studio</h2>
+          <p className="type-body-large text-gray-600 max-w-lg">Subscribe for early access to new collections, exclusive discounts, and peeks into our firing process.</p>
+          <form className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto pt-6" onSubmit={(e) => { e.preventDefault(); alert('Subscribed!'); }}>
             <input 
               type="email" 
-              placeholder="Enter your email" 
+              placeholder="Enter your email address" 
               required
-              className="flex-1 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta bg-white"
+              className="flex-1 px-6 py-4 border-b-2 border-gray-300 focus:outline-none focus:border-terracotta bg-transparent transition-colors type-body"
             />
-            <Button type="submit" className="w-full sm:w-auto">Subscribe</Button>
+            <Button type="submit" className="w-full sm:w-auto type-caption uppercase tracking-widest px-8">Subscribe</Button>
           </form>
         </div>
       </section>

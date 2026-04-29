@@ -8,8 +8,8 @@ export const About = () => {
         <h1 className="type-display text-gray-900 mb-8 italic">The Hands Behind the Clay</h1>
       </div>
       
-      <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden mb-20">
-         <img src="https://placehold.co/1200x500/E5E1D8/7D2E24?text=Artisan+Workspace" alt="Artisan working with clay" className="w-full h-full object-cover mix-blend-multiply opacity-90" />
+      <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden mb-20 bg-warm-ivory border border-gray-200 flex flex-col items-center justify-center p-8 text-center transition-colors">
+         <span className="type-h3 italic text-terracotta">View of the Artisan Workspace</span>
       </div>
 
       <div className="prose prose-lg mx-auto text-gray-600 space-y-16">
@@ -37,15 +37,15 @@ export const About = () => {
             There is no factory line. Our pieces are unrepeatable. Once I finish a design, I rarely recreate it exactly. Even if I try to mix the same colors, the earth and the paint create something new every time. It is full of risks—pieces crack while drying, or break in the firing process—but that unpredictability is the beauty of exploring this medium. 
           </p>
           <div className="flex flex-col md:flex-row gap-4 mt-12">
-            <div className="w-full md:w-2/3 aspect-[4/3] bg-gray-200 overflow-hidden shrink-0">
-               <img src="https://placehold.co/800x600/D9D1C1/7D2E24?text=Patiently+Molding+Clay" alt="Molding clay" className="w-full h-full object-cover mix-blend-multiply opacity-90" />
+            <div className="w-full md:w-2/3 aspect-[4/3] bg-warm-ivory border border-gray-200 overflow-hidden shrink-0 flex items-center justify-center p-8 text-center">
+               <span className="type-h3 italic text-terracotta">Patiently Molding Clay</span>
             </div>
             <div className="w-full md:w-1/3 flex flex-col gap-4">
-              <div className="w-full aspect-[4/5] bg-gray-200 overflow-hidden flex-grow">
-                 <img src="https://placehold.co/400x500/E5E1D8/7D2E24?text=Sun-Drying+and+Baking" alt="Baking clay" className="w-full h-full object-cover mix-blend-multiply opacity-90" />
+              <div className="w-full aspect-[4/5] bg-warm-ivory border border-gray-200 overflow-hidden flex-grow flex items-center justify-center p-8 text-center">
+                 <span className="type-h3 italic text-terracotta">Sun-Drying & Baking</span>
               </div>
-              <div className="w-full aspect-square bg-gray-200 overflow-hidden shrink-0">
-                 <img src="https://placehold.co/400x400/F5F2ED/5C554E?text=Hand-Painting+Details" alt="Painting details" className="w-full h-full object-cover mix-blend-multiply opacity-90" />
+              <div className="w-full aspect-square bg-warm-ivory border border-gray-200 overflow-hidden shrink-0 flex items-center justify-center p-8 text-center">
+                 <span className="type-h3 italic text-terracotta">Hand-Painting Details</span>
               </div>
             </div>
           </div>

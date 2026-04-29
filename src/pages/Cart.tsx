@@ -39,8 +39,14 @@ export const Cart = () => {
               {items.map((item) => (
                 <div key={item.cartItemId} className="grid grid-cols-12 gap-4 py-4 border-b border-gray-100 items-center">
                   <div className="col-span-12 md:col-span-6 flex gap-4">
-                    <Link to={`/product/${item.slug}`} className="block w-20 h-24 sm:w-24 sm:h-32 bg-gray-100 shrink-0 border border-gray-100">
-                      <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover mix-blend-multiply" />
+                    <Link to={`/product/${item.slug}`} className="block w-20 h-24 sm:w-24 sm:h-32 bg-warm-ivory shrink-0 border border-gray-200">
+                      {item.images[0].includes('placehold.co') ? (
+                        <div className="w-full h-full flex flex-col items-center justify-center p-2 text-center">
+                          <span className="text-[8px] sm:text-[10px] uppercase tracking-widest text-terracotta leading-tight">{decodeURIComponent(item.images[0].split('text=')[1] || '').replace(/\+/g, ' ')}</span>
+                        </div>
+                      ) : (
+                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover mix-blend-multiply" />
+                      )}
                     </Link>
                     <div className="flex flex-col justify-center">
                       <Link to={`/product/${item.slug}`} className="type-h3 text-gray-900 hover:text-terracotta transition-colors">{item.name}</Link>

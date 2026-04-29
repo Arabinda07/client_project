@@ -42,13 +42,19 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       <Link to={`/product/${product.slug}`} className="flex-1 flex flex-col">
         <div className="relative aspect-[4/5] overflow-hidden bg-gray-100 mb-4 rounded-sm">
           <ProductBadges product={product} />
-          <motion.img
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-            src={product.images[0]}
-            alt={product.name}
-            className="w-full h-full object-cover mix-blend-multiply opacity-90"
-          />
+          {product.images[0].includes('placehold.co') ? (
+            <div className="w-full h-full flex flex-col items-center justify-center bg-warm-ivory p-6 text-center transition-transform duration-1000 group-hover:scale-105">
+               <span className="type-caption text-terracotta">{decodeURIComponent(product.images[0].split('text=')[1] || '').replace(/\+/g, ' ')}</span>
+            </div>
+          ) : (
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
+              src={product.images[0]}
+              alt={product.name}
+              className="w-full h-full object-cover mix-blend-multiply opacity-90"
+            />
+          )}
           {/* Quick add button overlay */}
           <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
             <button
