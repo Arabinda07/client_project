@@ -30,7 +30,7 @@ export const Header = () => {
     { name: 'Terracotta Sets', path: '/category/Terracotta Set' },
     { name: 'Earrings', path: '/category/Earring' },
     { name: 'Accessories', path: '/category/Accessories' },
-    { name: 'Custom Orders', path: '/custom-orders' },
+    { name: 'Bulk Orders', path: '/bulk-orders' },
     { name: 'About', path: '/about' },
   ];
 
@@ -50,8 +50,9 @@ export const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
           <div className="flex items-center gap-4 lg:hidden">
             <button
+              type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="p-2 text-gray-900 hover:text-terracotta"
+              className="p-2 text-gray-900 hover:text-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory"
               aria-label="Open Menu"
             >
               <Menu size={24} />
@@ -139,7 +140,12 @@ export const Header = () => {
               <div className="p-6">
                 <div className="flex justify-between items-center mb-8">
                   <h2 className="type-h3 text-gray-900">Goonjaa</h2>
-                  <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-500 hover:text-terracotta">
+                  <button
+                    type="button"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-2 text-gray-500 hover:text-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory"
+                    aria-label="Close Menu"
+                  >
                     <X size={24} />
                   </button>
                 </div>

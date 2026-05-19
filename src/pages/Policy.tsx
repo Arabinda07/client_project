@@ -13,12 +13,13 @@ export const Policy = () => {
       content = (
         <>
           <h3>Shipping</h3>
-          <p>Since all our products are handmade, please allow 3-5 business days for ready-to-ship items to be dispatched. Custom orders may take 7-14 days depending on the complexity of the design.</p>
+          <p>Since all our products are handmade, please allow 3-5 business days for ready-to-ship items to be dispatched. Made-to-order catalogue pieces may take 7-10 days depending on the design.</p>
+          <p>Bulk orders for existing catalogue designs require at least two months of advance booking before the requested delivery date.</p>
           <p>We offer free shipping on all orders above ₹2000 within India. For orders below this amount, standard shipping rates apply.</p>
           
           <h3>Returns & Exchanges</h3>
           <p>We want you to love your terracotta jewellery. If you receive a damaged product, please contact us within 48 hours of delivery with a photograph to arrange a replacement.</p>
-          <p>Due to the handmade nature of our products, minor variations in color or shape are not considered defects but rather a mark of authentic artisanal work. Custom orders are non-refundable.</p>
+          <p>Due to the handmade nature of our products, minor variations in color or shape are not considered defects but rather a mark of authentic artisanal work. Bulk orders are confirmed only after the studio reviews the piece, quantity, colour option, and timeline.</p>
         </>
       );
       break;

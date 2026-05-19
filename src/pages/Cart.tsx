@@ -4,6 +4,7 @@ import { useCartStore } from '../store/cartStore';
 import { Button } from '../components/ui/Button';
 import { Minus, Plus, Trash2, ArrowRight, ShoppingBag } from 'lucide-react';
 import { SEO } from '../components/layout/SEO';
+import { formatPrice } from '../lib/utils';
 
 export const Cart = () => {
   const { items, updateQuantity, removeItem, cartTotal } = useCartStore();
@@ -50,26 +51,34 @@ export const Cart = () => {
                     </Link>
                     <div className="flex flex-col justify-center">
                       <Link to={`/product/${item.slug}`} className="type-h3 text-gray-900 hover:text-terracotta transition-colors">{item.name}</Link>
-                      <p className="text-terracotta font-medium type-body mt-1">₹{item.price}</p>
+                      {item.selectedColour && (
+                        <p className="type-caption text-gray-500 mt-1">Colour: {item.selectedColour.name}</p>
+                      )}
+                      <p className="text-terracotta font-medium type-body mt-1">{formatPrice(item.price)}</p>
                       
                       {/* Mobile quantity & remove (visible only on small screens) */}
                       <div className="flex items-center gap-4 mt-4 md:hidden">
                         <div className="flex items-center border border-gray-200 rounded-full h-8">
                           <button 
+                            type="button"
                             onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
+                            aria-label={`Decrease quantity for ${item.name}`}
                             className="w-8 h-full flex items-center justify-center text-gray-500 hover:text-terracotta transition-colors"
                           >
                             <Minus size={12} />
                           </button>
                           <span className="w-8 text-center text-xs font-medium">{item.quantity}</span>
                           <button 
+                            type="button"
                             onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
+                            aria-label={`Increase quantity for ${item.name}`}
                             className="w-8 h-full flex items-center justify-center text-gray-500 hover:text-terracotta transition-colors"
                           >
                             <Plus size={12} />
                           </button>
                         </div>
                         <button 
+                          type="button"
                           onClick={() => removeItem(item.cartItemId)}
                           className="text-gray-400 hover:text-red-500 transition-colors"
                           aria-label="Remove item"
@@ -84,16 +93,20 @@ export const Cart = () => {
                   <div className="hidden md:flex col-span-3 justify-center">
                     <div className="flex items-center border border-gray-200 rounded-full h-10 w-28">
                       <button 
+                        type="button"
                         onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
-                        className="flex-1 h-full flex items-center justify-center text-gray-500 hover:text-terracotta transition-colors"
-                      >
+                            aria-label={`Decrease quantity for ${item.name}`}
+                            className="flex-1 h-full flex items-center justify-center text-gray-500 hover:text-terracotta transition-colors"
+                          >
                         <Minus size={14} />
                       </button>
                       <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
                       <button 
+                        type="button"
                         onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
-                        className="flex-1 h-full flex items-center justify-center text-gray-500 hover:text-terracotta transition-colors"
-                      >
+                            aria-label={`Increase quantity for ${item.name}`}
+                            className="flex-1 h-full flex items-center justify-center text-gray-500 hover:text-terracotta transition-colors"
+                          >
                         <Plus size={14} />
                       </button>
                     </div>
@@ -101,11 +114,12 @@ export const Cart = () => {
                   
                   {/* Desktop total & remove (hidden on small screens) */}
                   <div className="hidden md:flex col-span-3 items-center justify-between pl-4">
-                    <span className="font-medium text-gray-900 mx-auto">₹{item.price * item.quantity}</span>
+                    <span className="font-medium text-gray-900 mx-auto">{formatPrice(item.price * item.quantity)}</span>
                     <button 
+                      type="button"
                       onClick={() => removeItem(item.cartItemId)}
                       className="text-gray-400 hover:text-red-500 transition-colors w-8 h-8 flex items-center justify-center"
-                      title="Remove"
+                      aria-label={`Remove ${item.name} from cart`}
                     >
                       <Trash2 size={18} />
                     </button>
@@ -120,7 +134,7 @@ export const Cart = () => {
             <div className="space-y-4 type-body text-gray-600 border-b border-gray-200 pb-6 mb-6">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span className="font-medium text-gray-900">₹{cartTotal()}</span>
+                <span className="font-medium text-gray-900">{formatPrice(cartTotal())}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
@@ -129,7 +143,7 @@ export const Cart = () => {
             </div>
             <div className="flex justify-between items-center mb-8">
               <span className="type-h3 text-gray-900">Total</span>
-              <span className="type-h2 text-terracotta">₹{cartTotal()}</span>
+              <span className="type-h2 text-terracotta">{formatPrice(cartTotal())}</span>
             </div>
             
             <Link to="/checkout" className="block">

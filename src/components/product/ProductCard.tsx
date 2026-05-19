@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Product } from '../../types';
 import { useCartStore } from '../../store/cartStore';
 import { formatPrice, cn } from '../../lib/utils';
@@ -19,10 +19,7 @@ export const ProductBadges: React.FC<{ product: Product }> = ({ product }) => {
         <span className="bg-terracotta-dark text-white type-overline px-2 py-1 rounded">New</span>
       )}
       {product.isBestseller && (
-        <span className="bg-antique-gold text-white type-overline px-2 py-1 rounded">Bestseller</span>
-      )}
-      {product.isCustomisable && (
-        <span className="bg-warm-ivory text-terracotta border border-terracotta type-overline px-2 py-1 rounded">Customisable</span>
+        <span className="bg-antique-gold text-gray-900 type-overline px-2 py-1 rounded">Bestseller</span>
       )}
     </div>
   );
@@ -30,11 +27,19 @@ export const ProductBadges: React.FC<{ product: Product }> = ({ product }) => {
 
 export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const addItem = useCartStore((state) => state.addItem);
+  const navigate = useNavigate();
+  const availableColours = product.colourOptions?.filter((colour) => colour.available !== false) ?? [];
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent navigating to product detail
     e.stopPropagation();
-    addItem(product);
+
+    if (availableColours.length > 1) {
+      navigate(`/product/${product.slug}`);
+      return;
+    }
+
+    addItem(product, 1, availableColours[0]);
   };
 
   return (
@@ -58,15 +63,21 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           {/* Quick add button overlay */}
           <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
             <button
+              type="button"
               onClick={handleAddToCart}
               disabled={product.stockStatus === 'out_of_stock'}
+              aria-label={availableColours.length > 1 ? `Choose a colour for ${product.name}` : `Add ${product.name} to cart`}
               className={cn(
                 "w-full py-3 bg-white/90 backdrop-blur-sm shadow-sm text-gray-900 border border-gray-200 flex items-center justify-center gap-2 type-overline transition-all hover:bg-terracotta hover:text-white hover:border-terracotta",
                 product.stockStatus === 'out_of_stock' && "opacity-50 cursor-not-allowed hover:bg-white/90 hover:text-gray-900"
               )}
             >
               <ShoppingBag size={16} />
-              {product.stockStatus === 'out_of_stock' ? 'Out of Stock' : 'Add to Cart'}
+              {product.stockStatus === 'out_of_stock'
+                ? 'Out of Stock'
+                : availableColours.length > 1
+                  ? 'Choose Colour'
+                  : 'Add to Cart'}
             </button>
           </div>
         </div>
@@ -75,6 +86,18 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             {product.name}
           </h3>
           <p className="type-overline text-gray-500 mb-2">{product.subCategory}</p>
+          {availableColours.length > 0 && (
+            <div className="mb-3 flex items-center justify-center gap-1.5" aria-label={`Available colours for ${product.name}`}>
+              {availableColours.slice(0, 4).map((colour) => (
+                <span
+                  key={colour.id}
+                  title={colour.name}
+                  className="h-3 w-3 rounded-full border border-gray-300"
+                  style={{ background: colour.swatch }}
+                />
+              ))}
+            </div>
+          )}
           <div className="flex items-center justify-center gap-2">
             <span className="text-sm text-gray-900 font-medium">{formatPrice(product.price)}</span>
             {product.originalPrice && (

@@ -11,7 +11,7 @@ export const Testimonials = () => {
     {
       name: "Priya M.",
       location: "Bangalore",
-      text: "I commissioned a custom piece to match my Kanjeevaram saree, and the artist delivered beyond my expectations. The colors were matched perfectly.",
+      text: "I ordered a painted set from the catalogue for a family function, and the colours looked even richer in person.",
       rating: 5
     },
     {

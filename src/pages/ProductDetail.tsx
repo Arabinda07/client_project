@@ -8,6 +8,7 @@ import { ProductBadges } from '../components/product/ProductCard';
 import { Minus, Plus, Truck, RotateCcw, AlertCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SEO } from '../components/layout/SEO';
+import { ProductColourOption } from '../types';
 
 export const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -21,6 +22,8 @@ export const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [isAdded, setIsAdded] = useState(false);
+  const [selectedColour, setSelectedColour] = useState<ProductColourOption | null>(null);
+  const [colourError, setColourError] = useState('');
 
   if (!product) {
     return (
@@ -32,12 +35,22 @@ export const ProductDetail = () => {
   }
 
   const handleAddToCart = () => {
-    addItem(product, quantity);
+    const hasColourOptions = (product.colourOptions?.length ?? 0) > 0;
+
+    if (hasColourOptions && !selectedColour) {
+      setColourError('Choose a colour before adding this piece to your cart.');
+      return;
+    }
+
+    addItem(product, quantity, selectedColour || undefined);
     setIsAdded(true);
+    setColourError('');
     setTimeout(() => {
       setIsAdded(false);
     }, 2000);
   };
+
+  const availableColours = product.colourOptions?.filter((colour) => colour.available !== false) ?? [];
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-24 sm:py-32">
@@ -78,7 +91,9 @@ export const ProductDetail = () => {
               {product.images.map((img, idx) => (
                 <button 
                   key={idx}
+                  type="button"
                   onClick={() => setActiveImage(idx)}
+                  aria-label={`View image ${idx + 1} for ${product.name}`}
                   className={`relative w-20 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 ${activeImage === idx ? 'border-terracotta' : 'border-transparent'}`}
                 >
                   {img.includes('placehold.co') ? (
@@ -111,18 +126,61 @@ export const ProductDetail = () => {
           </p>
 
           <div className="border-t border-gray-200 py-8 mb-8 space-y-6">
+            {availableColours.length > 0 && (
+              <fieldset className="space-y-4">
+                <legend className="type-overline text-gray-900">Colour</legend>
+                <div className="flex flex-wrap gap-3">
+                  {availableColours.map((colour) => {
+                    const isSelected = selectedColour?.id === colour.id;
+
+                    return (
+                      <button
+                        key={colour.id}
+                        type="button"
+                        onClick={() => {
+                          setSelectedColour(colour);
+                          setColourError('');
+                        }}
+                        aria-pressed={isSelected}
+                        className={`min-h-11 rounded-full border px-4 py-2 type-caption transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory ${
+                          isSelected
+                            ? 'border-terracotta bg-terracotta text-white'
+                            : 'border-gray-300 bg-transparent text-gray-700 hover:border-terracotta'
+                        }`}
+                      >
+                        <span
+                          className="mr-2 inline-block h-3 w-3 rounded-full border border-gray-300 align-middle"
+                          style={{ background: colour.swatch }}
+                        />
+                        {colour.name}
+                      </button>
+                    );
+                  })}
+                </div>
+                {colourError && (
+                  <p className="type-caption text-terracotta-dark" role="alert">
+                    {colourError}
+                  </p>
+                )}
+              </fieldset>
+            )}
+
             <div className="flex items-center gap-6">
               <span className="type-overline text-gray-900 w-24">Quantity</span>
               <div className="flex items-center border border-gray-300 rounded-full bg-white">
                 <button 
+                  type="button"
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                  aria-label={`Decrease quantity for ${product.name}`}
                   className="p-3 text-gray-600 hover:text-terracotta transition-colors"
                 >
                   <Minus size={16} />
                 </button>
                 <span className="w-12 text-center font-medium">{quantity}</span>
                 <button 
+                  type="button"
                   onClick={() => setQuantity(q => q + 1)}
+                  aria-label={`Increase quantity for ${product.name}`}
                   className="p-3 text-gray-600 hover:text-terracotta transition-colors"
                 >
                   <Plus size={16} />
@@ -136,7 +194,13 @@ export const ProductDetail = () => {
               onClick={handleAddToCart}
               disabled={product.stockStatus === 'out_of_stock' || isAdded}
             >
-              {product.stockStatus === 'out_of_stock' ? 'Sold Out' : isAdded ? 'Added to Cart ✓' : 'Add to Cart'}
+              {product.stockStatus === 'out_of_stock'
+                ? 'Sold Out'
+                : isAdded
+                  ? 'Added to Cart'
+                  : availableColours.length > 0 && !selectedColour
+                    ? 'Choose Colour'
+                    : 'Add to Cart'}
             </Button>
             
             {product.stockStatus === 'made_to_order' && (

@@ -1,10 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Product, CartItem } from '../types';
+import { Product, CartItem, ProductColourOption } from '../types';
+import { getCartSelectionKey, isSameCartSelection } from '../lib/cartItem';
 
 interface CartStore {
   items: CartItem[];
-  addItem: (product: Product, quantity?: number) => void;
+  addItem: (product: Product, quantity?: number, selectedColour?: ProductColourOption) => void;
   removeItem: (cartItemId: string) => void;
   updateQuantity: (cartItemId: string, quantity: number) => void;
   clearCart: () => void;
@@ -17,14 +18,16 @@ export const useCartStore = create<CartStore>()(
     (set, get) => ({
       items: [],
 
-      addItem: (product: Product, quantity = 1) => {
+      addItem: (product: Product, quantity = 1, selectedColour?: ProductColourOption) => {
         set((state) => {
-          const existingItem = state.items.find((item) => item.id === product.id);
+          const existingItem = state.items.find((item) =>
+            isSameCartSelection(item, product.id, selectedColour?.id)
+          );
           
           if (existingItem) {
             return {
               items: state.items.map((item) =>
-                item.id === product.id
+                isSameCartSelection(item, product.id, selectedColour?.id)
                   ? { ...item, quantity: item.quantity + quantity }
                   : item
               ),
@@ -32,7 +35,15 @@ export const useCartStore = create<CartStore>()(
           }
 
           return {
-            items: [...state.items, { ...product, cartItemId: `${product.id}-${Date.now()}`, quantity }],
+            items: [
+              ...state.items,
+              {
+                ...product,
+                cartItemId: `${getCartSelectionKey(product.id, selectedColour?.id)}-${Date.now()}`,
+                quantity,
+                selectedColour,
+              },
+            ],
           };
         });
       },

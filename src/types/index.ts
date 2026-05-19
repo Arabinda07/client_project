@@ -1,5 +1,12 @@
 export type StockStatus = 'in_stock' | 'out_of_stock' | 'made_to_order';
 
+export interface ProductColourOption {
+  id: string;
+  name: string;
+  swatch: string;
+  available?: boolean;
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -21,10 +28,10 @@ export interface Product {
   isNew: boolean;
   isBestseller: boolean;
   isSale: boolean;
-  isCustomisable: boolean;
   tags: string[];
   occasion: string[];
   colorFamily: string[];
+  colourOptions?: ProductColourOption[];
   createdAt: string;
 }
 
@@ -46,6 +53,7 @@ export interface Collection {
 export interface CartItem extends Product {
   cartItemId: string;
   quantity: number;
+  selectedColour?: ProductColourOption;
 }
 
 export interface Order {

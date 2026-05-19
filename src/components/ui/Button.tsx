@@ -28,7 +28,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         whileTap={{ scale: 0.98 }}
         className={cn(
-          'inline-flex items-center justify-center font-bold uppercase transition-colors duration-200 focus:outline-none',
+          'inline-flex items-center justify-center font-bold uppercase transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory disabled:cursor-not-allowed disabled:opacity-60',
           variants[variant],
           sizes[size],
           fullWidth && 'w-full',

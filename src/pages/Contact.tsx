@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '../components/ui/Button';
-import { Mail, Instagram, MapPin } from 'lucide-react';
+import { Mail, Instagram } from 'lucide-react';
 
 export const Contact = () => {
+  const [isSent, setIsSent] = useState(false);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-24 sm:py-32">
       <div className="flex flex-col md:flex-row gap-16 lg:gap-24">
@@ -34,20 +36,26 @@ export const Contact = () => {
         </div>
 
         <div className="w-full md:w-7/12 bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
-          <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); alert('Message sent!'); }}>
+          {isSent && (
+            <div className="mb-8 border border-terracotta/30 bg-warm-ivory p-4 text-terracotta-dark" role="status">
+              <p className="type-overline mb-1">Message received</p>
+              <p className="type-body">The studio will reply as soon as possible.</p>
+            </div>
+          )}
+          <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); setIsSent(true); }}>
             <div className="flex flex-col gap-8 md:flex-row">
               <div className="space-y-2 flex-1">
-                <label className="type-overline text-gray-700">Your Name</label>
-                <input type="text" className="w-full px-4 py-3 rounded-none border-b border-gray-300 focus:outline-none focus:border-terracotta focus:ring-0 bg-transparent" />
+                <label htmlFor="contact-name" className="type-overline text-gray-700">Your Name</label>
+                <input id="contact-name" required type="text" className="w-full px-4 py-3 rounded-none border-b border-gray-300 focus:outline-none focus:border-terracotta focus:ring-0 bg-transparent" />
               </div>
               <div className="space-y-2 flex-1">
-                <label className="type-overline text-gray-700">Email Address</label>
-                <input type="email" className="w-full px-4 py-3 rounded-none border-b border-gray-300 focus:outline-none focus:border-terracotta focus:ring-0 bg-transparent" />
+                <label htmlFor="contact-email" className="type-overline text-gray-700">Email Address</label>
+                <input id="contact-email" required type="email" className="w-full px-4 py-3 rounded-none border-b border-gray-300 focus:outline-none focus:border-terracotta focus:ring-0 bg-transparent" />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="type-overline text-gray-700">Message</label>
-              <textarea rows={5} className="w-full px-4 py-3 rounded-none border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta bg-transparent mt-2"></textarea>
+              <label htmlFor="contact-message" className="type-overline text-gray-700">Message</label>
+              <textarea id="contact-message" required rows={5} className="w-full px-4 py-3 rounded-none border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta bg-transparent mt-2"></textarea>
             </div>
             <div className="pt-4">
               <Button type="submit" className="type-overline px-12 py-4 h-auto">Send Message</Button>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Mail, MapPin } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -13,7 +13,13 @@ export const Footer = () => {
               Handcrafted terracotta jewellery from the heart of India. Every piece is sculpted with love and painted by hand, making it uniquely yours.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-terracotta transition-colors">
+              <a
+                href="https://instagram.com/goonjaa.srijita"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Goonjaa on Instagram"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-terracotta transition-colors focus:outline-none focus:ring-2 focus:ring-warm-ivory"
+              >
                 <Instagram size={18} />
               </a>
             </div>
@@ -33,7 +39,7 @@ export const Footer = () => {
             <h3 className="type-overline text-antique-gold mb-6">Brand</h3>
             <ul className="space-y-4 type-body text-warm-ivory/80">
               <li><Link to="/about" className="hover:text-white transition-colors">Our Story</Link></li>
-              <li><Link to="/custom-orders" className="hover:text-white transition-colors">Custom Orders</Link></li>
+              <li><Link to="/bulk-orders" className="hover:text-white transition-colors">Bulk Orders</Link></li>
               <li><Link to="/testimonials" className="hover:text-white transition-colors">Happy Customers</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
             </ul>

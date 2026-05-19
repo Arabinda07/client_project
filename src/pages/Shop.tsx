@@ -11,21 +11,27 @@ export const Shop = () => {
   const [sortBy, setSortBy] = useState<string>('latest');
 
   const mainCategories = categories.map(cat => cat.name);
+  const isAccessoriesCategory = categoryName === 'Accessories';
+  const matchesCategory = (productMainCategory: string) => {
+    if (!categoryName) return true;
+    if (isAccessoriesCategory) return productMainCategory !== 'Terracotta Set' && productMainCategory !== 'Earring';
+    return productMainCategory === categoryName;
+  };
   
   // Extract all unique subcategories for the current main category, or all if no main category
   const availableSubCategories = useMemo(() => {
     let products = mockProducts;
     if (categoryName) {
-      products = products.filter(p => p.mainCategory === categoryName);
+      products = products.filter(p => matchesCategory(p.mainCategory));
     }
     return Array.from(new Set(products.map(p => p.subCategory)));
   }, [categoryName]);
 
   const filteredProducts = useMemo(() => {
-    let result = mockProducts;
+    let result = [...mockProducts];
     
     if (categoryName) {
-      result = result.filter(p => p.mainCategory === categoryName);
+      result = result.filter(p => matchesCategory(p.mainCategory));
     }
     
     if (selectedSubCategory) {
@@ -61,6 +67,8 @@ export const Shop = () => {
         return "Complete statements of wearable art. Our necklace sets bring traditional motifs to life, perfect for when you want to carry a piece of heritage with you.";
       case 'Earring':
         return "From traditional jhumkas to modern textured drops. Lightweight, face-framing art pieces for every occasion.";
+      case 'Accessories':
+        return "Rings, bangles, pins, clips, and small clay details for gifting or everyday wear.";
       case 'Gen-Z Set':
       case 'Gen-Z':
         return "Playful, abstract, and bold. Earthen clay reimagined for the modern wardrobe.";
@@ -143,6 +151,7 @@ export const Shop = () => {
                 <ul className="space-y-4">
                   <li>
                     <button 
+                      type="button"
                       onClick={() => setSelectedSubCategory(null)}
                       className={`text-left w-full type-caption uppercase tracking-widest transition-colors ${selectedSubCategory === null ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
                     >
@@ -152,6 +161,7 @@ export const Shop = () => {
                   {availableSubCategories.map(sub => (
                     <li key={sub}>
                       <button 
+                        type="button"
                         onClick={() => setSelectedSubCategory(sub)}
                         className={`text-left w-full type-caption uppercase tracking-widest transition-colors ${selectedSubCategory === sub ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
                       >

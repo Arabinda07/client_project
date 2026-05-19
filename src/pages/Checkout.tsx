@@ -24,7 +24,7 @@ export const Checkout = () => {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
         <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">✓</div>
-        <h1 className="font-serif text-4xl text-gray-900 mb-4">Order Confirmed!</h1>
+        <h1 className="font-serif text-4xl text-gray-900 mb-4">Order Confirmed</h1>
         <p className="text-gray-600 mb-8">
           Thank you for supporting our handmade business. We will start working on your beautiful terracotta pieces right away.
         </p>
@@ -58,16 +58,16 @@ export const Checkout = () => {
               <h2 className="font-serif text-2xl mb-6">Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Full Name</label>
-                  <input required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-name" className="text-sm font-medium text-gray-700">Full Name</label>
+                  <input id="checkout-name" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">Phone</label>
-                  <input required type="tel" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-phone" className="text-sm font-medium text-gray-700">Phone</label>
+                  <input id="checkout-phone" required type="tel" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2 md:col-span-2">
-                  <label className="text-sm font-medium text-gray-700">Email Address</label>
-                  <input required type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-email" className="text-sm font-medium text-gray-700">Email Address</label>
+                  <input id="checkout-email" required type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
                 </div>
               </div>
             </div>
@@ -76,20 +76,20 @@ export const Checkout = () => {
               <h2 className="font-serif text-2xl mb-6">Shipping Address</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2 md:col-span-2">
-                  <label className="text-sm font-medium text-gray-700">Street Address</label>
-                  <input required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-address" className="text-sm font-medium text-gray-700">Street Address</label>
+                  <input id="checkout-address" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">City</label>
-                  <input required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-city" className="text-sm font-medium text-gray-700">City</label>
+                  <input id="checkout-city" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">State</label>
-                  <input required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-state" className="text-sm font-medium text-gray-700">State</label>
+                  <input id="checkout-state" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">PIN Code</label>
-                  <input required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-pin" className="text-sm font-medium text-gray-700">PIN Code</label>
+                  <input id="checkout-pin" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
                 </div>
               </div>
             </div>
@@ -122,6 +122,9 @@ export const Checkout = () => {
                   </div>
                   <div className="flex-1 text-sm">
                     <p className="font-medium text-gray-900 leading-tight">{item.name}</p>
+                    {item.selectedColour && (
+                      <p className="text-gray-500">Colour: {item.selectedColour.name}</p>
+                    )}
                     <p className="text-gray-500">Qty: {item.quantity}</p>
                     <p className="font-medium text-gray-900 mt-1">{formatPrice(item.price * item.quantity)}</p>
                   </div>

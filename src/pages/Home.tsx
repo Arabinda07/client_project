@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Button } from '../components/ui/Button';
@@ -13,6 +13,8 @@ export const Home = () => {
   const featuredSets = mockProducts.filter(p => p.mainCategory === 'Terracotta Set').slice(0, 4);
   const newArrivals = mockProducts.filter(p => p.collection?.includes('New Arrivals')).slice(0, 4);
   const bestsellers = mockProducts.filter(p => p.collection?.includes('Bestsellers')).slice(0, 4);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSuccess, setNewsletterSuccess] = useState(false);
 
   return (
     <div className="flex flex-col">
@@ -93,7 +95,7 @@ export const Home = () => {
           {[
             { title: 'Necklace Sets', link: '/category/Terracotta Set', gridClass: 'md:col-span-6 md:row-span-2' },
             { title: 'Statement Earrings', link: '/category/Earring', gridClass: 'md:col-span-5 md:col-start-8 md:row-span-1 mt-0 md:mt-12' },
-            { title: 'Rings & Bangles', link: '/shop?collection=statement-pieces', gridClass: 'md:col-span-3 md:col-start-7 md:row-span-1 mb-0 md:mb-12' },
+            { title: 'Rings & Bangles', link: '/category/Bangles', gridClass: 'md:col-span-3 md:col-start-7 md:row-span-1 mb-0 md:mb-12' },
             { title: 'Hair Accessories', link: '/category/Hair Pin', gridClass: 'md:col-span-3 md:col-start-10 md:row-span-1 mt-0 md:mt-16' }
           ].map((cat, i) => (
             <Link key={i} to={cat.link} className={`group relative overflow-hidden block aspect-[4/5] md:aspect-auto bg-gray-200 border border-gray-100 flex flex-col items-center justify-center p-8 lg:p-10 text-center hover:bg-gray-300 transition-colors ${cat.gridClass}`}>
@@ -111,7 +113,7 @@ export const Home = () => {
             <span className="text-terracotta type-overline mb-6 block">Fresh from the kiln</span>
             <h2 className="type-display text-gray-900">New Arrivals</h2>
           </div>
-          <Link to="/shop?sort=newest" className="hidden sm:inline-flex items-center type-caption uppercase tracking-widest font-bold text-terracotta hover:text-gray-900 transition-colors border-b border-terracotta pb-1 hover:border-gray-900">
+          <Link to="/shop" className="hidden sm:inline-flex items-center type-caption uppercase tracking-widest font-bold text-terracotta hover:text-gray-900 transition-colors border-b border-terracotta pb-1 hover:border-gray-900">
             View All Collection →
           </Link>
         </div>
@@ -121,7 +123,7 @@ export const Home = () => {
           ))}
         </div>
         <div className="mt-12 text-center sm:hidden">
-          <Link to="/shop?sort=newest">
+          <Link to="/shop">
             <Button variant="outline" fullWidth>View All</Button>
           </Link>
         </div>
@@ -188,17 +190,17 @@ export const Home = () => {
       <section className="py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
           <div className="order-2 lg:order-1 w-full lg:w-5/12 relative aspect-[4/5] bg-warm-ivory border border-gray-200 overflow-hidden flex flex-col items-center justify-center p-8 text-center text-terracotta">
-             <span className="type-h3 italic">Bespoke Ordering Process</span>
+             <span className="type-h3 italic">Bulk Catalogue Orders</span>
           </div>
           <div className="order-1 lg:order-2 w-full lg:w-6/12 flex flex-col lg:pl-12">
-            <span className="text-terracotta type-overline mb-8 block">Bespoke Creations</span>
-            <h2 className="type-h1 text-gray-900 mb-8 italic">Commission a one-of-a-kind masterpiece.</h2>
+            <span className="text-terracotta type-overline mb-8 block">Bulk Orders</span>
+            <h2 className="type-h1 text-gray-900 mb-8 italic">Repeat an existing design for your gathering.</h2>
             <p className="type-body-large text-gray-600 mb-12">
-              Can't find exactly what you're looking for? We specialize in custom-made terracotta jewellery perfectly color-matched to your festive or bridal wear. From concept sketches to final painted details, we create every piece specifically for you.
+              Planning return gifts or a small batch for an event? Choose a catalogue piece, select one of its available colours, and book at least two months ahead so the studio has time to shape, dry, bake, and paint every piece by hand.
             </p>
             <div>
-              <Link to="/custom-orders">
-                <Button variant="outline" className="type-caption tracking-widest uppercase px-12 py-4 h-auto w-max hover:bg-gray-50">Inquire Now</Button>
+              <Link to="/bulk-orders">
+                <Button variant="outline" className="type-caption tracking-widest uppercase px-12 py-4 h-auto w-max hover:bg-gray-50">Plan a Bulk Order</Button>
               </Link>
             </div>
           </div>
@@ -230,11 +232,30 @@ export const Home = () => {
         <div className="max-w-2xl mx-auto space-y-8 flex flex-col items-center">
           <h2 className="type-display text-gray-900 italic">Join our Studio</h2>
           <p className="type-body-large text-gray-600 max-w-lg">Subscribe for early access to new collections, exclusive discounts, and peeks into our firing process.</p>
-          <form className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto pt-6" onSubmit={(e) => { e.preventDefault(); alert('Subscribed!'); }}>
+          {newsletterSuccess && (
+            <p className="type-caption text-terracotta-dark" role="status">
+              Thank you. You are on the studio list.
+            </p>
+          )}
+          <form
+            className="flex flex-col sm:flex-row gap-4 w-full max-w-lg mx-auto pt-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setNewsletterSuccess(true);
+              setNewsletterEmail('');
+            }}
+          >
+            <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input 
+              id="newsletter-email"
               type="email" 
               placeholder="Enter your email address" 
               required
+              value={newsletterEmail}
+              onChange={(event) => {
+                setNewsletterEmail(event.target.value);
+                setNewsletterSuccess(false);
+              }}
               className="flex-1 px-6 py-4 border-b-2 border-gray-300 focus:outline-none focus:border-terracotta bg-transparent transition-colors type-body"
             />
             <Button type="submit" className="w-full sm:w-auto type-caption uppercase tracking-widest px-8">Subscribe</Button>
