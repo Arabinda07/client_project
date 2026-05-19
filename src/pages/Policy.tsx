@@ -1,5 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { brand } from '../lib/brand';
+import { SEO } from '../components/layout/SEO';
 
 export const Policy = () => {
   const { policyName } = useParams<{ policyName: string }>();
@@ -39,7 +41,7 @@ export const Policy = () => {
       content = (
         <>
           <h3>Handmade Disclaimer</h3>
-          <p>By purchasing from Goonjaa, you acknowledge that our products are handcrafted using natural earthen clay. Slight imperfections, variations in glaze, or paint are inherent to the process and celebrated as unique characteristics.</p>
+          <p>By purchasing from {brand.name}, you acknowledge that our products are handcrafted using natural earthen clay. Slight differences in color, glaze, or shape are part of the process and are treated as signs of the hand, not defects.</p>
           <h3>Product Care</h3>
           <p>Terracotta is porous and fragile if dropped. We are not responsible for damage caused by improper handling after delivery. Please refer to our care instructions included with every package.</p>
         </>
@@ -51,8 +53,9 @@ export const Policy = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-20">
-      <h1 className="font-serif text-4xl text-gray-900 mb-8">{title}</h1>
+    <div className="mx-auto max-w-3xl px-4 py-20 sm:py-24 lg:py-28">
+      <SEO title={title} description={`${title} for ${brand.name} handmade terracotta jewellery.`} />
+      <h1 className="mb-8 text-gray-900 type-display">{title}</h1>
       <div className="prose prose-terracotta text-gray-600">
         {content}
       </div>

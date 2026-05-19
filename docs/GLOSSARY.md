@@ -1,41 +1,41 @@
 # Glossary
 
-This glossary defines canonical product terms for Mitty & Co. Use these terms consistently in UI, docs, onboarding, marketing, and support copy.
+This glossary defines canonical product and brand terms for **goonjaa**. Use these terms in UI, docs, onboarding, marketing, and support copy.
 
 ## Product Name
 
-### Mitty & Co
+### goonjaa
 
 The brand name.
 
 Rules:
-- Always capitalize as `Mitty & Co`.
-- Do not write `mitty & co` or `Mitty and Co` when referring to the brand in formal copy, unless escaping ampersands requires it.
+- Always write the brand as `goonjaa`.
+- Don't use old project names, abbreviated stand-ins, or title-case variants in current brand copy.
 
 ## Core Objects
 
 ### Piece / Creation
 
-A single handmade jewellery item.
+A single handmade jewellery object.
 
 Use:
-- piece
-- creation
-- design
-- wearable art
+- Piece
+- Creation
+- Design
+- Wearable art
 
 Avoid:
-- product
-- item
-- unit
+- Unit
+- SKU in customer-facing copy
+- Factory product language
 
 ### Terracotta
 
 The raw material.
 
 Rules:
-- Always use to signify the earthen clay origin.
-- Celebrate it as traditional, eco-conscious, and skin-safe.
+- Use it to point back to earthen clay.
+- Treat it as traditional, eco-conscious, skin-safe, and handmade.
 
 ### Collection / Selections
 
@@ -43,54 +43,67 @@ Groupings of pieces.
 
 Use:
 - Curated selections
-- The Festive Edit
-- Bespoke creations
+- The festive edit
+- Studio collection
 
 Avoid:
 - Inventory
-- Catalog
-- Stock
+- Stock dump
+- Mass catalogue language
 
-### Custom Orders / Bespoke
+### Bulk Orders
 
-When a user commissions a piece.
+Repeat orders for existing catalogue designs.
 
 Use:
-- Bespoke Creations
-- Custom Commission
-- Commissioning wearable art
+- Bulk order
+- Repeat an existing design
+- Plan a small batch
 
 Avoid:
-- Bulk orders
 - Manufacturing
+- Wholesale factory wording
 
 ## Craft & Process Terms
 
 ### Hand Molded / Handcrafted
-How the items are made. 
-Avoid words like "manufactured", "produced", or "assembled".
 
-### Sun-dried / Baked / Painted
-The stages of creation. Emphasize the slow, natural process. 
+How the pieces are made.
 
-### Unrepeatable / One-of-a-kind
-Because the pieces are made by hand without molds, they cannot be mass-reproduced. This is a feature, not a bug.
+Avoid words like "manufactured", "produced", or "assembled" unless the context is technical and internal.
+
+### Sun-Dried / Baked / Painted
+
+The stages of creation. Use these terms to make the slow process visible.
+
+### Unrepeatable / One-Of-A-Kind
+
+Because the pieces are made by hand without molds, they can't be mass-reproduced.
 
 Use:
 - One-of-a-kind
-- Uniquely yours
 - Unrepeatable
+- Uniquely yours
 
 Avoid:
-- Limited edition (implies artificial scarcity rather than craft constraints)
+- Limited edition
 - Flawed
 
-## Plan and Business Terms
+## Plan And Business Terms
 
 ### Woman-Led / Solo Artisan
-The business structure. Mitty & Co is guided by a single artist who is also a classical vocalist.
+
+The studio is guided by a single artist who is also a classical vocalist.
 
 ### Studio
+
 Where the pieces are made.
-Use: "From our studio", "Fresh from the kiln".
-Avoid: "Factory", "Warehouse".
+
+Use:
+- From the studio
+- Fresh from the kiln
+- Made by hand
+
+Avoid:
+- Factory
+- Warehouse

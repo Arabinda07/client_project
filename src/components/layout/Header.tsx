@@ -4,6 +4,7 @@ import { ShoppingBag, Menu, X, Instagram } from 'lucide-react';
 import { useCartStore } from '../../store/cartStore';
 import { cn } from '../../lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
+import { brand } from '../../lib/brand';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,14 +38,14 @@ export const Header = () => {
   return (
     <>
       {/* Announcement Bar */}
-      <div className="bg-terracotta text-white type-overline tracking-wider text-center py-2 px-4 uppercase">
+      <div className="bg-terracotta text-warm-ivory text-center px-3 py-2 text-[0.625rem] font-semibold uppercase leading-4 tracking-[0.12em] sm:type-overline">
         Handmade terracotta jewellery crafted with love
       </div>
 
       <header
         className={cn(
-          'sticky top-0 z-40 w-full transition-all duration-300 border-b',
-          isScrolled ? 'bg-warm-ivory border-gray-200 py-3 mt-0 shadow-sm' : 'bg-warm-ivory border-gray-200 py-6'
+          'sticky top-0 z-40 w-full border-b transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
+          isScrolled ? 'bg-studio-paper/95 border-border-soft py-3 shadow-[0_16px_40px_rgba(49,39,31,0.06)] backdrop-blur-sm' : 'bg-studio-paper border-border-soft py-5'
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
@@ -52,7 +53,7 @@ export const Header = () => {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="p-2 text-gray-900 hover:text-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory"
+              className="min-h-11 min-w-11 p-2 text-gray-900 hover:text-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory"
               aria-label="Open Menu"
             >
               <Menu size={24} />
@@ -65,7 +66,7 @@ export const Header = () => {
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  'type-overline transition-colors uppercase',
+                  'type-overline uppercase transition-colors duration-300',
                   location.pathname === link.path ? 'text-terracotta' : 'text-gray-900 hover:text-terracotta'
                 )}
               >
@@ -75,8 +76,8 @@ export const Header = () => {
           </div>
 
           <Link to="/" className="flex-shrink-0 text-center">
-            <h1 className="type-h1 text-4xl italic tracking-tighter text-terracotta-dark">
-              Goonjaa
+            <h1 className="font-serif text-[2.1rem] display-logo display-italic leading-none text-terracotta-dark sm:text-[2.35rem]">
+              {brand.name}
             </h1>
           </Link>
 
@@ -87,7 +88,7 @@ export const Header = () => {
                   key={link.name}
                   to={link.path}
                   className={cn(
-                    'type-overline transition-colors uppercase',
+                    'type-overline uppercase transition-colors duration-300',
                     location.pathname === link.path ? 'text-terracotta' : 'text-gray-900 hover:text-terracotta'
                   )}
                 >
@@ -96,21 +97,22 @@ export const Header = () => {
               ))}
             </div>
             <a
-              href="https://instagram.com/goonjaa.srijita"
+              href={brand.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:block p-1 text-gray-900 hover:text-terracotta transition-colors"
+              aria-label={`Follow ${brand.name} on Instagram`}
+              className="hidden min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta sm:flex"
             >
               <Instagram size={20} />
             </a>
             <Link
               to="/cart"
-              className="relative p-1 text-gray-900 hover:text-terracotta transition-colors"
+              className="relative flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta"
               aria-label="View Cart"
             >
               <ShoppingBag size={24} />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-terracotta text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+                <span className="numeric-tabular absolute right-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-terracotta text-[0.625rem] font-semibold text-warm-ivory">
                   {cartCount}
                 </span>
               )}
@@ -127,7 +129,7 @@ export const Header = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-gray-950/50 z-50 lg:hidden"
+              className="fixed inset-0 z-50 bg-gray-900/45 lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
@@ -135,15 +137,15 @@ export const Header = () => {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-              className="fixed inset-y-0 left-0 w-[80vw] max-w-sm bg-warm-ivory shadow-2xl z-50 lg:hidden overflow-y-auto"
+              className="fixed inset-y-0 left-0 z-50 w-[86vw] max-w-sm overflow-y-auto border-r border-border-soft bg-studio-paper shadow-[32px_0_80px_rgba(49,39,31,0.18)] lg:hidden"
             >
-              <div className="p-6">
+              <div className="p-7">
                 <div className="flex justify-between items-center mb-8">
-                  <h2 className="type-h3 text-gray-900">Goonjaa</h2>
+                  <h2 className="font-serif text-[2rem] display-logo display-italic text-terracotta-dark">{brand.name}</h2>
                   <button
                     type="button"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2 text-gray-500 hover:text-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory"
+                    className="min-h-11 min-w-11 p-2 text-gray-600 hover:text-terracotta focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory"
                     aria-label="Close Menu"
                   >
                     <X size={24} />
@@ -154,17 +156,18 @@ export const Header = () => {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className="type-overline text-gray-800 hover:text-terracotta"
+                      className="py-1 type-overline text-gray-800 transition-colors hover:text-terracotta"
                     >
                       {link.name}
                     </Link>
                   ))}
-                  <div className="w-full h-px bg-gray-200 my-4" />
+                  <div className="w-full h-px bg-border-soft my-4" />
                   <a
-                    href="https://instagram.com/goonjaa.srijita"
+                    href={brand.instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-600 hover:text-terracotta"
+                    aria-label={`Follow ${brand.name} on Instagram`}
+                    className="flex min-h-11 items-center gap-3 text-gray-600 transition-colors hover:text-terracotta"
                   >
                     <Instagram size={20} />
                     <span>Follow on Instagram</span>

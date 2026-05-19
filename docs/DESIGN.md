@@ -2,46 +2,48 @@
 
 ## Overview
 
-**Mitty & Co** is defined by a "Handcrafted & Artistic" design language. The aesthetic celebrates the raw beauty of earth, the warmth of the artist's studio, and the elegance of Indian heritage blended with modern minimalism.
+**goonjaa** uses a warm handmade-luxury design language. The site should feel like a quiet terracotta studio: earth, soft sunlight, hand-painted detail, and enough restraint for the jewellery to feel precious.
 
 ## Core Visual Traits
 
-- **Warmth:** Colors inspired by earth, clay, and soft sunlight.
-- **Texture:** Soft, handmade-feeling surfaces.
-- **Elegance:** Premium typography that elevates the craft to "wearable art."
-- **Artisanal:** Placeholders for beautiful, moody photography.
+- **Warmth:** Clay, paper, and soft sunlit surfaces.
+- **Texture:** Gentle handmade surfaces, never glossy showroom polish.
+- **Elegance:** Display type should make the craft feel like wearable art.
+- **Artisanal:** Placeholder surfaces should read as intentional studio notes until real photography is available.
 
 ## Colors
 
-The palette is rooted in the natural tones of terracotta and traditional Indian artistry.
+The palette is rooted in fired clay and traditional Indian artistry.
 
-- **Warm Ivory (`#FAF9F5` / `bg-warm-ivory`):** The primary background. Mimics the soft, unbleached canvas or paper.
-- **Terracotta (`#B35C38` / `text-terracotta`):** The brand's signature accent color. Earthy, fired clay.
-- **Deep Maroon/Terracotta Dark (`#7d2e24`):** For rich contrasts and elegant depth.
-- **Antique Gold (`#D4AF37`):** Used sparingly for delicate borders, text highlights, and elevated accents.
-- **Charcoal/Gray-900 (`#111827`):** For primary text. Avoid pure black to maintain a softer, printed feel.
+- **Warm Ivory (`#FDFBF5` / `bg-warm-ivory`):** Primary background. Soft paper, not pure white.
+- **Studio Wash (`#F7F0E7` / `bg-studio-wash`):** Secondary background for quieter bands and placeholders.
+- **Surface (`#FBF7EF` / `bg-surface`):** Product and form surfaces.
+- **Terracotta (`#B35C38` / `text-terracotta`):** Main accent. Use for action, warmth, and craft emphasis.
+- **Deep Maroon (`#7D2E24` / `text-deep-maroon`):** Small high-contrast text, badges, and rich anchors.
+- **Antique Gold (`#B8892E` / `text-antique-gold`):** Sparse highlight for elevated details.
+- **Ink (`#1D1815` / `text-gray-900`):** Primary text. Avoid pure black.
 
 ## Typography
 
-The typography pairs a sophisticated serif with a clean, tracking-heavy sans-serif to bridge the traditional and modern.
+The current pairing is **Boska + Pilcrow Rounded**. It should feel like handmade jewellery with a fashion-label edge: expressive enough for a boutique, but still warm and clay-led rather than cold showroom luxury.
 
-- **Headings (Display):** Elegant Serif (e.g., Playfair Display or a similar standard serif). Used for large impactful statements, section titles, and quotes. Emphasize italics (`italic`) to add a handwritten, poetic feel.
-- **Body & Functional:** Clean Sans-Serif (e.g., Inter). Keeps the UI highly readable.
-- **Accents (Overlines/Buttons):** Sans-serif, deeply uppercase (`uppercase`), and wide letter-spacing (`tracking-widest` or `tracking-[0.2em]`).
+- **Display:** Boska for logo, hero lines, section titles, poetic placeholders, and category moments. Use the local variable files with role-based weights: airy display for the hero, normal weight for full headings, logo/category weight for compact display text, and a stronger accent weight for short terracotta or antique-gold phrases.
+- **Body and UI:** Pilcrow Rounded for body copy, navigation, filters, prices, forms, cart, and checkout.
+- **Accents:** Uppercase labels with moderate tracking. Keep them short; don't turn body copy into all-caps. Boska has a real italic file, so use italic only for short brand moments such as the logo, hero accent, and poetic placeholders. Never use it for full headings or functional commerce text.
 
 ## Layout & Shapes
 
-- **Photography:** Images are the hero. Use generous aspect ratios (4:5, 3:4, or full width). Images should have a slight `mix-blend-multiply` or color-burn effect against the warm ivory background to feel integrated rather than "stuck on".
-- **Borders & Lines:** Thin, elegant lines (`1px`). Use borders to create structure without visual weight.
-- **Spacing:** Generous padding. Let the elements breathe like an art gallery.
+- **Photography:** Real product and studio photography is the highest-impact future upgrade. Until then, placeholders should feel like calm clay-paper compositions, not generic image boxes.
+- **Borders:** Thin `1px` borders. Use structure without weight.
+- **Spacing:** Generous, but varied. Let sections breathe, and keep related controls close together.
+- **Corners:** Keep corners restrained (`rounded-[2px]`) unless a component has a clear reason to be round.
 
 ## Components
 
-- **Buttons:** 
-  - Primary: Solid charcoal or terracotta with white text, uppercase, tracking wide.
-  - Secondary: Ghost or Outline. Thin borders, uppercase text.
-- **Product Cards:** Minimalist. Let the image speak. Soft hover effects (e.g., slow image scaling).
+- **Buttons:** Terracotta or deep maroon fills for primary actions; thin outlines for secondary actions. Keep touch targets comfortable.
+- **Product Cards:** Product image first. Names may wrap to two lines. Badges should be compact and readable.
+- **Forms:** Quiet surfaces, clear labels, and strong focus states.
 
 ## Atmosphere
 
-The site should feel like you are walking into an upscale, sunlit pottery studio in a quiet neighborhood.
+The site should feel like walking into a sunlit home studio where clay is drying on a table and color is mixed by hand.

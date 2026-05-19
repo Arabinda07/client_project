@@ -7,6 +7,7 @@ import {
   getBulkOrderMinimumDate,
   isBulkOrderDateAllowed,
 } from '../lib/bulkOrder';
+import { brand } from '../lib/brand';
 
 type BulkFormState = {
   name: string;
@@ -74,26 +75,26 @@ export const BulkOrders = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-24 sm:py-32">
+    <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
       <SEO
         title="Bulk Orders"
-        description="Plan bulk orders for existing Goonjaa terracotta jewellery designs with a two-month advance booking window."
+        description={`Plan bulk orders for existing ${brand.name} terracotta jewellery designs with a two-month advance booking window.`}
       />
 
       <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div>
-          <span className="text-terracotta type-overline mb-5 block">Bulk Orders</span>
-          <h1 className="type-display text-gray-900 mb-8 italic">Plan repeat pieces with the studio.</h1>
+          <span className="mb-5 block text-terracotta-dark type-overline">Bulk Orders</span>
+          <h1 className="type-display text-gray-900 mb-8">Plan repeat pieces with the studio.</h1>
           <p className="type-body-large text-gray-600 mb-8">
             For return gifts, group events, or small batches, choose an existing catalogue design and share the quantity you need. Bulk orders require at least two months of advance booking because every piece is sculpted and painted by hand.
           </p>
-          <div className="border-y border-gray-200 py-6">
+          <div className="border-y border-border-soft py-6">
             <p className="type-overline text-gray-900 mb-2">Earliest delivery date</p>
             <p className="type-h3 text-terracotta">{minimumDateLabel}</p>
           </div>
         </div>
 
-        <div className="border border-gray-200 bg-white p-6 sm:p-8 md:p-10">
+        <div className="rounded-[2px] border border-border-soft bg-surface p-6 shadow-[0_18px_48px_rgba(49,39,31,0.05)] sm:p-8 md:p-10">
           {isSubmitted && (
             <div className="mb-8 border border-terracotta/30 bg-warm-ivory p-4 text-terracotta-dark" role="status">
               <p className="type-overline mb-1">Inquiry received</p>
@@ -110,7 +111,7 @@ export const BulkOrders = () => {
                   required
                   value={formState.name}
                   onChange={(event) => updateField('name', event.target.value)}
-                  className="w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:outline-none focus:border-terracotta"
+                  className="min-h-12 w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:border-terracotta focus:outline-none"
                 />
               </div>
               <div className="space-y-2">
@@ -121,7 +122,7 @@ export const BulkOrders = () => {
                   type="tel"
                   value={formState.phone}
                   onChange={(event) => updateField('phone', event.target.value)}
-                  className="w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:outline-none focus:border-terracotta"
+                  className="min-h-12 w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:border-terracotta focus:outline-none"
                 />
               </div>
               <div className="space-y-2 md:col-span-2">
@@ -132,7 +133,7 @@ export const BulkOrders = () => {
                   type="email"
                   value={formState.email}
                   onChange={(event) => updateField('email', event.target.value)}
-                  className="w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:outline-none focus:border-terracotta"
+                  className="min-h-12 w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:border-terracotta focus:outline-none"
                 />
               </div>
               <div className="space-y-2 md:col-span-2">
@@ -142,7 +143,7 @@ export const BulkOrders = () => {
                   required
                   value={formState.productId}
                   onChange={(event) => updateField('productId', event.target.value)}
-                  className="w-full border border-gray-300 bg-warm-ivory px-4 py-3 focus:outline-none focus:border-terracotta"
+                  className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none"
                 >
                   <option value="">Choose an existing design</option>
                   {products.map((product) => (
@@ -160,7 +161,7 @@ export const BulkOrders = () => {
                   value={formState.colourId}
                   onChange={(event) => updateField('colourId', event.target.value)}
                   disabled={!selectedProduct || availableColours.length === 0}
-                  className="w-full border border-gray-300 bg-warm-ivory px-4 py-3 focus:outline-none focus:border-terracotta disabled:cursor-not-allowed disabled:opacity-60"
+                  className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   <option value="">Choose from catalogue colours</option>
                   {availableColours.map((colour) => (
@@ -177,7 +178,7 @@ export const BulkOrders = () => {
                   required
                   value={formState.quantityRange}
                   onChange={(event) => updateField('quantityRange', event.target.value)}
-                  className="w-full border border-gray-300 bg-warm-ivory px-4 py-3 focus:outline-none focus:border-terracotta"
+                  className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none"
                 >
                   <option value="">Select a range</option>
                   <option value="10-24">10-24 pieces</option>
@@ -196,7 +197,7 @@ export const BulkOrders = () => {
                   value={formState.deliveryDate}
                   onChange={(event) => updateField('deliveryDate', event.target.value)}
                   aria-describedby="bulk-delivery-help"
-                  className="w-full border border-gray-300 bg-warm-ivory px-4 py-3 focus:outline-none focus:border-terracotta"
+                  className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none"
                 />
                 <p id="bulk-delivery-help" className="type-caption text-gray-500">
                   Bulk orders can be requested for {minimumDateLabel} or later.
@@ -215,11 +216,11 @@ export const BulkOrders = () => {
                   value={formState.notes}
                   onChange={(event) => updateField('notes', event.target.value)}
                   placeholder="Share event details, packaging needs, or delivery city."
-                  className="w-full border border-gray-300 bg-transparent px-4 py-3 focus:outline-none focus:border-terracotta"
+                  className="w-full rounded-[2px] border border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none"
                 />
               </div>
             </div>
-            <Button type="submit" className="w-full sm:w-auto px-10 py-4 h-auto">Send Bulk Inquiry</Button>
+            <Button type="submit" className="w-full px-10 py-4 sm:w-auto">Send Bulk Inquiry</Button>
           </form>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { brand } from '../../lib/brand';
 
 interface SEOProps {
   title: string;
@@ -10,48 +11,43 @@ interface SEOProps {
 
 export const SEO: React.FC<SEOProps> = ({ title, description, keywords, image, url }) => {
   useEffect(() => {
-    document.title = `${title} | Goonjaa`;
-    
-    // Update meta tags
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', description);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
+    document.title = `${title} | ${brand.name}`;
 
-    if (keywords) {
-      const metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (metaKeywords) {
-        metaKeywords.setAttribute('content', keywords);
-      } else {
-        const meta = document.createElement('meta');
-        meta.name = 'keywords';
-        meta.content = keywords;
+    const setNamedMeta = (name: string, content: string) => {
+      let meta = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.name = name;
         document.head.appendChild(meta);
       }
+      meta.content = content;
+    };
+
+    const setPropertyMeta = (property: string, content: string) => {
+      let meta = document.querySelector<HTMLMetaElement>(`meta[property="${property}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('property', property);
+        document.head.appendChild(meta);
+      }
+      meta.content = content;
+    };
+
+    setNamedMeta('description', description);
+
+    if (keywords) {
+      setNamedMeta('keywords', keywords);
     }
 
-    // Open Graph
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', title);
-    else {
-      const meta = document.createElement('meta');
-      meta.setAttribute('property', 'og:title');
-      meta.content = title;
-      document.head.appendChild(meta);
+    setPropertyMeta('og:title', `${title} | ${brand.name}`);
+    setPropertyMeta('og:description', description);
+
+    if (image) {
+      setPropertyMeta('og:image', image);
     }
 
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute('content', description);
-    else {
-      const meta = document.createElement('meta');
-      meta.setAttribute('property', 'og:description');
-      meta.content = description;
-      document.head.appendChild(meta);
+    if (url) {
+      setPropertyMeta('og:url', url);
     }
   }, [title, description, keywords, image, url]);
 

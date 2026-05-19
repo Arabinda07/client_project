@@ -1,24 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
+import { brand } from '../../lib/brand';
 
 export const Footer = () => {
   return (
-    <footer className="bg-deep-maroon text-warm-ivory pt-16 pb-8">
+    <footer className="bg-deep-maroon pt-18 pb-8 text-warm-ivory">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
-            <h2 className="type-h2 mb-6">Goonjaa</h2>
-            <p className="text-warm-ivory/80 type-body mb-6 max-w-sm">
+            <h2 className="mb-6 font-serif text-4xl display-logo display-italic">{brand.name}</h2>
+            <p className="mb-6 max-w-sm text-warm-ivory/78 type-body">
               Handcrafted terracotta jewellery from the heart of India. Every piece is sculpted with love and painted by hand, making it uniquely yours.
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://instagram.com/goonjaa.srijita"
+                href={brand.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Follow Goonjaa on Instagram"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-terracotta transition-colors focus:outline-none focus:ring-2 focus:ring-warm-ivory"
+                aria-label={`Follow ${brand.name} on Instagram`}
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-warm-ivory/10 transition-colors hover:bg-terracotta focus:outline-none focus:ring-2 focus:ring-warm-ivory"
               >
                 <Instagram size={18} />
               </a>
@@ -26,37 +27,37 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="type-overline text-antique-gold mb-6">Shop</h3>
-            <ul className="space-y-4 type-body text-warm-ivory/80">
-              <li><Link to="/category/Terracotta Set" className="hover:text-white transition-colors">Terracotta Sets</Link></li>
-              <li><Link to="/category/Earring" className="hover:text-white transition-colors">Earrings</Link></li>
-              <li><Link to="/category/Accessories" className="hover:text-white transition-colors">Accessories</Link></li>
-              <li><Link to="/shop" className="hover:text-white transition-colors">All Products</Link></li>
+            <h3 className="mb-6 text-antique-gold type-overline">Shop</h3>
+            <ul className="space-y-4 text-warm-ivory/78 type-body">
+              <li><Link to="/category/Terracotta Set" className="transition-colors hover:text-warm-ivory">Terracotta Sets</Link></li>
+              <li><Link to="/category/Earring" className="transition-colors hover:text-warm-ivory">Earrings</Link></li>
+              <li><Link to="/category/Accessories" className="transition-colors hover:text-warm-ivory">Accessories</Link></li>
+              <li><Link to="/shop" className="transition-colors hover:text-warm-ivory">All Pieces</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="type-overline text-antique-gold mb-6">Brand</h3>
-            <ul className="space-y-4 type-body text-warm-ivory/80">
-              <li><Link to="/about" className="hover:text-white transition-colors">Our Story</Link></li>
-              <li><Link to="/bulk-orders" className="hover:text-white transition-colors">Bulk Orders</Link></li>
-              <li><Link to="/testimonials" className="hover:text-white transition-colors">Happy Customers</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+            <h3 className="mb-6 text-antique-gold type-overline">Brand</h3>
+            <ul className="space-y-4 text-warm-ivory/78 type-body">
+              <li><Link to="/about" className="transition-colors hover:text-warm-ivory">Our Story</Link></li>
+              <li><Link to="/bulk-orders" className="transition-colors hover:text-warm-ivory">Bulk Orders</Link></li>
+              <li><Link to="/testimonials" className="transition-colors hover:text-warm-ivory">Happy Customers</Link></li>
+              <li><Link to="/contact" className="transition-colors hover:text-warm-ivory">Contact Us</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="type-overline text-antique-gold mb-6">Policies</h3>
-            <ul className="space-y-4 type-body text-warm-ivory/80">
-              <li><Link to="/policies/shipping" className="hover:text-white transition-colors">Shipping & Returns</Link></li>
-              <li><Link to="/policies/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/policies/terms" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
+            <h3 className="mb-6 text-antique-gold type-overline">Policies</h3>
+            <ul className="space-y-4 text-warm-ivory/78 type-body">
+              <li><Link to="/policies/shipping" className="transition-colors hover:text-warm-ivory">Shipping & Returns</Link></li>
+              <li><Link to="/policies/privacy" className="transition-colors hover:text-warm-ivory">Privacy Policy</Link></li>
+              <li><Link to="/policies/terms" className="transition-colors hover:text-warm-ivory">Terms & Conditions</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 type-caption text-warm-ivory/60">
-          <p>&copy; {new Date().getFullYear()} Goonjaa. All rights reserved.</p>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-warm-ivory/12 pt-8 text-warm-ivory/62 type-caption md:flex-row">
+          <p>&copy; {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
           <div className="flex items-center gap-2">
             <span>Made with love in India</span>
           </div>

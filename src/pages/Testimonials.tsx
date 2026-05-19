@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/layout/SEO';
 
 export const Testimonials = () => {
   const testimonials = [
@@ -29,22 +30,24 @@ export const Testimonials = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+      <SEO title="Happy Customers" description="Notes from customers who have worn goonjaa handmade terracotta jewellery." />
       <div className="text-center mb-16">
-        <h1 className="font-serif text-4xl md:text-5xl text-gray-900 mb-4">Happy Customers</h1>
-        <p className="text-gray-600">Notes of love from our wonderful community.</p>
+        <span className="mb-5 block text-terracotta-dark type-overline">Community Notes</span>
+        <h1 className="mb-4 text-gray-900 type-display">Happy Customers</h1>
+        <p className="mx-auto text-gray-600 type-body-large">Notes of love from our wonderful community.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
         {testimonials.map((t, i) => (
-          <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+          <div key={i} className="flex flex-col items-center rounded-[2px] border border-border-soft bg-surface p-8 text-center shadow-[0_18px_48px_rgba(49,39,31,0.04)]">
             <div className="flex gap-1 mb-4 text-antique-gold">
               {[...Array(t.rating)].map((_, j) => <span key={j}>★</span>)}
             </div>
-            <p className="text-gray-700 italic mb-6">"{t.text}"</p>
+            <p className="mb-6 text-gray-700 type-body-large">"{t.text}"</p>
             <div>
               <h4 className="font-medium text-gray-900">{t.name}</h4>
-              <p className="text-xs text-gray-500 uppercase tracking-widest">{t.location}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-gray-500">{t.location}</p>
             </div>
           </div>
         ))}

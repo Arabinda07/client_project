@@ -1,27 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Boska";
+  src: url("/fonts/Boska-Variable.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Boska";
+  src: url("/fonts/Boska-VariableItalic.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Pilcrow Rounded";
+  src: url("/fonts/PilcrowRounded-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --color-warm-ivory: #FDFCF8;
+  --color-warm-ivory: #FDFBF5;
+  --color-studio-paper: #FDFBF5;
+  --color-studio-wash: #F7F0E7;
+  --color-surface: #FBF7EF;
+  --color-surface-muted: #F1E7DC;
+  --color-border-soft: #E5D9CB;
+  --color-text-ink: #1D1815;
+  --color-text-muted: #675B52;
   --color-terracotta: #B35C38;
   --color-terracotta-dark: #7D2E24;
-  --color-antique-gold: #D9D1C1;
+  --color-antique-gold: #B8892E;
   --color-deep-maroon: #7D2E24;
-  --color-muted-rose: #E5E1D8;
+  --color-muted-rose: #E8DED4;
 
-  --color-gray-900: #18181B; /* Changed from 2D2926 to Charcoal Ink */
-  --color-gray-800: #27272A;
-  --color-gray-700: #3F3F46;
-  --color-gray-600: #52525B;
-  --color-gray-500: #71717A;
-  --color-gray-400: #E5E1D8;
-  --color-gray-300: #E5E1D8;
-  --color-gray-200: #E5E1D8;
-  --color-gray-100: #F5F2ED;
-  --color-gray-50: #FDFCF8;
+  --color-gray-900: #1D1815;
+  --color-gray-800: #2F2924;
+  --color-gray-700: #463D36;
+  --color-gray-600: #5F544B;
+  --color-gray-500: #7A6B60;
+  --color-gray-400: #A99584;
+  --color-gray-300: #D3C2B2;
+  --color-gray-200: #E5D9CB;
+  --color-gray-100: #F1E7DC;
+  --color-gray-50: #FDFBF5;
 
-  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Boska";
+  --font-body: "Pilcrow Rounded";
+  --font-serif: var(--font-display), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --font-display-weight-airy: 300;
+  --font-display-weight-normal: 400;
+  --font-display-weight-logo: 500;
+  --font-display-weight-accent: 600;
 
   /* Typography Scale */
   --text-caption: 0.875rem;
@@ -42,11 +79,27 @@
   --text-heading-1: 3rem;
   --text-heading-1--line-height: 1.1;
 
-  --text-display: clamp(3rem, 5vw + 1.5rem, 5rem);
-  --text-display--line-height: 1.05;
+  --text-display: 2.85rem;
+  --text-display--line-height: 1.02;
 }
 
 @layer base {
+  :root {
+    font-synthesis: none;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --text-display: 3.65rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --text-display: 4.35rem;
+    }
+  }
+
   body {
     background-color: var(--color-warm-ivory);
     color: var(--color-gray-900);
@@ -57,11 +110,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "kern" 1, "liga" 1;
+    font-kerning: normal;
+    font-optical-sizing: auto;
+    font-variant-numeric: proportional-nums;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
-    font-weight: 400;
+    font-weight: var(--font-display-weight-normal);
+    font-optical-sizing: auto;
+    text-wrap: balance;
   }
 
   p {
@@ -75,34 +133,63 @@
     font-size: var(--text-display);
     line-height: var(--text-display--line-height);
     font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+    font-weight: var(--font-display-weight-normal);
+    letter-spacing: 0;
+    text-wrap: balance;
   }
   
   .type-h1 {
     font-size: var(--text-heading-1);
     line-height: var(--text-heading-1--line-height);
     font-family: var(--font-serif);
-    letter-spacing: -0.01em;
+    font-weight: var(--font-display-weight-normal);
+    letter-spacing: 0;
+    text-wrap: balance;
   }
   
   .type-h2 {
     font-size: var(--text-heading-2);
     line-height: var(--text-heading-2--line-height);
     font-family: var(--font-serif);
+    font-weight: var(--font-display-weight-normal);
+    text-wrap: balance;
   }
 
   .type-h3 {
     font-size: var(--text-heading-3);
     line-height: var(--text-heading-3--line-height);
     font-family: var(--font-serif);
+    font-weight: var(--font-display-weight-normal);
+    text-wrap: balance;
+  }
+
+  .display-airy {
+    font-weight: var(--font-display-weight-airy);
+  }
+
+  .display-normal {
+    font-weight: var(--font-display-weight-normal);
+  }
+
+  .display-logo {
+    font-weight: var(--font-display-weight-logo);
+  }
+
+  .display-accent {
+    font-weight: var(--font-display-weight-accent);
+  }
+
+  .display-italic {
+    font-style: italic;
   }
 
   .type-overline {
     font-family: var(--font-sans);
-    font-size: 0.6875rem; /* ~11px */
+    font-size: 0.6875rem;
+    line-height: 1.25;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-weight: 700;
+    letter-spacing: 0.12em;
+    font-weight: 600;
   }
 
   .type-body-large {
@@ -113,5 +200,9 @@
   .type-caption {
     font-size: var(--text-caption);
     line-height: var(--text-caption--line-height);
+  }
+
+  .numeric-tabular {
+    font-variant-numeric: tabular-nums;
   }
 }

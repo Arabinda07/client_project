@@ -3,6 +3,7 @@ import { useCartStore } from '../store/cartStore';
 import { Button } from '../components/ui/Button';
 import { formatPrice } from '../lib/utils';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/layout/SEO';
 
 export const Checkout = () => {
   const { items, cartTotal, clearCart } = useCartStore();
@@ -20,84 +21,99 @@ export const Checkout = () => {
     }, 1500);
   };
 
+  const seo = (
+    <SEO
+      title="Checkout"
+      description="Complete your goonjaa terracotta jewellery order."
+    />
+  );
+
   if (isSuccess) {
     return (
-      <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">✓</div>
-        <h1 className="font-serif text-4xl text-gray-900 mb-4">Order Confirmed</h1>
-        <p className="text-gray-600 mb-8">
-          Thank you for supporting our handmade business. We will start working on your beautiful terracotta pieces right away.
-        </p>
-        <Link to="/shop">
-          <Button>Continue Shopping</Button>
-        </Link>
-      </div>
+      <>
+        {seo}
+        <div className="mx-auto max-w-3xl px-4 py-24 text-center">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-terracotta/25 bg-surface text-3xl text-terracotta-dark">✓</div>
+          <h1 className="mb-4 text-gray-900 type-h1">Order Confirmed</h1>
+          <p className="mx-auto mb-8 text-gray-600 type-body-large">
+            Thank you for supporting our handmade business. We will start working on your beautiful terracotta pieces right away.
+          </p>
+          <Link to="/shop">
+            <Button>Continue Shopping</Button>
+          </Link>
+        </div>
+      </>
     );
   }
 
   if (items.length === 0) {
     return (
-      <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <h1 className="font-serif text-3xl text-gray-900 mb-4">Your cart is empty</h1>
-        <Link to="/shop">
-          <Button>Go to Shop</Button>
-        </Link>
-      </div>
+      <>
+        {seo}
+        <div className="mx-auto max-w-3xl px-4 py-24 text-center">
+          <h1 className="mb-4 text-gray-900 type-h2">Your cart is empty</h1>
+          <Link to="/shop">
+            <Button>Go to Shop</Button>
+          </Link>
+        </div>
+      </>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="font-serif text-4xl text-gray-900 mb-8">Checkout</h1>
+    <>
+      {seo}
+      <div className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22 lg:px-8 lg:py-24">
+        <h1 className="mb-10 text-gray-900 type-display">Checkout</h1>
       
-      <div className="flex flex-col lg:flex-row gap-12">
+      <div className="flex flex-col gap-12 lg:flex-row">
         {/* Form */}
         <div className="flex-1">
           <form id="checkout-form" onSubmit={handleSubmit} className="space-y-8">
-            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
-              <h2 className="font-serif text-2xl mb-6">Contact Information</h2>
+            <div className="rounded-[2px] border border-border-soft bg-surface p-6 md:p-8">
+              <h2 className="mb-6 text-gray-900 type-h2">Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label htmlFor="checkout-name" className="text-sm font-medium text-gray-700">Full Name</label>
-                  <input id="checkout-name" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-name" className="text-gray-700 type-overline">Full Name</label>
+                  <input id="checkout-name" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="checkout-phone" className="text-sm font-medium text-gray-700">Phone</label>
-                  <input id="checkout-phone" required type="tel" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-phone" className="text-gray-700 type-overline">Phone</label>
+                  <input id="checkout-phone" required type="tel" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="checkout-email" className="text-sm font-medium text-gray-700">Email Address</label>
-                  <input id="checkout-email" required type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-email" className="text-gray-700 type-overline">Email Address</label>
+                  <input id="checkout-email" required type="email" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
-              <h2 className="font-serif text-2xl mb-6">Shipping Address</h2>
+            <div className="rounded-[2px] border border-border-soft bg-surface p-6 md:p-8">
+              <h2 className="mb-6 text-gray-900 type-h2">Shipping Address</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="checkout-address" className="text-sm font-medium text-gray-700">Street Address</label>
-                  <input id="checkout-address" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-address" className="text-gray-700 type-overline">Street Address</label>
+                  <input id="checkout-address" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="checkout-city" className="text-sm font-medium text-gray-700">City</label>
-                  <input id="checkout-city" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-city" className="text-gray-700 type-overline">City</label>
+                  <input id="checkout-city" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="checkout-state" className="text-sm font-medium text-gray-700">State</label>
-                  <input id="checkout-state" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-state" className="text-gray-700 type-overline">State</label>
+                  <input id="checkout-state" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="checkout-pin" className="text-sm font-medium text-gray-700">PIN Code</label>
-                  <input id="checkout-pin" required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-terracotta focus:ring-1 focus:ring-terracotta" />
+                  <label htmlFor="checkout-pin" className="text-gray-700 type-overline">PIN Code</label>
+                  <input id="checkout-pin" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
                 </div>
               </div>
             </div>
 
             {/* TODO: Supabase integration for order saving */}
             {/* TODO: Razorpay integration for payments */}
-            <div className="bg-amber-50 p-6 rounded-2xl border border-amber-200">
-              <p className="text-amber-800 text-sm">
+            <div className="rounded-[2px] border border-antique-gold/35 bg-antique-gold/10 p-6">
+              <p className="text-sm text-gray-800">
                 <strong>Note:</strong> Payment gateway integration (Razorpay) will be implemented here. For this prototype, clicking "Place Order" will simulate a successful transaction.
               </p>
             </div>
@@ -106,15 +122,15 @@ export const Checkout = () => {
 
         {/* Order Summary */}
         <div className="w-full lg:w-[400px]">
-          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 sticky top-24">
-            <h2 className="font-serif text-2xl mb-6">Order Summary</h2>
+          <div className="sticky top-24 rounded-[2px] border border-border-soft bg-surface p-6 shadow-[0_18px_48px_rgba(49,39,31,0.06)] md:p-8">
+            <h2 className="mb-6 text-gray-900 type-h2">Order Summary</h2>
             <ul className="space-y-4 mb-6">
               {items.map(item => (
                 <li key={item.cartItemId} className="flex gap-4">
-                  <div className="w-16 h-20 bg-warm-ivory rounded-md overflow-hidden flex-shrink-0 border border-gray-200">
+                  <div className="h-20 w-16 flex-shrink-0 overflow-hidden rounded-[2px] border border-border-soft bg-studio-paper">
                     {item.images[0].includes('placehold.co') ? (
-                      <div className="w-full h-full flex flex-col items-center justify-center text-center p-1">
-                        <span className="text-[6px] uppercase tracking-widest text-terracotta leading-tight">{decodeURIComponent(item.images[0].split('text=')[1] || '').replace(/\+/g, ' ')}</span>
+                      <div className="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_50%_34%,rgba(179,92,56,0.13),transparent_34%),linear-gradient(135deg,#F8F1E8,#E9DED2)] p-1 text-center">
+                        <span className="text-[6px] font-semibold uppercase leading-tight tracking-[0.12em] text-terracotta">{decodeURIComponent(item.images[0].split('text=')[1] || '').replace(/\+/g, ' ')}</span>
                       </div>
                     ) : (
                       <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" />
@@ -126,24 +142,24 @@ export const Checkout = () => {
                       <p className="text-gray-500">Colour: {item.selectedColour.name}</p>
                     )}
                     <p className="text-gray-500">Qty: {item.quantity}</p>
-                    <p className="font-medium text-gray-900 mt-1">{formatPrice(item.price * item.quantity)}</p>
+                    <p className="numeric-tabular font-medium text-gray-900 mt-1">{formatPrice(item.price * item.quantity)}</p>
                   </div>
                 </li>
               ))}
             </ul>
             
-            <div className="border-t border-gray-200 pt-4 space-y-3 mb-6 text-sm">
+            <div className="mb-6 space-y-3 border-t border-border-soft pt-4 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-500">Subtotal</span>
-                <span className="font-medium text-gray-900">{formatPrice(cartTotal())}</span>
+                <span className="numeric-tabular font-medium text-gray-900">{formatPrice(cartTotal())}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-500">Shipping</span>
                 <span className="font-medium text-gray-900">Free</span>
               </div>
-              <div className="flex justify-between text-lg font-serif pt-3 border-t border-gray-200">
+              <div className="flex justify-between border-t border-border-soft pt-3 font-serif text-lg">
                 <span className="text-gray-900">Total</span>
-                <span className="text-terracotta">{formatPrice(cartTotal())}</span>
+                <span className="numeric-tabular text-terracotta">{formatPrice(cartTotal())}</span>
               </div>
             </div>
 
@@ -153,6 +169,7 @@ export const Checkout = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
