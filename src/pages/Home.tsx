@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Button } from '../components/ui/Button';
+import { Button, buttonClassNames } from '../components/ui/Button';
 import { ProductCard } from '../components/product/ProductCard';
 import { mockProducts } from '../lib/data/mockProducts';
 import { ArrowRight } from 'lucide-react';
 import { SEO } from '../components/layout/SEO';
 import { brand } from '../lib/brand';
+import { ProductImage } from '../components/ui/Media';
 
 export const Home = () => {
   // TODO: Replace with Supabase fetch
@@ -58,11 +59,11 @@ export const Home = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8"
           >
-            <Link to="/shop">
-              <Button size="lg" className="w-full sm:w-auto">Explore Collection</Button>
+            <Link to="/shop" className={buttonClassNames({ size: 'lg', className: 'w-full sm:w-auto' })}>
+              Explore Collection
             </Link>
-            <Link to="/about">
-              <Button variant="ghost" size="lg" className="w-full px-0 hover:bg-transparent hover:text-terracotta sm:w-auto font-semibold">Our Story</Button>
+            <Link to="/about" className={buttonClassNames({ variant: 'ghost', size: 'lg', className: 'w-full px-0 font-semibold hover:bg-transparent hover:text-terracotta sm:w-auto' })}>
+              Our Story
             </Link>
           </motion.div>
         </div>
@@ -77,8 +78,13 @@ export const Home = () => {
               transition={{ duration: 1.2, delay: 0.2 }}
               className="absolute left-4 top-4 w-[60%] aspect-[4/5] z-10 double-bezel-outer"
             >
-              <div className="double-bezel-inner overflow-hidden bg-studio-wash/30 border border-dashed border-border-soft">
-                {/* Image container kept empty for actual artisan sculpting image */}
+              <div className="double-bezel-inner overflow-hidden">
+                <ProductImage
+                  src="/images/hero_clay_sculpting.png"
+                  alt="Clay being shaped by hand in the goonjaa studio"
+                  loading="eager"
+                  tone="studio"
+                />
               </div>
             </motion.div>
             
@@ -89,8 +95,13 @@ export const Home = () => {
               transition={{ duration: 1.2, delay: 0.4 }}
               className="absolute right-4 bottom-4 w-[55%] aspect-[3/4] z-20 double-bezel-outer shadow-[0_30px_60px_rgba(49,39,31,0.12)]"
             >
-              <div className="double-bezel-inner overflow-hidden bg-studio-wash/30 border border-dashed border-border-soft">
-                {/* Image container kept empty for actual model styling image */}
+              <div className="double-bezel-inner overflow-hidden">
+                <ProductImage
+                  src="/images/hero_model_jewellery.png"
+                  alt="A goonjaa terracotta jewellery piece styled with a modern outfit"
+                  loading="eager"
+                  tone="detail"
+                />
               </div>
             </motion.div>
           </div>
@@ -104,17 +115,17 @@ export const Home = () => {
           <h2 className="type-display text-gray-900">Signature Styles</h2>
         </div>
         
-        <div className="grid h-auto grid-cols-1 gap-6 md:grid-cols-12 md:grid-rows-2 lg:gap-8">
+        <div className="grid h-auto grid-cols-1 gap-6 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-12 lg:grid-rows-2 lg:gap-8">
           {[
-            { title: 'Necklace Sets', link: '/category/Terracotta Set', gridClass: 'md:col-span-6 md:row-span-2' },
-            { title: 'Statement Earrings', link: '/category/Earring', gridClass: 'md:col-span-6 md:row-span-1' },
-            { title: 'Rings & Bangles', link: '/category/Bangles', gridClass: 'md:col-span-3 md:row-span-1' },
-            { title: 'Hair Accessories', link: '/category/Hair Pin', gridClass: 'md:col-span-3 md:row-span-1' }
+            { title: 'Necklace Sets', link: '/category/Terracotta Set', gridClass: 'md:col-span-1 md:row-span-2 lg:col-span-6 lg:row-span-2' },
+            { title: 'Statement Earrings', link: '/category/Earring', gridClass: 'md:col-span-1 md:row-span-1 lg:col-span-6 lg:row-span-1' },
+            { title: 'Rings & Bangles', link: '/category/Bangles', gridClass: 'md:col-span-1 md:row-span-1 lg:col-span-3 lg:row-span-1' },
+            { title: 'Hair Accessories', link: '/category/Hair Pin', gridClass: 'md:col-span-1 md:row-span-1 lg:col-span-3 lg:row-span-1' }
           ].map((cat, i) => (
             <Link 
               key={i} 
               to={cat.link} 
-              className={`group flex flex-col double-bezel-outer transition-spring hover:-translate-y-1 h-[260px] md:h-auto ${cat.gridClass}`}
+              className={`group flex h-[260px] flex-col double-bezel-outer transition-colors hover:border-terracotta/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory md:h-auto md:min-h-[260px] ${cat.gridClass}`}
             >
               <div className="double-bezel-inner p-8 flex flex-col justify-between items-start">
                 <span className="font-semibold uppercase tracking-[0.14em] text-terracotta/90 type-caption">Explore</span>
@@ -145,7 +156,7 @@ export const Home = () => {
               { num: '03', title: 'Baking', desc: 'Fired at 900°C in the kiln, transforming clay into solid terracotta.' },
               { num: '04', title: 'Painting', desc: 'Delicately detailed with fine brushes, acrylics, and brass findings.' }
             ].map((step, idx) => (
-              <div key={idx} className="relative flex flex-col items-start p-6 bg-studio-paper rounded-xl border border-border-soft/60 shadow-xs">
+              <div key={idx} className="relative flex flex-col items-start rounded-[2px] border border-border-soft/60 bg-studio-paper p-6">
                 <span className="font-serif text-3xl display-logo text-terracotta/30 mb-4 block font-bold">{step.num}</span>
                 <h3 className="type-h3 text-gray-900 mb-2 font-serif font-bold">{step.title}</h3>
                 <p className="type-body text-gray-600 text-sm leading-relaxed">{step.desc}</p>
@@ -175,8 +186,8 @@ export const Home = () => {
           ))}
         </div>
         <div className="mt-12 text-center sm:hidden">
-          <Link to="/shop">
-            <Button variant="outline" fullWidth>View All</Button>
+          <Link to="/shop" className={buttonClassNames({ variant: 'outline', fullWidth: true })}>
+            View All
           </Link>
         </div>
       </section>
@@ -194,17 +205,19 @@ export const Home = () => {
               During the stillness of the pandemic, a lifelong love for drawing and design found its way into terracotta. Today, every piece of {brand.name} is a single artisan's exploration of traditional shapes crafted for modern wardrobes. No two pieces are ever exactly the same.
             </p>
             <div>
-              <Link to="/about">
-                <Button variant="outline" className="flex w-max items-center gap-3 px-10 py-4 font-semibold">
-                  Read the Full Story <ArrowRight size={14} />
-                </Button>
+              <Link to="/about" className={buttonClassNames({ variant: 'outline', className: 'w-max gap-3 px-10 py-4 font-semibold' })}>
+                Read the Full Story <ArrowRight size={14} />
               </Link>
             </div>
           </div>
           
           <div className="w-full lg:w-6/12 flex flex-col double-bezel-outer max-w-lg lg:ml-auto">
-            <div className="double-bezel-inner overflow-hidden aspect-[4/5] bg-studio-wash/30 border border-dashed border-border-soft">
-              {/* Image container kept empty for actual founder studio image */}
+            <div className="double-bezel-inner aspect-[4/5] overflow-hidden">
+              <ProductImage
+                src="/images/founder_studio.png"
+                alt="The goonjaa artist working in her home studio"
+                tone="studio"
+              />
             </div>
           </div>
         </div>
@@ -245,8 +258,12 @@ export const Home = () => {
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-10 lg:py-28">
         <div className="flex flex-col items-center gap-14 lg:flex-row lg:gap-24">
           <div className="w-full lg:w-5/12 flex flex-col double-bezel-outer max-w-lg">
-            <div className="double-bezel-inner overflow-hidden aspect-[4/5] bg-studio-wash/30 border border-dashed border-border-soft">
-              {/* Image container kept empty for actual featured highlight image */}
+            <div className="double-bezel-inner aspect-[4/5] overflow-hidden">
+              <ProductImage
+                src="/images/mridula_set.png"
+                alt="A featured goonjaa terracotta jewellery set"
+                tone="detail"
+              />
             </div>
           </div>
           <div className="w-full lg:w-6/12 flex flex-col lg:pl-12">
@@ -256,8 +273,8 @@ export const Home = () => {
               Planning return gifts or a small batch for an event? Choose a catalogue piece, select one of its available colours, and book at least two months ahead so the studio has time to shape, dry, bake, and paint every piece by hand.
             </p>
             <div>
-              <Link to="/bulk-orders">
-                <Button variant="outline" className="w-max px-12 py-4 font-semibold">Plan a Bulk Order</Button>
+              <Link to="/bulk-orders" className={buttonClassNames({ variant: 'outline', className: 'w-max px-12 py-4 font-semibold' })}>
+                Plan a Bulk Order
               </Link>
             </div>
           </div>
@@ -279,7 +296,13 @@ export const Home = () => {
                 { label: 'Studio shelf finds', img: '/images/founder_studio.png' }
               ].map((item, i) => (
                 <div key={i} className={`group relative flex aspect-[4/5] flex-col overflow-hidden double-bezel-outer ${i % 2 === 0 ? 'mt-0 md:mt-10' : 'mt-0'}`}>
-                  <div className="double-bezel-inner overflow-hidden relative bg-studio-wash/30 border border-dashed border-border-soft">
+                  <div className="double-bezel-inner relative overflow-hidden">
+                    <ProductImage
+                      src={item.img}
+                      alt={item.label}
+                      tone="studio"
+                      sizes="(min-width: 768px) 25vw, 50vw"
+                    />
                     <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-gray-950/70 to-transparent text-left">
                       <span className="type-caption text-[0.625rem] font-bold text-warm-ivory uppercase tracking-widest">{item.label}</span>
                     </div>
@@ -319,7 +342,7 @@ export const Home = () => {
                 setNewsletterEmail(event.target.value);
                 setNewsletterSuccess(false);
               }}
-              className="min-h-14 flex-1 border-b-2 border-gray-300 bg-transparent px-6 py-4 transition-colors focus:border-terracotta focus:outline-none type-body"
+              className="min-h-14 flex-1 border-b-2 border-gray-300 bg-transparent px-6 py-4 transition-colors focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory type-body"
             />
             <Button type="submit" className="w-full px-8 sm:w-auto font-semibold">Subscribe</Button>
           </form>

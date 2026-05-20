@@ -22,7 +22,7 @@ export const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Follow ${brand.name} on Instagram`}
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-warm-ivory/10 transition-colors hover:bg-terracotta focus:outline-none focus:ring-2 focus:ring-warm-ivory"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-warm-ivory/10 transition-colors hover:bg-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory"
               >
                 <Instagram size={18} />
               </a>
@@ -32,29 +32,29 @@ export const Footer = () => {
           <div>
             <h3 className="mb-6 text-antique-gold type-overline">Shop</h3>
             <ul className="space-y-4 text-warm-ivory/78 type-body">
-              <li><Link to="/category/Terracotta Set" className="transition-colors hover:text-warm-ivory">Terracotta Sets</Link></li>
-              <li><Link to="/category/Earring" className="transition-colors hover:text-warm-ivory">Earrings</Link></li>
-              <li><Link to="/category/Accessories" className="transition-colors hover:text-warm-ivory">Accessories</Link></li>
-              <li><Link to="/shop" className="transition-colors hover:text-warm-ivory">All Pieces</Link></li>
+              <li><Link to="/category/Terracotta Set" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Terracotta Sets</Link></li>
+              <li><Link to="/category/Earring" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Earrings</Link></li>
+              <li><Link to="/category/Accessories" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Accessories</Link></li>
+              <li><Link to="/shop" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">All Pieces</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="mb-6 text-antique-gold type-overline">Brand</h3>
             <ul className="space-y-4 text-warm-ivory/78 type-body">
-              <li><Link to="/about" className="transition-colors hover:text-warm-ivory">Our Story</Link></li>
-              <li><Link to="/bulk-orders" className="transition-colors hover:text-warm-ivory">Bulk Orders</Link></li>
-              <li><Link to="/testimonials" className="transition-colors hover:text-warm-ivory">Happy Customers</Link></li>
-              <li><Link to="/contact" className="transition-colors hover:text-warm-ivory">Contact Us</Link></li>
+              <li><Link to="/about" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Our Story</Link></li>
+              <li><Link to="/bulk-orders" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Bulk Orders</Link></li>
+              <li><Link to="/testimonials" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Happy Customers</Link></li>
+              <li><Link to="/contact" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Contact Us</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="mb-6 text-antique-gold type-overline">Policies</h3>
             <ul className="space-y-4 text-warm-ivory/78 type-body">
-              <li><Link to="/policies/shipping" className="transition-colors hover:text-warm-ivory">Shipping & Returns</Link></li>
-              <li><Link to="/policies/privacy" className="transition-colors hover:text-warm-ivory">Privacy Policy</Link></li>
-              <li><Link to="/policies/terms" className="transition-colors hover:text-warm-ivory">Terms & Conditions</Link></li>
+              <li><Link to="/policies/shipping" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Shipping & Returns</Link></li>
+              <li><Link to="/policies/privacy" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Privacy Policy</Link></li>
+              <li><Link to="/policies/terms" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Terms & Conditions</Link></li>
             </ul>
           </div>
         </div>

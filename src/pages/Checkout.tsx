@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useCartStore } from '../store/cartStore';
-import { Button } from '../components/ui/Button';
+import { Button, buttonClassNames } from '../components/ui/Button';
 import { formatPrice } from '../lib/utils';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/layout/SEO';
+import { ProductImage } from '../components/ui/Media';
 
 export const Checkout = () => {
   const { items, cartTotal, clearCart } = useCartStore();
@@ -38,8 +39,8 @@ export const Checkout = () => {
           <p className="mx-auto mb-8 text-gray-600 type-body-large">
             Thank you for supporting our handmade business. We will start working on your beautiful terracotta pieces right away.
           </p>
-          <Link to="/shop">
-            <Button>Continue Shopping</Button>
+          <Link to="/shop" className={buttonClassNames()}>
+            Continue Shopping
           </Link>
         </div>
       </>
@@ -52,8 +53,8 @@ export const Checkout = () => {
         {seo}
         <div className="mx-auto max-w-3xl px-4 py-24 text-center">
           <h1 className="mb-4 text-gray-900 type-h2">Your cart is empty</h1>
-          <Link to="/shop">
-            <Button>Go to Shop</Button>
+          <Link to="/shop" className={buttonClassNames()}>
+            Go to Shop
           </Link>
         </div>
       </>
@@ -75,15 +76,15 @@ export const Checkout = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="checkout-name" className="text-gray-700 type-overline">Full Name</label>
-                  <input id="checkout-name" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
+                  <input id="checkout-name" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="checkout-phone" className="text-gray-700 type-overline">Phone</label>
-                  <input id="checkout-phone" required type="tel" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
+                  <input id="checkout-phone" required type="tel" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
                 </div>
                 <div className="space-y-2 md:col-span-2">
                   <label htmlFor="checkout-email" className="text-gray-700 type-overline">Email Address</label>
-                  <input id="checkout-email" required type="email" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
+                  <input id="checkout-email" required type="email" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
                 </div>
               </div>
             </div>
@@ -93,19 +94,19 @@ export const Checkout = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2 md:col-span-2">
                   <label htmlFor="checkout-address" className="text-gray-700 type-overline">Street Address</label>
-                  <input id="checkout-address" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
+                  <input id="checkout-address" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="checkout-city" className="text-gray-700 type-overline">City</label>
-                  <input id="checkout-city" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
+                  <input id="checkout-city" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="checkout-state" className="text-gray-700 type-overline">State</label>
-                  <input id="checkout-state" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
+                  <input id="checkout-state" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="checkout-pin" className="text-gray-700 type-overline">PIN Code</label>
-                  <input id="checkout-pin" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta" />
+                  <input id="checkout-pin" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
                 </div>
               </div>
             </div>
@@ -128,9 +129,11 @@ export const Checkout = () => {
               {items.map(item => (
                 <li key={item.cartItemId} className="flex gap-4">
                   <div className="h-20 w-16 flex-shrink-0 overflow-hidden rounded-[2px] border border-border-soft bg-studio-paper">
-                    <div className="flex h-full w-full items-center justify-center bg-studio-wash/40 border border-dashed border-border-soft/60">
-                      {/* Image kept empty */}
-                    </div>
+                    <ProductImage
+                      src={item.images?.[0]}
+                      alt={`${item.name}, handmade terracotta jewellery`}
+                      sizes="64px"
+                    />
                   </div>
                   <div className="flex-1 text-sm">
                     <p className="font-medium text-gray-900 leading-tight">{item.name}</p>

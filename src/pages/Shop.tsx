@@ -112,7 +112,7 @@ export const Shop = () => {
           <select 
             value={sortBy} 
             onChange={(e) => setSortBy(e.target.value)}
-            className="min-h-12 w-full cursor-pointer rounded-[2px] border border-border-soft bg-surface px-5 py-3 text-gray-800 shadow-[0_10px_28px_rgba(49,39,31,0.04)] transition-colors focus:border-terracotta focus:outline-none type-overline md:w-72"
+            className="min-h-12 w-full cursor-pointer rounded-[2px] border border-border-soft bg-surface px-5 py-3 text-gray-800 transition-colors focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory type-overline md:w-72"
           >
             <option value="latest">Sort by: Latest</option>
             <option value="price_low">Sort by: Price (Low - High)</option>
@@ -130,13 +130,13 @@ export const Shop = () => {
                 <h3 className="mb-6 border-b border-border-soft pb-2 text-gray-900 type-overline">Collections</h3>
                 <ul className="space-y-4">
                   <li>
-                    <Link to="/shop" className="font-semibold uppercase tracking-[0.12em] text-terracotta transition-colors type-caption">
+                    <Link to="/shop" className="inline-flex min-h-11 items-center font-semibold uppercase tracking-[0.12em] text-terracotta transition-colors type-caption focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">
                       All Pieces
                     </Link>
                   </li>
                   {mainCategories.map(cat => (
                     <li key={cat}>
-                      <Link to={`/category/${cat}`} className="font-medium uppercase tracking-[0.12em] text-gray-500 transition-colors hover:text-gray-900 type-caption">
+                      <Link to={`/category/${cat}`} className="inline-flex min-h-11 items-center font-medium uppercase tracking-[0.12em] text-gray-500 transition-colors hover:text-gray-900 type-caption focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">
                         {cat}
                       </Link>
                     </li>
@@ -153,7 +153,7 @@ export const Shop = () => {
                     <button 
                       type="button"
                       onClick={() => setSelectedSubCategory(null)}
-                      className={`min-h-8 w-full text-left font-medium uppercase tracking-[0.12em] transition-colors type-caption ${selectedSubCategory === null ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
+                      className={`min-h-11 w-full text-left font-medium uppercase tracking-[0.12em] transition-colors type-caption focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory ${selectedSubCategory === null ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
                     >
                       All Styles
                     </button>
@@ -163,7 +163,7 @@ export const Shop = () => {
                       <button 
                         type="button"
                         onClick={() => setSelectedSubCategory(sub)}
-                        className={`min-h-8 w-full text-left font-medium uppercase tracking-[0.12em] transition-colors type-caption ${selectedSubCategory === sub ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
+                        className={`min-h-11 w-full text-left font-medium uppercase tracking-[0.12em] transition-colors type-caption focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory ${selectedSubCategory === sub ? 'text-terracotta font-semibold' : 'text-gray-500 hover:text-gray-900'}`}
                       >
                         {sub}
                       </button>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore';
-import { Button } from '../components/ui/Button';
+import { buttonClassNames } from '../components/ui/Button';
 import { Minus, Plus, Trash2, ArrowRight, ShoppingBag } from 'lucide-react';
 import { SEO } from '../components/layout/SEO';
 import { formatPrice } from '../lib/utils';
+import { ProductImage } from '../components/ui/Media';
 
 export const Cart = () => {
   const { items, updateQuantity, removeItem, cartTotal } = useCartStore();
@@ -23,8 +24,8 @@ export const Cart = () => {
           </div>
           <h2 className="type-h2 text-gray-900 mb-4">Your cart is empty</h2>
           <p className="type-body text-gray-500 mb-8 max-w-sm">Looks like you haven't added any terracotta art pieces to your cart yet.</p>
-          <Link to="/shop">
-            <Button className="px-8 py-3 h-auto">Explore Shop</Button>
+          <Link to="/shop" className={buttonClassNames({ className: 'h-auto px-8 py-3' })}>
+            Explore Shop
           </Link>
         </div>
       ) : (
@@ -40,10 +41,15 @@ export const Cart = () => {
               {items.map((item) => (
                 <div key={item.cartItemId} className="grid grid-cols-12 items-center gap-4 border-b border-border-soft py-4">
                   <div className="col-span-12 md:col-span-6 flex gap-4">
-                    <Link to={`/product/${item.slug}`} className="block h-24 w-20 shrink-0 overflow-hidden rounded-[2px] border border-border-soft bg-surface sm:h-32 sm:w-24">
-                      <div className="flex h-full w-full items-center justify-center bg-studio-wash/40 border border-dashed border-border-soft/60">
-                        {/* Image kept empty */}
-                      </div>
+                    <Link
+                      to={`/product/${item.slug}`}
+                      className="block h-24 w-20 shrink-0 overflow-hidden rounded-[2px] border border-border-soft bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory sm:h-32 sm:w-24"
+                    >
+                      <ProductImage
+                        src={item.images?.[0]}
+                        alt={`${item.name}, handmade terracotta jewellery`}
+                        sizes="96px"
+                      />
                     </Link>
                     <div className="flex flex-col justify-center">
                       <Link to={`/product/${item.slug}`} className="font-sans text-lg font-semibold leading-snug text-gray-900 transition-colors hover:text-terracotta">{item.name}</Link>
@@ -54,12 +60,12 @@ export const Cart = () => {
                       
                       {/* Mobile quantity & remove (visible only on small screens) */}
                       <div className="mt-4 flex items-center gap-4 md:hidden">
-                        <div className="flex h-10 items-center rounded-full border border-border-soft bg-surface">
+                        <div className="flex h-11 items-center rounded-[2px] border border-border-soft bg-surface">
                           <button 
                             type="button"
                             onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
                             aria-label={`Decrease quantity for ${item.name}`}
-                            className="flex h-full w-10 items-center justify-center text-gray-500 transition-colors hover:text-terracotta"
+                            className="flex h-full w-10 items-center justify-center text-gray-500 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                           >
                             <Minus size={12} />
                           </button>
@@ -68,7 +74,7 @@ export const Cart = () => {
                             type="button"
                             onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
                             aria-label={`Increase quantity for ${item.name}`}
-                            className="flex h-full w-10 items-center justify-center text-gray-500 transition-colors hover:text-terracotta"
+                            className="flex h-full w-10 items-center justify-center text-gray-500 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                           >
                             <Plus size={12} />
                           </button>
@@ -76,7 +82,7 @@ export const Cart = () => {
                         <button 
                           type="button"
                           onClick={() => removeItem(item.cartItemId)}
-                          className="flex min-h-10 min-w-10 items-center justify-center text-gray-400 transition-colors hover:text-terracotta-dark"
+                          className="flex min-h-11 min-w-11 items-center justify-center text-gray-400 transition-colors hover:text-terracotta-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                           aria-label="Remove item"
                         >
                           <Trash2 size={16} />
@@ -87,12 +93,12 @@ export const Cart = () => {
                   
                   {/* Desktop quantity (hidden on small screens) */}
                   <div className="hidden md:flex col-span-3 justify-center">
-                    <div className="flex h-11 w-32 items-center rounded-full border border-border-soft bg-surface">
+                    <div className="flex h-11 w-32 items-center rounded-[2px] border border-border-soft bg-surface">
                       <button 
                         type="button"
                         onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
                             aria-label={`Decrease quantity for ${item.name}`}
-                            className="flex h-full flex-1 items-center justify-center text-gray-500 transition-colors hover:text-terracotta"
+                            className="flex h-full flex-1 items-center justify-center text-gray-500 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                           >
                         <Minus size={14} />
                       </button>
@@ -101,7 +107,7 @@ export const Cart = () => {
                         type="button"
                         onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
                             aria-label={`Increase quantity for ${item.name}`}
-                            className="flex h-full flex-1 items-center justify-center text-gray-500 transition-colors hover:text-terracotta"
+                            className="flex h-full flex-1 items-center justify-center text-gray-500 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                           >
                         <Plus size={14} />
                       </button>
@@ -114,7 +120,7 @@ export const Cart = () => {
                     <button 
                       type="button"
                       onClick={() => removeItem(item.cartItemId)}
-                      className="flex h-10 w-10 items-center justify-center text-gray-400 transition-colors hover:text-terracotta-dark"
+                      className="flex h-11 w-11 items-center justify-center text-gray-400 transition-colors hover:text-terracotta-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                       aria-label={`Remove ${item.name} from cart`}
                     >
                       <Trash2 size={18} />
@@ -142,10 +148,8 @@ export const Cart = () => {
               <span className="numeric-tabular type-h2 text-terracotta">{formatPrice(cartTotal())}</span>
             </div>
             
-            <Link to="/checkout" className="block">
-              <Button fullWidth variant="secondary" className="flex h-14 items-center justify-center gap-2">
-                Proceed to Checkout <ArrowRight size={16} />
-              </Button>
+            <Link to="/checkout" className={buttonClassNames({ fullWidth: true, variant: 'secondary', className: 'h-14 gap-2' })}>
+              Proceed to Checkout <ArrowRight size={16} />
             </Link>
             
             <div className="mt-6 flex items-center justify-center gap-4 border-t border-border-soft pt-6 text-gray-500">

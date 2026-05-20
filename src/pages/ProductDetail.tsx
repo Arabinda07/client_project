@@ -9,6 +9,7 @@ import { Minus, Plus, Truck, RotateCcw, AlertCircle, ChevronDown, ChevronUp, Mes
 import { motion, AnimatePresence } from 'motion/react';
 import { SEO } from '../components/layout/SEO';
 import { ProductColourOption } from '../types';
+import { ProductImage } from '../components/ui/Media';
 
 export const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -92,9 +93,15 @@ export const ProductDetail = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="flex h-full w-full items-center justify-center bg-studio-wash/30 border border-dashed border-border-soft"
+                className="h-full w-full"
               >
-                {/* Image container kept empty for actual product image */}
+                <ProductImage
+                  src={product.images[activeImage]}
+                  alt={`${product.name}, handmade terracotta jewellery`}
+                  loading="eager"
+                  tone="detail"
+                  sizes="(min-width: 1024px) 42vw, 100vw"
+                />
               </motion.div>
             </div>
           </div>
@@ -106,11 +113,14 @@ export const ProductDetail = () => {
                   type="button"
                   onClick={() => setActiveImage(idx)}
                   aria-label={`View image ${idx + 1} for ${product.name}`}
-                  className={`relative h-20 w-16 flex-shrink-0 overflow-hidden rounded-md border transition-all ${activeImage === idx ? 'border-terracotta ring-1 ring-terracotta/30' : 'border-border-soft hover:border-terracotta/55'}`}
+                  className={`relative h-20 w-16 flex-shrink-0 overflow-hidden rounded-[2px] border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory ${activeImage === idx ? 'border-terracotta ring-1 ring-terracotta/30' : 'border-border-soft hover:border-terracotta/55'}`}
                 >
-                  <div className="flex h-full w-full items-center justify-center bg-studio-wash/40 border border-dashed border-border-soft/60">
-                    {/* Thumbnail container kept empty */}
-                  </div>
+                  <ProductImage
+                    src={img}
+                    alt={`${product.name} thumbnail ${idx + 1}`}
+                    tone="detail"
+                    sizes="64px"
+                  />
                 </button>
               ))}
             </div>
@@ -135,7 +145,7 @@ export const ProductDetail = () => {
           </div>
 
           {/* Handmade Variation Disclaimer Note */}
-          <p className="type-body text-xs italic text-terracotta-dark/90 bg-studio-wash/60 border-l-2 border-terracotta px-4 py-3 rounded-r-md mb-8 leading-relaxed">
+          <p className="type-body mb-8 rounded-[2px] border border-terracotta/20 bg-studio-wash/70 px-4 py-3 text-xs italic leading-relaxed text-terracotta-dark/90">
             "Sculpted entirely by hand without molds. Slight variations in shape, size, and paint are the signatures of the human hand."
           </p>
 
@@ -160,14 +170,14 @@ export const ProductDetail = () => {
                           setColourError('');
                         }}
                         aria-pressed={isSelected}
-                        className={`min-h-10 rounded-full border px-4 py-2 font-medium type-caption transition-colors focus:outline-none focus:ring-2 focus:ring-terracotta focus:ring-offset-2 focus:ring-offset-warm-ivory ${
+                        className={`min-h-11 rounded-[2px] border px-4 py-2 font-medium type-caption transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory ${
                           isSelected
                             ? 'border-terracotta bg-terracotta text-warm-ivory'
                             : 'border-gray-300 bg-transparent text-gray-700 hover:border-terracotta'
                         }`}
                       >
                         <span
-                          className="mr-2 inline-block h-3 w-3 rounded-full border border-gray-300 align-middle shadow-xs"
+                          className="mr-2 inline-block h-3 w-3 rounded-full border border-gray-300 align-middle"
                           style={{ background: colour.swatch }}
                         />
                         {colour.name}
@@ -185,12 +195,12 @@ export const ProductDetail = () => {
 
             <div className="flex items-center gap-6">
               <span className="type-overline text-gray-900 w-24 font-bold">Quantity</span>
-              <div className="flex items-center rounded-full border border-gray-300 bg-surface">
+              <div className="flex items-center rounded-[2px] border border-gray-300 bg-surface">
                 <button 
                   type="button"
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
                   aria-label={`Decrease quantity for ${product.name}`}
-                  className="min-h-11 min-w-11 p-3 text-gray-600 transition-colors hover:text-terracotta"
+                  className="min-h-11 min-w-11 p-3 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                 >
                   <Minus size={16} />
                 </button>
@@ -199,7 +209,7 @@ export const ProductDetail = () => {
                   type="button"
                   onClick={() => setQuantity(q => q + 1)}
                   aria-label={`Increase quantity for ${product.name}`}
-                  className="min-h-11 min-w-11 p-3 text-gray-600 transition-colors hover:text-terracotta"
+                  className="min-h-11 min-w-11 p-3 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                 >
                   <Plus size={16} />
                 </button>
@@ -226,7 +236,7 @@ export const ProductDetail = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2.5 rounded-lg border-2 border-[#25D366]/40 hover:border-[#25D366] bg-transparent hover:bg-[#25D366]/5 px-6 py-3.5 text-[#25D366] font-semibold text-sm transition-all duration-300 focus:outline-none"
+                className="flex min-h-14 flex-1 items-center justify-center gap-2.5 rounded-[2px] border border-[#075E54] bg-transparent px-6 py-3.5 text-sm font-semibold text-[#075E54] transition-colors duration-300 hover:bg-[#075E54] hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075E54] focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
               >
                 <MessageSquare size={16} />
                 Order via WhatsApp
@@ -248,7 +258,8 @@ export const ProductDetail = () => {
               <button
                 type="button"
                 onClick={() => toggleSection('materials')}
-                className="w-full flex items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus:outline-none"
+                className="flex min-h-11 w-full items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                aria-expanded={openSection === 'materials'}
               >
                 <span>Materials & Weight</span>
                 {openSection === 'materials' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
@@ -256,9 +267,9 @@ export const ProductDetail = () => {
               <AnimatePresence initial={false}>
                 {openSection === 'materials' && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
                     className="overflow-hidden mt-3"
                   >
@@ -266,7 +277,7 @@ export const ProductDetail = () => {
                       <p><span className="font-semibold text-gray-800">Weight Details:</span> ~15g to 25g. Extremely lightweight clay structure designed for all-day comfort.</p>
                       <div className="flex flex-wrap gap-2 pt-1">
                         {product.materials.map((m, i) => (
-                          <span key={i} className="px-2.5 py-1 bg-studio-wash text-xs rounded-full border border-border-soft text-gray-700">
+                          <span key={i} className="rounded-[2px] border border-border-soft bg-studio-wash px-2.5 py-1 text-xs text-gray-700">
                             {m}
                           </span>
                         ))}
@@ -283,7 +294,8 @@ export const ProductDetail = () => {
                 <button
                   type="button"
                   onClick={() => toggleSection('care')}
-                  className="w-full flex items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus:outline-none"
+                  className="flex min-h-11 w-full items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                  aria-expanded={openSection === 'care'}
                 >
                   <span>Care Instructions</span>
                   {openSection === 'care' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
@@ -291,9 +303,9 @@ export const ProductDetail = () => {
                 <AnimatePresence initial={false}>
                   {openSection === 'care' && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      initial={{ opacity: 0, y: -4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -4 }}
                       transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
                       className="overflow-hidden mt-3"
                     >
@@ -311,7 +323,8 @@ export const ProductDetail = () => {
               <button
                 type="button"
                 onClick={() => toggleSection('shipping')}
-                className="w-full flex items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus:outline-none"
+                className="flex min-h-11 w-full items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                aria-expanded={openSection === 'shipping'}
               >
                 <span>Shipping & Firing Cycles</span>
                 {openSection === 'shipping' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
@@ -319,9 +332,9 @@ export const ProductDetail = () => {
               <AnimatePresence initial={false}>
                 {openSection === 'shipping' && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
                     className="overflow-hidden mt-3"
                   >
@@ -357,7 +370,7 @@ export const ProductDetail = () => {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full flex items-center justify-center gap-2 rounded-lg bg-[#25D366] text-white py-3 font-semibold text-sm hover:bg-[#20ba59] transition-colors shadow-xs"
+          className="flex min-h-12 w-full items-center justify-center gap-2 rounded-[2px] bg-[#075E54] py-3 text-sm font-semibold text-warm-ivory transition-colors hover:bg-[#064E46] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075E54] focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
         >
           <MessageSquare size={16} />
           Order via WhatsApp

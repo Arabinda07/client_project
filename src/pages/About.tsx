@@ -1,5 +1,6 @@
 import React from 'react';
 import { SEO } from '../components/layout/SEO';
+import { ProductImage } from '../components/ui/Media';
 
 export const About = () => {
   return (
@@ -12,8 +13,13 @@ export const About = () => {
         </div>
         
         <div className="mb-20 double-bezel-outer aspect-[16/9] w-full overflow-hidden">
-          <div className="double-bezel-inner relative h-full w-full bg-studio-wash/30 border border-dashed border-border-soft">
-            {/* Image container kept empty for actual studio/workshop image */}
+          <div className="double-bezel-inner relative h-full w-full overflow-hidden">
+            <ProductImage
+              src="/images/founder_studio.png"
+              alt="The goonjaa studio where terracotta jewellery is shaped and painted by hand"
+              tone="studio"
+              loading="eager"
+            />
           </div>
         </div>
 
@@ -33,7 +39,7 @@ export const About = () => {
           </section>
 
           {/* The Handmade Process */}
-          <section className="mt-12 mb-12 space-y-6 rounded-2xl border border-border-soft bg-studio-paper p-8 shadow-[0_18px_48px_rgba(49,39,31,0.04)] md:p-12">
+          <section className="mt-12 mb-12 space-y-6 rounded-[2px] border border-border-soft bg-studio-paper p-8 md:p-12">
             <h2 className="type-h1 text-gray-900 mb-6">How Each Piece Comes to Life</h2>
             <p className="leading-relaxed">
               I technically had no background in color theory. I learned slowly, through trial and error, exploring which shapes could be born from the clay. Everything you see here is made by a single person in a small home studio.
@@ -44,23 +50,38 @@ export const About = () => {
             
             <div className="mt-12 flex flex-col gap-6 md:flex-row">
               <div className="w-full md:w-2/3 flex flex-col double-bezel-outer">
-                <div className="double-bezel-inner overflow-hidden aspect-[4/3] relative bg-studio-wash/30 border border-dashed border-border-soft">
-                  <div className="absolute bottom-4 left-4 bg-studio-paper/90 px-3 py-1 rounded border border-border-soft/60 shadow-xs">
+                <div className="double-bezel-inner relative aspect-[4/3] overflow-hidden">
+                  <ProductImage
+                    src="/images/hero_clay_sculpting.png"
+                    alt="Clay being patiently molded before drying and firing"
+                    tone="studio"
+                  />
+                  <div className="absolute bottom-4 left-4 rounded-[2px] border border-border-soft/60 bg-studio-paper/90 px-3 py-1">
                     <span className="type-caption text-[10px] font-bold text-terracotta-dark uppercase tracking-wider">Patiently Molding Clay</span>
                   </div>
                 </div>
               </div>
               <div className="w-full md:w-1/3 flex flex-col gap-6">
                 <div className="flex flex-col double-bezel-outer">
-                  <div className="double-bezel-inner overflow-hidden aspect-[4/5] relative bg-studio-wash/30 border border-dashed border-border-soft">
-                    <div className="absolute bottom-4 left-4 bg-studio-paper/90 px-3 py-1 rounded border border-border-soft/60 shadow-xs">
+                  <div className="double-bezel-inner relative aspect-[4/5] overflow-hidden">
+                    <ProductImage
+                      src="/images/sun_drying_firing.png"
+                      alt="Terracotta pieces drying and preparing for firing"
+                      tone="studio"
+                    />
+                    <div className="absolute bottom-4 left-4 rounded-[2px] border border-border-soft/60 bg-studio-paper/90 px-3 py-1">
                       <span className="type-caption text-[9px] font-bold text-terracotta-dark uppercase tracking-wider">Sun-Drying & Firing</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-col double-bezel-outer">
-                  <div className="double-bezel-inner overflow-hidden aspect-square relative bg-studio-wash/30 border border-dashed border-border-soft">
-                    <div className="absolute bottom-4 left-4 bg-studio-paper/90 px-3 py-1 rounded border border-border-soft/60 shadow-xs">
+                  <div className="double-bezel-inner relative aspect-square overflow-hidden">
+                    <ProductImage
+                      src="/images/hand_painting_details.png"
+                      alt="Fine hand-painted details on a goonjaa terracotta piece"
+                      tone="detail"
+                    />
+                    <div className="absolute bottom-4 left-4 rounded-[2px] border border-border-soft/60 bg-studio-paper/90 px-3 py-1">
                       <span className="type-caption text-[9px] font-bold text-terracotta-dark uppercase tracking-wider">Hand-Painting Details</span>
                     </div>
                   </div>

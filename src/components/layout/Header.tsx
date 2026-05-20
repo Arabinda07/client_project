@@ -56,7 +56,7 @@ export const Header = () => {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="min-h-11 min-w-11 flex flex-col justify-center items-center gap-1.5 p-2 text-gray-900 hover:text-terracotta focus:outline-none transition-colors"
+              className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 p-2 text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
               aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
             >
               <span className={cn("h-[1.5px] w-5 bg-current transition-all duration-300", isMobileMenuOpen && "rotate-45 translate-y-[7.5px]")} />
@@ -71,7 +71,7 @@ export const Header = () => {
                 key={link.name}
                 to={link.path}
                 className={cn(
-                  'type-nav transition-all duration-300 relative py-1 group',
+                  'type-nav group relative inline-flex min-h-11 items-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory',
                   location.pathname === link.path ? 'text-terracotta' : 'text-gray-900 hover:text-terracotta'
                 )}
               >
@@ -84,7 +84,7 @@ export const Header = () => {
             ))}
           </div>
 
-          <Link to="/" className="flex-shrink-0 flex items-center justify-center transition-transform hover:scale-[1.01] active:scale-[0.99] duration-300" aria-label="Goonjaa Home">
+          <Link to="/" className="flex min-h-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory" aria-label="goonjaa home">
             <Logo variant="wordmark" className="h-10 w-auto sm:h-12" />
           </Link>
 
@@ -95,7 +95,7 @@ export const Header = () => {
                   key={link.name}
                   to={link.path}
                   className={cn(
-                    'type-nav transition-all duration-300 relative py-1 group',
+                    'type-nav group relative inline-flex min-h-11 items-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory',
                     location.pathname === link.path ? 'text-terracotta' : 'text-gray-900 hover:text-terracotta'
                   )}
                 >
@@ -112,18 +112,18 @@ export const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Follow ${brand.name} on Instagram`}
-              className="hidden min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta sm:flex hover:scale-105 active:scale-95 duration-200"
+              className="hidden min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory sm:flex"
             >
               <Instagram size={18} strokeWidth={2.2} />
             </a>
             <Link
               to="/cart"
-              className="relative flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta hover:scale-105 active:scale-95 duration-200"
+              className="relative flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
               aria-label="View Cart"
             >
               <ShoppingBag size={20} strokeWidth={2.2} />
               {cartCount > 0 && (
-                <span className="numeric-tabular absolute right-0.5 top-0.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-terracotta text-[0.6rem] font-bold text-warm-ivory animate-pulse">
+                <span className="numeric-tabular absolute right-0.5 top-0.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-terracotta text-[0.6rem] font-bold text-warm-ivory">
                   {cartCount}
                 </span>
               )}
@@ -153,13 +153,13 @@ export const Header = () => {
             >
               <div className="p-7">
                 <div className="flex justify-between items-center mb-10">
-                  <Link to="/" className="block" onClick={() => setIsMobileMenuOpen(false)} aria-label="Goonjaa Home">
+                  <Link to="/" className="flex min-h-11 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper" onClick={() => setIsMobileMenuOpen(false)} aria-label="goonjaa home">
                     <Logo variant="wordmark" className="h-10 w-auto" />
                   </Link>
                   <button
                     type="button"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="min-h-11 min-w-11 flex items-center justify-center p-2 text-gray-600 hover:text-terracotta focus:outline-none transition-colors"
+                    className="flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper"
                     aria-label="Close Menu"
                   >
                     <X size={20} />
@@ -176,7 +176,7 @@ export const Header = () => {
                       <Link
                         to={link.path}
                         className={cn(
-                          'block py-1 type-nav text-gray-800 transition-colors hover:text-terracotta',
+                          'flex min-h-11 items-center py-1 type-nav text-gray-800 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper',
                           location.pathname === link.path && 'text-terracotta'
                         )}
                       >
@@ -194,7 +194,7 @@ export const Header = () => {
                       href={brand.instagramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex min-h-11 items-center gap-3 text-gray-600 transition-colors hover:text-terracotta type-nav"
+                      className="flex min-h-11 items-center gap-3 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper type-nav"
                     >
                       <Instagram size={18} />
                       <span>Follow on Instagram</span>

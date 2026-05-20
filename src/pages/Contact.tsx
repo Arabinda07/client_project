@@ -26,14 +26,14 @@ export const Contact = () => {
               <Mail className="text-terracotta mt-1 h-5 w-5" />
               <div>
                 <h3 className="type-overline text-gray-900 mb-1 block">Email</h3>
-                <a href={`mailto:${brand.email}`} className="type-body text-gray-600 transition-colors hover:text-terracotta">{brand.email}</a>
+                <a href={`mailto:${brand.email}`} className="inline-flex min-h-11 items-center type-body text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">{brand.email}</a>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <Instagram className="text-terracotta mt-1 h-5 w-5" />
               <div>
                 <h3 className="type-overline text-gray-900 mb-1 block">Instagram</h3>
-                <a href={brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="type-body text-gray-600 transition-colors hover:text-terracotta">{brand.instagramHandle}</a>
+                <a href={brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center type-body text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">{brand.instagramHandle}</a>
               </div>
             </div>
           </div>
@@ -50,16 +50,16 @@ export const Contact = () => {
             <div className="flex flex-col gap-8 md:flex-row">
               <div className="space-y-2 flex-1">
                 <label htmlFor="contact-name" className="type-overline text-gray-700">Your Name</label>
-                <input id="contact-name" required type="text" className="min-h-12 w-full rounded-none border-b border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-0" />
+                <input id="contact-name" required type="text" className="min-h-12 w-full rounded-none border-b border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface" />
               </div>
               <div className="space-y-2 flex-1">
                 <label htmlFor="contact-email" className="type-overline text-gray-700">Email Address</label>
-                <input id="contact-email" required type="email" className="min-h-12 w-full rounded-none border-b border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-0" />
+                <input id="contact-email" required type="email" className="min-h-12 w-full rounded-none border-b border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface" />
               </div>
             </div>
             <div className="space-y-2">
               <label htmlFor="contact-message" className="type-overline text-gray-700">Message</label>
-              <textarea id="contact-message" required rows={5} className="mt-2 w-full rounded-[2px] border border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta"></textarea>
+              <textarea id="contact-message" required rows={5} className="mt-2 w-full rounded-[2px] border border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2"></textarea>
             </div>
             <div className="pt-4">
               <Button type="submit" className="px-12 py-4">Send Message</Button>
