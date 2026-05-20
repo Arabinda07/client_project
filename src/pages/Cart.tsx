@@ -41,13 +41,9 @@ export const Cart = () => {
                 <div key={item.cartItemId} className="grid grid-cols-12 items-center gap-4 border-b border-border-soft py-4">
                   <div className="col-span-12 md:col-span-6 flex gap-4">
                     <Link to={`/product/${item.slug}`} className="block h-24 w-20 shrink-0 overflow-hidden rounded-[2px] border border-border-soft bg-surface sm:h-32 sm:w-24">
-                      {item.images[0].includes('placehold.co') ? (
-                        <div className="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_50%_34%,rgba(179,92,56,0.13),transparent_34%),linear-gradient(135deg,#F8F1E8,#E9DED2)] p-2 text-center">
-                          <span className="text-[8px] font-semibold uppercase leading-tight tracking-[0.12em] text-terracotta sm:text-[10px]">{decodeURIComponent(item.images[0].split('text=')[1] || '').replace(/\+/g, ' ')}</span>
-                        </div>
-                      ) : (
-                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover mix-blend-multiply" />
-                      )}
+                      <div className="flex h-full w-full items-center justify-center bg-studio-wash/40 border border-dashed border-border-soft/60">
+                        {/* Image kept empty */}
+                      </div>
                     </Link>
                     <div className="flex flex-col justify-center">
                       <Link to={`/product/${item.slug}`} className="font-sans text-lg font-semibold leading-snug text-gray-900 transition-colors hover:text-terracotta">{item.name}</Link>

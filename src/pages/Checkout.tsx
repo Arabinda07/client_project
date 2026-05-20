@@ -128,13 +128,9 @@ export const Checkout = () => {
               {items.map(item => (
                 <li key={item.cartItemId} className="flex gap-4">
                   <div className="h-20 w-16 flex-shrink-0 overflow-hidden rounded-[2px] border border-border-soft bg-studio-paper">
-                    {item.images[0].includes('placehold.co') ? (
-                      <div className="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_50%_34%,rgba(179,92,56,0.13),transparent_34%),linear-gradient(135deg,#F8F1E8,#E9DED2)] p-1 text-center">
-                        <span className="text-[6px] font-semibold uppercase leading-tight tracking-[0.12em] text-terracotta">{decodeURIComponent(item.images[0].split('text=')[1] || '').replace(/\+/g, ' ')}</span>
-                      </div>
-                    ) : (
-                      <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover" />
-                    )}
+                    <div className="flex h-full w-full items-center justify-center bg-studio-wash/40 border border-dashed border-border-soft/60">
+                      {/* Image kept empty */}
+                    </div>
                   </div>
                   <div className="flex-1 text-sm">
                     <p className="font-medium text-gray-900 leading-tight">{item.name}</p>

@@ -6,7 +6,8 @@ import { ScrollRestoration } from 'react-router-dom';
 
 export const Layout = () => {
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen relative bg-warm-ivory">
+      <div className="grain-overlay" aria-hidden="true" />
       <Header />
       <main className="flex-grow">
         <Outlet />

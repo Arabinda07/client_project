@@ -68,7 +68,7 @@ export const mockProducts: Product[] = withColourOptions([
     id: 'ts-001', slug: 'mridula-painted-terracotta-set', name: 'Mridula Painted Terracotta Set', price: 1850, mainCategory: 'Terracotta Set', subCategory: 'Painted Set', collection: ['Festive Wear', 'Statement Pieces'],
     shortDescription: 'Hand-painted terracotta necklace featuring traditional Indian motifs.',
     longDescription: "The Mridula set features delicate brushstrokes outlining traditional motifs on earthen clay. The set includes a statement necklace and matching statement jhumkas. Perfect for festive occasions and pairs beautifully with handloom sarees.",
-    images: ['https://placehold.co/600x800/dccfc7/6b2323?text=Mridula+Set', 'https://placehold.co/600x800/e8d5cc/6b2323?text=Detail+1'],
+    images: ['/images/mridula_set.png', '/images/mridula_set.png'],
     materials: ['Baked Earthen Clay', 'Acrylic Paint', 'Cotton Thread', 'Brass Findings'],
     dimensions: 'Necklace length: Adjustable up to 24 inches', weight: '85g', careInstructions: careInstructionsDefault,
     stockStatus: 'in_stock', stockQuantity: 5, isNew: true, isBestseller: true, isSale: false,
@@ -77,7 +77,7 @@ export const mockProducts: Product[] = withColourOptions([
   {
     id: 'ts-002', slug: 'chandrika-hansuli-set', name: 'Chandrika Hansuli Set', price: 2200, mainCategory: 'Terracotta Set', subCategory: 'Hansuli', collection: ['Statement Pieces', 'Festive Wear'],
     shortDescription: 'Bold, modern interpretation of the traditional Hansuli choker.',
-    images: ['https://placehold.co/600x800/e8d5cc/5C554E?text=Chandrika+Hansuli'], materials: ['Raw Terracotta', 'Adjustable Cotton Dori'],
+    images: ['/images/chandrika_hansuli.png'], materials: ['Raw Terracotta', 'Adjustable Cotton Dori'],
     careInstructions: careInstructionsDefault, stockStatus: 'in_stock', stockQuantity: 3, isNew: false, isBestseller: true, isSale: false,
     tags: ['choker', 'statement', 'modern', 'hansuli'], occasion: ['Festive', 'Wedding Guest'], colorFamily: ['Earth Neutrals', 'Terracotta'], createdAt: '2023-10-15'
   },
