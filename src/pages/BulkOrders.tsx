@@ -8,6 +8,18 @@ import {
   isBulkOrderDateAllowed,
 } from '../lib/bulkOrder';
 import { brand } from '../lib/brand';
+import { formatPrice } from '../lib/utils';
+import { ProductImage } from '../components/ui/Media';
+import {
+  errorTextClassName,
+  fieldGroupClassName,
+  helperTextClassName,
+  inputClassName,
+  labelClassName,
+  selectClassName,
+  statusPanelClassName,
+  textareaClassName,
+} from '../components/ui/formStyles';
 
 type BulkFormState = {
   name: string;
@@ -42,6 +54,7 @@ export const BulkOrders = () => {
   );
   const selectedProduct = products.find((product) => product.id === formState.productId);
   const availableColours = selectedProduct?.colourOptions?.filter((colour) => colour.available !== false) ?? [];
+  const selectedColour = availableColours.find((colour) => colour.id === formState.colourId);
   const minimumDate = getBulkOrderMinimumDate();
   const minimumDateValue = formatDateInputValue(minimumDate);
   const minimumDateLabel = minimumDate.toLocaleDateString('en-IN', {
@@ -97,7 +110,7 @@ export const BulkOrders = () => {
         <div className="double-bezel-outer">
           <div className="double-bezel-inner p-6 sm:p-8 md:p-10">
             {isSubmitted && (
-              <div className="mb-8 rounded-[2px] border border-terracotta/30 bg-warm-ivory p-4 text-terracotta-dark" role="status">
+              <div className={`mb-8 ${statusPanelClassName}`} role="status" aria-live="polite">
                 <p className="type-overline mb-1 font-semibold">Inquiry received</p>
                 <p className="type-body text-sm">The studio will review the catalogue piece, quantity, and timeline before confirming availability.</p>
               </div>
@@ -105,46 +118,46 @@ export const BulkOrders = () => {
 
             <form className="space-y-8" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div className="space-y-2">
-                  <label htmlFor="bulk-name" className="type-overline text-gray-700 font-bold">Your Name</label>
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="bulk-name" className={labelClassName}>Your Name</label>
                   <input
                     id="bulk-name"
                     required
                     value={formState.name}
                     onChange={(event) => updateField('name', event.target.value)}
-                    className="min-h-12 w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    className={inputClassName()}
                   />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="bulk-phone" className="type-overline text-gray-700 font-bold">Phone</label>
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="bulk-phone" className={labelClassName}>Phone</label>
                   <input
                     id="bulk-phone"
                     required
                     type="tel"
                     value={formState.phone}
                     onChange={(event) => updateField('phone', event.target.value)}
-                    className="min-h-12 w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    className={inputClassName()}
                   />
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="bulk-email" className="type-overline text-gray-700 font-bold">Email Address</label>
+                <div className={`${fieldGroupClassName} md:col-span-2`}>
+                  <label htmlFor="bulk-email" className={labelClassName}>Email Address</label>
                   <input
                     id="bulk-email"
                     required
                     type="email"
                     value={formState.email}
                     onChange={(event) => updateField('email', event.target.value)}
-                    className="min-h-12 w-full border-b border-gray-300 bg-transparent px-1 py-3 focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    className={inputClassName()}
                   />
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="bulk-product" className="type-overline text-gray-700 font-bold">Catalogue Piece</label>
+                <div className={`${fieldGroupClassName} md:col-span-2`}>
+                  <label htmlFor="bulk-product" className={labelClassName}>Catalogue Piece</label>
                   <select
                     id="bulk-product"
                     required
                     value={formState.productId}
                     onChange={(event) => updateField('productId', event.target.value)}
-                    className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    className={selectClassName()}
                   >
                     <option value="">Choose an existing design</option>
                     {products.map((product) => (
@@ -154,15 +167,40 @@ export const BulkOrders = () => {
                     ))}
                   </select>
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="bulk-colour" className="type-overline text-gray-700 font-bold">Colour Option</label>
+                {selectedProduct && (
+                  <div className="md:col-span-2 rounded-[2px] border border-border-soft bg-studio-wash/45 p-4">
+                    <div className="flex gap-4">
+                      <div className="h-24 w-20 shrink-0 overflow-hidden rounded-[2px] border border-border-soft bg-studio-paper">
+                        <ProductImage
+                          src={selectedProduct.images?.[0]}
+                          alt={`${selectedProduct.name}, selected catalogue piece`}
+                          sizes="80px"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="type-overline mb-1 text-terracotta-dark">Selected design</p>
+                        <h3 className="type-h3 mb-1 text-gray-900">{selectedProduct.name}</h3>
+                        <p className="numeric-tabular text-sm font-semibold text-terracotta">{formatPrice(selectedProduct.price)}</p>
+                        <p className="type-caption mt-2 text-gray-600">
+                          {selectedColour
+                            ? `${selectedColour.name} selected.`
+                            : availableColours.length > 0
+                              ? `${availableColours.length} catalogue colour${availableColours.length === 1 ? '' : 's'} available.`
+                              : 'Colour will be confirmed by the studio.'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="bulk-colour" className={labelClassName}>Colour Option</label>
                   <select
                     id="bulk-colour"
                     required={availableColours.length > 0}
                     value={formState.colourId}
                     onChange={(event) => updateField('colourId', event.target.value)}
                     disabled={!selectedProduct || availableColours.length === 0}
-                    className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:cursor-not-allowed disabled:opacity-60"
+                    className={selectClassName()}
                   >
                     <option value="">Choose from catalogue colours</option>
                     {availableColours.map((colour) => (
@@ -172,14 +210,14 @@ export const BulkOrders = () => {
                     ))}
                   </select>
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="bulk-quantity" className="type-overline text-gray-700 font-bold">Quantity Range</label>
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="bulk-quantity" className={labelClassName}>Quantity Range</label>
                   <select
                     id="bulk-quantity"
                     required
                     value={formState.quantityRange}
                     onChange={(event) => updateField('quantityRange', event.target.value)}
-                    className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    className={selectClassName()}
                   >
                     <option value="">Select a range</option>
                     <option value="10-24">10-24 pieces</option>
@@ -188,8 +226,8 @@ export const BulkOrders = () => {
                     <option value="100+">100+ pieces</option>
                   </select>
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="bulk-delivery" className="type-overline text-gray-700 font-bold">Required Delivery Date</label>
+                <div className={`${fieldGroupClassName} md:col-span-2`}>
+                  <label htmlFor="bulk-delivery" className={labelClassName}>Required Delivery Date</label>
                   <input
                     id="bulk-delivery"
                     required
@@ -198,26 +236,26 @@ export const BulkOrders = () => {
                     value={formState.deliveryDate}
                     onChange={(event) => updateField('deliveryDate', event.target.value)}
                     aria-describedby="bulk-delivery-help"
-                    className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    className={inputClassName()}
                   />
-                  <p id="bulk-delivery-help" className="type-caption text-gray-500">
+                  <p id="bulk-delivery-help" className={helperTextClassName}>
                     Bulk orders can be requested for {minimumDateLabel} or later.
                   </p>
                   {dateError && (
-                    <p className="type-caption text-terracotta-dark font-semibold" role="alert">
+                    <p className={errorTextClassName} role="alert">
                       {dateError}
                     </p>
                   )}
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="bulk-notes" className="type-overline text-gray-700 font-bold">Notes</label>
+                <div className={`${fieldGroupClassName} md:col-span-2`}>
+                  <label htmlFor="bulk-notes" className={labelClassName}>Notes</label>
                   <textarea
                     id="bulk-notes"
                     rows={4}
                     value={formState.notes}
                     onChange={(event) => updateField('notes', event.target.value)}
                     placeholder="Share event details, packaging needs, or delivery city."
-                    className="w-full rounded-[2px] border border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                    className={textareaClassName('bg-transparent')}
                   />
                 </div>
               </div>

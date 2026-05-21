@@ -3,6 +3,14 @@ import { Button } from '../components/ui/Button';
 import { Mail, Instagram } from 'lucide-react';
 import { brand } from '../lib/brand';
 import { SEO } from '../components/layout/SEO';
+import {
+  fieldGroupClassName,
+  inputClassName,
+  labelClassName,
+  statusPanelClassName,
+  textareaClassName,
+} from '../components/ui/formStyles';
+import { studioFaqs } from '../lib/seo';
 
 export const Contact = () => {
   const [isSent, setIsSent] = useState(false);
@@ -39,27 +47,27 @@ export const Contact = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-[2px] border border-border-soft bg-surface p-8 shadow-[0_18px_48px_rgba(49,39,31,0.05)] md:w-7/12 md:p-12">
+        <div className="w-full rounded-[2px] border border-border-soft bg-surface p-8 clay-shadow-soft md:w-7/12 md:p-12">
           {isSent && (
-            <div className="mb-8 border border-terracotta/30 bg-warm-ivory p-4 text-terracotta-dark" role="status">
+            <div className={`mb-8 ${statusPanelClassName}`} role="status" aria-live="polite">
               <p className="type-overline mb-1">Message received</p>
               <p className="type-body">The studio will reply as soon as possible.</p>
             </div>
           )}
           <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); setIsSent(true); }}>
             <div className="flex flex-col gap-8 md:flex-row">
-              <div className="space-y-2 flex-1">
-                <label htmlFor="contact-name" className="type-overline text-gray-700">Your Name</label>
-                <input id="contact-name" required type="text" className="min-h-12 w-full rounded-none border-b border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface" />
+              <div className={`${fieldGroupClassName} flex-1`}>
+                <label htmlFor="contact-name" className={labelClassName}>Your Name</label>
+                <input id="contact-name" required type="text" className={inputClassName('bg-transparent')} />
               </div>
-              <div className="space-y-2 flex-1">
-                <label htmlFor="contact-email" className="type-overline text-gray-700">Email Address</label>
-                <input id="contact-email" required type="email" className="min-h-12 w-full rounded-none border-b border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface" />
+              <div className={`${fieldGroupClassName} flex-1`}>
+                <label htmlFor="contact-email" className={labelClassName}>Email Address</label>
+                <input id="contact-email" required type="email" className={inputClassName('bg-transparent')} />
               </div>
             </div>
-            <div className="space-y-2">
-              <label htmlFor="contact-message" className="type-overline text-gray-700">Message</label>
-              <textarea id="contact-message" required rows={5} className="mt-2 w-full rounded-[2px] border border-gray-300 bg-transparent px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2"></textarea>
+            <div className={fieldGroupClassName}>
+              <label htmlFor="contact-message" className={labelClassName}>Message</label>
+              <textarea id="contact-message" required rows={5} className={textareaClassName('bg-transparent')}></textarea>
             </div>
             <div className="pt-4">
               <Button type="submit" className="px-12 py-4">Send Message</Button>
@@ -67,6 +75,21 @@ export const Contact = () => {
           </form>
         </div>
         </div>
+
+        <section className="mt-20 border-t border-border-soft pt-14 sm:mt-24 sm:pt-16">
+          <div className="mb-10 max-w-2xl">
+            <span className="mb-4 block text-terracotta-dark type-overline">Studio Questions</span>
+            <h2 className="type-h1 text-gray-900">Helpful notes before you write.</h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {studioFaqs.map((faq) => (
+              <article key={faq.question} className="rounded-[2px] border border-border-soft bg-surface/70 p-6">
+                <h3 className="type-h3 mb-3 text-gray-900">{faq.question}</h3>
+                <p className="type-body text-gray-600">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </>
   );

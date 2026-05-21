@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingBag, Menu, X, Instagram } from 'lucide-react';
+import { ShoppingBag, X, Instagram } from 'lucide-react';
 import { useCartStore } from '../../store/cartStore';
 import { cn } from '../../lib/utils';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { brand } from '../../lib/brand';
 import { Logo } from '../ui/Logo';
+import { getCategoryPath, primaryCategoryLinks } from '../../lib/catalog';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const cartCount = useCartStore((state) => state.cartCount());
+  const prefersReducedMotion = useReducedMotion();
+  const mobileMenuId = 'goonjaa-mobile-menu';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,9 +32,7 @@ export const Header = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Shop', path: '/shop' },
-    { name: 'Terracotta Sets', path: '/category/Terracotta Set' },
-    { name: 'Earrings', path: '/category/Earring' },
-    { name: 'Accessories', path: '/category/Accessories' },
+    ...primaryCategoryLinks.map((category) => ({ name: category.label, path: getCategoryPath(category.slug) })),
     { name: 'Bulk Orders', path: '/bulk-orders' },
     { name: 'About', path: '/about' },
   ];
@@ -47,7 +48,7 @@ export const Header = () => {
         className={cn(
           'sticky top-0 z-40 w-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] border-b',
           isScrolled 
-            ? 'bg-studio-paper/92 border-border-soft py-3.5 shadow-[0_16px_40px_rgba(49,39,31,0.06)] backdrop-blur-md' 
+            ? 'bg-studio-paper/92 border-border-soft py-3.5 clay-shadow-soft backdrop-blur-md'
             : 'bg-studio-paper/70 border-border-soft/30 py-5.5 backdrop-blur-xs'
         )}
       >
@@ -58,6 +59,8 @@ export const Header = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 p-2 text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
               aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
+              aria-controls={isMobileMenuOpen ? mobileMenuId : undefined}
+              aria-expanded={isMobileMenuOpen}
             >
               <span className={cn("h-[1.5px] w-5 bg-current transition-all duration-300", isMobileMenuOpen && "rotate-45 translate-y-[7.5px]")} />
               <span className={cn("h-[1.5px] w-5 bg-current transition-all duration-300", isMobileMenuOpen && "opacity-0")} />
@@ -74,6 +77,7 @@ export const Header = () => {
                   'type-nav group relative inline-flex min-h-11 items-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory',
                   location.pathname === link.path ? 'text-terracotta' : 'text-gray-900 hover:text-terracotta'
                 )}
+                aria-current={location.pathname === link.path ? 'page' : undefined}
               >
                 {link.name}
                 <span className={cn(
@@ -98,6 +102,7 @@ export const Header = () => {
                     'type-nav group relative inline-flex min-h-11 items-center transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory',
                     location.pathname === link.path ? 'text-terracotta' : 'text-gray-900 hover:text-terracotta'
                   )}
+                  aria-current={location.pathname === link.path ? 'page' : undefined}
                 >
                   {link.name}
                   <span className={cn(
@@ -140,16 +145,17 @@ export const Header = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
               className="fixed inset-0 z-50 bg-gray-900/35 backdrop-blur-xs lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
-              initial={{ x: '-100%' }}
+              id={mobileMenuId}
+              initial={{ x: prefersReducedMotion ? 0 : '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 left-0 z-50 w-[84vw] max-w-sm overflow-y-auto border-r border-border-soft bg-studio-paper shadow-[32px_0_80px_rgba(49,39,31,0.14)] lg:hidden"
+              exit={{ x: prefersReducedMotion ? 0 : '-100%' }}
+              transition={prefersReducedMotion ? { duration: 0 } : { type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 left-0 z-50 w-[84vw] max-w-sm overflow-y-auto border-r border-border-soft bg-studio-paper clay-shadow-lift lg:hidden"
             >
               <div className="p-7">
                 <div className="flex justify-between items-center mb-10">
@@ -179,6 +185,7 @@ export const Header = () => {
                           'flex min-h-11 items-center py-1 type-nav text-gray-800 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper',
                           location.pathname === link.path && 'text-terracotta'
                         )}
+                        aria-current={location.pathname === link.path ? 'page' : undefined}
                       >
                         {link.name}
                       </Link>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import { brand } from '../../lib/brand';
 import { Logo } from '../ui/Logo';
+import { getCategoryPath, primaryCategoryLinks } from '../../lib/catalog';
 
 export const Footer = () => {
   return (
@@ -30,17 +31,21 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="mb-6 text-antique-gold type-overline">Shop</h3>
+            <h3 className="mb-6 text-antique-gold-light type-overline">Shop</h3>
             <ul className="space-y-4 text-warm-ivory/78 type-body">
-              <li><Link to="/category/Terracotta Set" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Terracotta Sets</Link></li>
-              <li><Link to="/category/Earring" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Earrings</Link></li>
-              <li><Link to="/category/Accessories" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Accessories</Link></li>
+              {primaryCategoryLinks.map((category) => (
+                <li key={category.slug}>
+                  <Link to={getCategoryPath(category.slug)} className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">
+                    {category.label}
+                  </Link>
+                </li>
+              ))}
               <li><Link to="/shop" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">All Pieces</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="mb-6 text-antique-gold type-overline">Brand</h3>
+            <h3 className="mb-6 text-antique-gold-light type-overline">Brand</h3>
             <ul className="space-y-4 text-warm-ivory/78 type-body">
               <li><Link to="/about" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Our Story</Link></li>
               <li><Link to="/bulk-orders" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Bulk Orders</Link></li>
@@ -50,7 +55,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="mb-6 text-antique-gold type-overline">Policies</h3>
+            <h3 className="mb-6 text-antique-gold-light type-overline">Policies</h3>
             <ul className="space-y-4 text-warm-ivory/78 type-body">
               <li><Link to="/policies/shipping" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Shipping & Returns</Link></li>
               <li><Link to="/policies/privacy" className="inline-flex min-h-11 items-center transition-colors hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-ivory">Privacy Policy</Link></li>
@@ -59,7 +64,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-warm-ivory/12 pt-8 text-warm-ivory/62 type-caption md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-warm-ivory/12 pt-8 text-warm-ivory/72 type-caption md:flex-row">
           <p>&copy; {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
           <div className="flex items-center gap-2">
             <span>Made with love in India</span>

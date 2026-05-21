@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">goonjaa handcrafted terracotta jewellery</title>
+  <desc id="desc">Warm ivory and terracotta social preview card for goonjaa.</desc>
+  <rect width="1200" height="630" fill="#FDFBF5"/>
+  <rect x="48" y="48" width="1104" height="534" fill="#F7F0E7" stroke="#B35C38" stroke-opacity=".24"/>
+  <circle cx="240" cy="315" r="116" fill="#B35C38" fill-opacity=".92"/>
+  <circle cx="240" cy="315" r="72" fill="#FDFBF5" fill-opacity=".9"/>
+  <circle cx="240" cy="315" r="28" fill="#7D2E24"/>
+  <path d="M410 232c88-62 176-62 264 0 82 58 164 58 246 0" fill="none" stroke="#B8892E" stroke-width="10" stroke-linecap="round"/>
+  <text x="410" y="335" fill="#1D1815" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="600">goonjaa</text>
+  <text x="415" y="405" fill="#7D2E24" font-family="Georgia, 'Times New Roman', serif" font-size="34">handcrafted terracotta jewellery</text>
+  <text x="415" y="464" fill="#5C554E" font-family="Georgia, 'Times New Roman', serif" font-size="24">shaped, fired, and painted by hand in India</text>
+</svg>

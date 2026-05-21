@@ -1,4 +1,4 @@
-import { Category, Collection, Testimonial, Product } from '../../types';
+import type { Category, Collection, Testimonial, Product } from '../../types';
 
 export const categories: Category[] = [
   { id: '1', name: 'Terracotta Set', slug: 'terracotta-set', subcategories: ['Regular Set', 'Abstract Set', 'Modern', 'Beaded', 'Gen-Z Set', 'Choker', 'Hansuli', 'Chandrakala', '3D-Art', 'Painted Set'] },

@@ -1,31 +1,42 @@
 import React, { useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ProductCard } from '../components/product/ProductCard';
-import { mockProducts, categories } from '../lib/data/mockProducts';
+import { mockProducts } from '../lib/data/mockProducts';
 import { Button } from '../components/ui/Button';
 import { SEO } from '../components/layout/SEO';
+import { brand } from '../lib/brand';
+import {
+  getCategoryPath,
+  isAccessoryCategoryName,
+  primaryCategoryLinks,
+  resolveCategoryParam,
+} from '../lib/catalog';
 
 export const Shop = () => {
   const { categoryName } = useParams<{ categoryName?: string }>();
+  const navigate = useNavigate();
+  const activeCategory = resolveCategoryParam(categoryName);
+  const activeCategoryName = activeCategory?.name;
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<string>('latest');
 
-  const mainCategories = categories.map(cat => cat.name);
-  const isAccessoriesCategory = categoryName === 'Accessories';
+  const mainCategories = primaryCategoryLinks;
+  const isAccessoriesCategory = isAccessoryCategoryName(activeCategoryName);
   const matchesCategory = (productMainCategory: string) => {
-    if (!categoryName) return true;
+    if (!activeCategoryName) return !categoryName;
     if (isAccessoriesCategory) return productMainCategory !== 'Terracotta Set' && productMainCategory !== 'Earring';
-    return productMainCategory === categoryName;
+    return productMainCategory === activeCategoryName;
   };
   
   // Extract all unique subcategories for the current main category, or all if no main category
   const availableSubCategories = useMemo(() => {
+    if (categoryName && !activeCategoryName) return [];
     let products = mockProducts;
-    if (categoryName) {
+    if (activeCategoryName) {
       products = products.filter(p => matchesCategory(p.mainCategory));
     }
     return Array.from(new Set(products.map(p => p.subCategory)));
-  }, [categoryName]);
+  }, [activeCategoryName, categoryName]);
 
   const filteredProducts = useMemo(() => {
     let result = [...mockProducts];
@@ -52,16 +63,22 @@ export const Shop = () => {
     }
 
     return result;
-  }, [categoryName, selectedSubCategory, sortBy]);
+  }, [activeCategoryName, categoryName, selectedSubCategory, sortBy]);
 
   // Reset subcategory when main category changes
   React.useEffect(() => {
     setSelectedSubCategory(null);
   }, [categoryName]);
 
+  React.useEffect(() => {
+    if (activeCategory?.isLegacyPath) {
+      navigate(getCategoryPath(activeCategory.slug), { replace: true });
+    }
+  }, [activeCategory?.isLegacyPath, activeCategory?.slug, navigate]);
+
   const getIntroText = () => {
     // Some subcategories have slight variations in the product data, matching them here.
-    const key = selectedSubCategory || categoryName || 'All';
+    const key = selectedSubCategory || activeCategoryName || 'All';
     switch (key) {
       case 'Terracotta Set':
         return "Complete statements of wearable art. Our necklace sets bring traditional motifs to life, perfect for when you want to carry a piece of heritage with you.";
@@ -84,7 +101,7 @@ export const Shop = () => {
       case 'Painted Earring':
         return "Canvas on clay. Delicate brushstrokes and rich colors applied by hand to traditional Indian motifs.";
       default:
-        if (categoryName) return `Discover our curated collection of handmade ${categoryName}s. sculpted and painted by hand.`;
+        if (activeCategoryName) return `Discover our curated collection of handmade ${activeCategory?.label.toLowerCase()}. Sculpted and painted by hand.`;
         return "Discover our complete range of handmade terracotta creations. Every piece is sculpted and painted by hand.";
     }
   };
@@ -92,16 +109,18 @@ export const Shop = () => {
   return (
     <div className="mx-auto max-w-7xl px-4 py-18 sm:px-6 sm:py-22 lg:px-10 lg:py-24">
       <SEO 
-        title={categoryName ? `${categoryName}s` : 'Shop Handcrafted Terracotta'}
-        description={categoryName ? `Browse our curated collection of handmade ${categoryName}s.` : 'Explore our complete range of handmade terracotta creations.'}
+        title={activeCategory ? activeCategory.label : 'Shop Handcrafted Terracotta'}
+        description={activeCategory ? `Browse handmade ${activeCategory.label.toLowerCase()} from ${brand.name}.` : 'Explore our complete range of handmade terracotta creations.'}
+        canonicalPath={activeCategory ? getCategoryPath(activeCategory.slug) : '/shop'}
+        noIndex={Boolean(categoryName && !activeCategory)}
       />
       <div className="mb-12 flex flex-col items-start justify-between gap-8 border-b border-border-soft pb-8 md:flex-row md:items-end">
         <div className="max-w-3xl">
           <span className="mb-3 block text-terracotta-dark type-overline">
-            {selectedSubCategory ? categoryName : (categoryName ? 'Category' : 'Explore')}
+            {selectedSubCategory ? activeCategory?.label : (activeCategory ? 'Category' : 'Explore')}
           </span>
           <h1 className="type-display text-gray-900 mb-4">
-            {selectedSubCategory || (categoryName ? `${categoryName}s` : 'All Creations')}
+            {selectedSubCategory || (activeCategory ? activeCategory.label : 'All Creations')}
           </h1>
           <p className="text-gray-600 type-body-large">
             {getIntroText()}
@@ -135,9 +154,9 @@ export const Shop = () => {
                     </Link>
                   </li>
                   {mainCategories.map(cat => (
-                    <li key={cat}>
-                      <Link to={`/category/${cat}`} className="inline-flex min-h-11 items-center font-medium uppercase tracking-[0.12em] text-gray-500 transition-colors hover:text-gray-900 type-caption focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">
-                        {cat}
+                    <li key={cat.slug}>
+                      <Link to={getCategoryPath(cat.slug)} className="inline-flex min-h-11 items-center font-medium uppercase tracking-[0.12em] text-gray-500 transition-colors hover:text-gray-900 type-caption focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">
+                        {cat.label}
                       </Link>
                     </li>
                   ))}

@@ -6,7 +6,7 @@ import { formatPrice, cn } from '../lib/utils';
 import { Button } from '../components/ui/Button';
 import { ProductBadges } from '../components/product/ProductCard';
 import { Minus, Plus, Truck, RotateCcw, AlertCircle, ChevronDown, ChevronUp, MessageSquare } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { SEO } from '../components/layout/SEO';
 import { ProductColourOption } from '../types';
 import { ProductImage } from '../components/ui/Media';
@@ -26,6 +26,10 @@ export const ProductDetail = () => {
   const [colourError, setColourError] = useState('');
   const [openSection, setOpenSection] = useState<string | null>('materials');
   const [showStickyBar, setShowStickyBar] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const sectionTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.3, ease: [0.32, 0.72, 0, 1] as const };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,7 +96,7 @@ export const ProductDetail = () => {
                 key={activeImage}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
                 className="h-full w-full"
               >
                 <ProductImage
@@ -260,17 +264,19 @@ export const ProductDetail = () => {
                 onClick={() => toggleSection('materials')}
                 className="flex min-h-11 w-full items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                 aria-expanded={openSection === 'materials'}
+                aria-controls="product-materials-panel"
               >
                 <span>Materials & Weight</span>
                 {openSection === 'materials' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
               </button>
+              <div id="product-materials-panel">
               <AnimatePresence initial={false}>
                 {openSection === 'materials' && (
                   <motion.div
                     initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
-                    transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+                    transition={sectionTransition}
                     className="overflow-hidden mt-3"
                   >
                     <div className="type-body text-gray-600 space-y-3 pl-1">
@@ -286,6 +292,7 @@ export const ProductDetail = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
+              </div>
             </div>
 
             {/* Section 2: Care Instructions */}
@@ -296,17 +303,19 @@ export const ProductDetail = () => {
                   onClick={() => toggleSection('care')}
                   className="flex min-h-11 w-full items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                   aria-expanded={openSection === 'care'}
+                  aria-controls="product-care-panel"
                 >
                   <span>Care Instructions</span>
                   {openSection === 'care' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </button>
+                <div id="product-care-panel">
                 <AnimatePresence initial={false}>
                   {openSection === 'care' && (
                     <motion.div
                       initial={{ opacity: 0, y: -4 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -4 }}
-                      transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+                      transition={sectionTransition}
                       className="overflow-hidden mt-3"
                     >
                       <p className="type-body text-gray-600 pl-1 leading-relaxed">
@@ -315,6 +324,7 @@ export const ProductDetail = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
+                </div>
               </div>
             )}
 
@@ -325,17 +335,19 @@ export const ProductDetail = () => {
                 onClick={() => toggleSection('shipping')}
                 className="flex min-h-11 w-full items-center justify-between py-2 text-left font-serif text-lg font-bold text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
                 aria-expanded={openSection === 'shipping'}
+                aria-controls="product-shipping-panel"
               >
                 <span>Shipping & Firing Cycles</span>
                 {openSection === 'shipping' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
               </button>
+              <div id="product-shipping-panel">
               <AnimatePresence initial={false}>
                 {openSection === 'shipping' && (
                   <motion.div
                     initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
-                    transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+                    transition={sectionTransition}
                     className="overflow-hidden mt-3"
                   >
                     <div className="type-body text-gray-600 pl-1 space-y-4">
@@ -356,6 +368,7 @@ export const ProductDetail = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
+              </div>
             </div>
           </div>
         </div>
@@ -363,7 +376,7 @@ export const ProductDetail = () => {
 
       {/* Sticky Mobile WhatsApp CTA Bar */}
       <div className={cn(
-        "fixed bottom-0 inset-x-0 z-40 bg-studio-paper/95 backdrop-blur-md border-t border-border-soft p-4 flex gap-4 md:hidden transition-all duration-300 transform shadow-[0_-8px_30px_rgba(49,39,31,0.06)]",
+        "fixed bottom-0 inset-x-0 z-40 bg-studio-paper/95 backdrop-blur-md border-t border-border-soft p-4 flex gap-4 md:hidden transition-all duration-300 transform clay-shadow-soft",
         showStickyBar ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
       )}>
         <a 

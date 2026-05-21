@@ -44,6 +44,7 @@
   --color-terracotta: #B35C38;
   --color-terracotta-dark: #7D2E24;
   --color-antique-gold: #B8892E;
+  --color-antique-gold-light: #DDBA68;
   --color-deep-maroon: #7D2E24;
   --color-muted-rose: #E8DED4;
 
@@ -68,6 +69,12 @@
   --font-display-weight-normal: 500;
   --font-display-weight-logo: 600;
   --font-display-weight-accent: 700;
+
+  --shadow-clay-soft: 0 18px 48px rgba(49, 39, 31, 0.045);
+  --shadow-clay-lift: 0 28px 70px rgba(49, 39, 31, 0.10);
+  --z-grain: 10;
+  --z-header: 40;
+  --z-overlay: 50;
 
   /* Typography Scale */
   --text-caption: 0.875rem;
@@ -122,6 +129,10 @@
     font-kerning: normal;
     font-optical-sizing: auto;
     font-variant-numeric: proportional-nums;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -230,6 +241,14 @@
     transition: all 0.7s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
+  .clay-shadow-soft {
+    box-shadow: var(--shadow-clay-soft);
+  }
+
+  .clay-shadow-lift {
+    box-shadow: var(--shadow-clay-lift);
+  }
+
   /* Double Bezel System */
   .double-bezel-outer {
     background-color: var(--color-studio-wash);
@@ -255,6 +274,21 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     opacity: 0.025;
     pointer-events: none;
-    z-index: 9999;
+    z-index: var(--z-grain);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

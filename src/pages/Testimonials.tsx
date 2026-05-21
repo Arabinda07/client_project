@@ -40,7 +40,7 @@ export const Testimonials = () => {
 
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
         {testimonials.map((t, i) => (
-          <div key={i} className="flex flex-col items-center rounded-[2px] border border-border-soft bg-surface p-8 text-center shadow-[0_18px_48px_rgba(49,39,31,0.04)]">
+          <div key={i} className="flex flex-col items-center rounded-[2px] border border-border-soft bg-surface p-8 text-center clay-shadow-soft">
             <div className="flex gap-1 mb-4 text-antique-gold">
               {[...Array(t.rating)].map((_, j) => <span key={j}>★</span>)}
             </div>

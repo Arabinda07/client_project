@@ -5,6 +5,7 @@ import { formatPrice } from '../lib/utils';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/layout/SEO';
 import { ProductImage } from '../components/ui/Media';
+import { fieldGroupClassName, inputClassName, labelClassName } from '../components/ui/formStyles';
 
 export const Checkout = () => {
   const { items, cartTotal, clearCart } = useCartStore();
@@ -74,17 +75,17 @@ export const Checkout = () => {
             <div className="rounded-[2px] border border-border-soft bg-surface p-6 md:p-8">
               <h2 className="mb-6 text-gray-900 type-h2">Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="checkout-name" className="text-gray-700 type-overline">Full Name</label>
-                  <input id="checkout-name" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="checkout-name" className={labelClassName}>Full Name</label>
+                  <input id="checkout-name" required type="text" className={inputClassName()} />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="checkout-phone" className="text-gray-700 type-overline">Phone</label>
-                  <input id="checkout-phone" required type="tel" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="checkout-phone" className={labelClassName}>Phone</label>
+                  <input id="checkout-phone" required type="tel" className={inputClassName()} />
                 </div>
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="checkout-email" className="text-gray-700 type-overline">Email Address</label>
-                  <input id="checkout-email" required type="email" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
+                <div className={`${fieldGroupClassName} md:col-span-2`}>
+                  <label htmlFor="checkout-email" className={labelClassName}>Email Address</label>
+                  <input id="checkout-email" required type="email" className={inputClassName()} />
                 </div>
               </div>
             </div>
@@ -92,21 +93,21 @@ export const Checkout = () => {
             <div className="rounded-[2px] border border-border-soft bg-surface p-6 md:p-8">
               <h2 className="mb-6 text-gray-900 type-h2">Shipping Address</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2 md:col-span-2">
-                  <label htmlFor="checkout-address" className="text-gray-700 type-overline">Street Address</label>
-                  <input id="checkout-address" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
+                <div className={`${fieldGroupClassName} md:col-span-2`}>
+                  <label htmlFor="checkout-address" className={labelClassName}>Street Address</label>
+                  <input id="checkout-address" required type="text" className={inputClassName()} />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="checkout-city" className="text-gray-700 type-overline">City</label>
-                  <input id="checkout-city" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="checkout-city" className={labelClassName}>City</label>
+                  <input id="checkout-city" required type="text" className={inputClassName()} />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="checkout-state" className="text-gray-700 type-overline">State</label>
-                  <input id="checkout-state" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="checkout-state" className={labelClassName}>State</label>
+                  <input id="checkout-state" required type="text" className={inputClassName()} />
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="checkout-pin" className="text-gray-700 type-overline">PIN Code</label>
-                  <input id="checkout-pin" required type="text" className="min-h-12 w-full rounded-[2px] border border-gray-300 bg-studio-paper px-4 py-3 focus:border-terracotta focus:outline-none focus:ring-1 focus:ring-terracotta focus-visible:ring-2" />
+                <div className={fieldGroupClassName}>
+                  <label htmlFor="checkout-pin" className={labelClassName}>PIN Code</label>
+                  <input id="checkout-pin" required type="text" className={inputClassName()} />
                 </div>
               </div>
             </div>
@@ -123,7 +124,7 @@ export const Checkout = () => {
 
         {/* Order Summary */}
         <div className="w-full lg:w-[400px]">
-          <div className="sticky top-24 rounded-[2px] border border-border-soft bg-surface p-6 shadow-[0_18px_48px_rgba(49,39,31,0.06)] md:p-8">
+          <div className="sticky top-24 rounded-[2px] border border-border-soft bg-surface p-6 clay-shadow-soft md:p-8">
             <h2 className="mb-6 text-gray-900 type-h2">Order Summary</h2>
             <ul className="space-y-4 mb-6">
               {items.map(item => (

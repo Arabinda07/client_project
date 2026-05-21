@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { Button, buttonClassNames } from '../components/ui/Button';
 import { ProductCard } from '../components/product/ProductCard';
 import { mockProducts } from '../lib/data/mockProducts';
@@ -8,6 +8,8 @@ import { ArrowRight } from 'lucide-react';
 import { SEO } from '../components/layout/SEO';
 import { brand } from '../lib/brand';
 import { ProductImage } from '../components/ui/Media';
+import { Reveal } from '../components/ui/Reveal';
+import { inputClassName } from '../components/ui/formStyles';
 
 export const Home = () => {
   // TODO: Replace with Supabase fetch
@@ -17,6 +19,17 @@ export const Home = () => {
   const bestsellers = mockProducts.filter(p => p.collection?.includes('Bestsellers')).slice(0, 4);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const heroTransition = (delay: number) => ({
+    duration: prefersReducedMotion ? 0 : 0.8,
+    delay: prefersReducedMotion ? 0 : delay,
+    ease: [0.22, 1, 0.36, 1] as const,
+  });
+  const heroImageTransition = (delay: number) => ({
+    duration: prefersReducedMotion ? 0 : 1.2,
+    delay: prefersReducedMotion ? 0 : delay,
+    ease: [0.22, 1, 0.36, 1] as const,
+  });
 
   return (
     <div className="flex flex-col">
@@ -31,7 +44,7 @@ export const Home = () => {
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={heroTransition(0.1)}
             className="mb-7 block text-terracotta-dark type-overline font-semibold tracking-widest"
           >
             Artisan Handcrafted Jewellery
@@ -39,7 +52,7 @@ export const Home = () => {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={heroTransition(0.2)}
             className="mb-8 text-gray-900 type-display display-normal sm:mb-10"
           >
             Soulful clay,<br/>
@@ -48,7 +61,7 @@ export const Home = () => {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={heroTransition(0.3)}
             className="mb-10 max-w-md text-gray-600 type-body-large sm:mb-12"
           >
             Lightweight terracotta jewellery, sculpted and painted by hand for sarees, dresses, and every mood in between. A solo woman-led studio celebrating the raw rhythm of earth.
@@ -56,7 +69,7 @@ export const Home = () => {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={heroTransition(0.4)}
             className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8"
           >
             <Link to="/shop" className={buttonClassNames({ size: 'lg', className: 'w-full sm:w-auto' })}>
@@ -75,7 +88,7 @@ export const Home = () => {
             <motion.div
               initial={{ opacity: 0, x: 40, y: -20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.2 }}
+              transition={heroImageTransition(0.2)}
               className="absolute left-4 top-4 w-[60%] aspect-[4/5] z-10 double-bezel-outer"
             >
               <div className="double-bezel-inner overflow-hidden">
@@ -92,8 +105,8 @@ export const Home = () => {
             <motion.div
               initial={{ opacity: 0, x: -40, y: 20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.4 }}
-              className="absolute right-4 bottom-4 w-[55%] aspect-[3/4] z-20 double-bezel-outer shadow-[0_30px_60px_rgba(49,39,31,0.12)]"
+              transition={heroImageTransition(0.4)}
+              className="absolute right-4 bottom-4 w-[55%] aspect-[3/4] z-20 double-bezel-outer clay-shadow-lift"
             >
               <div className="double-bezel-inner overflow-hidden">
                 <ProductImage
@@ -110,10 +123,10 @@ export const Home = () => {
 
       {/* Shop by Category */}
       <section className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-10 lg:py-28">
-        <div className="mb-16 flex flex-col items-center text-center lg:mb-20">
+        <Reveal className="mb-16 flex flex-col items-center text-center lg:mb-20">
           <span className="mb-5 block text-terracotta-dark type-overline">Curated Selections</span>
           <h2 className="type-display text-gray-900">Signature Styles</h2>
-        </div>
+        </Reveal>
         
         <div className="grid h-auto grid-cols-1 gap-6 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-12 lg:grid-rows-2 lg:gap-8">
           {[
@@ -122,21 +135,22 @@ export const Home = () => {
             { title: 'Rings & Bangles', link: '/category/Bangles', gridClass: 'md:col-span-1 md:row-span-1 lg:col-span-3 lg:row-span-1' },
             { title: 'Hair Accessories', link: '/category/Hair Pin', gridClass: 'md:col-span-1 md:row-span-1 lg:col-span-3 lg:row-span-1' }
           ].map((cat, i) => (
-            <Link 
-              key={i} 
-              to={cat.link} 
-              className={`group flex h-[260px] flex-col double-bezel-outer transition-colors hover:border-terracotta/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory md:h-auto md:min-h-[260px] ${cat.gridClass}`}
-            >
-              <div className="double-bezel-inner p-8 flex flex-col justify-between items-start">
-                <span className="font-semibold uppercase tracking-[0.14em] text-terracotta/90 type-caption">Explore</span>
-                <div>
-                  <h3 className="text-gray-900 type-h2 mb-3 font-serif display-logo leading-tight">{cat.title}</h3>
-                  <span className="inline-flex items-center gap-1.5 font-bold uppercase tracking-[0.12em] text-gray-500 type-caption transition-colors group-hover:text-terracotta">
-                    Discover <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
-                  </span>
+            <Reveal key={cat.title} delay={i * 0.06} className={cat.gridClass}>
+              <Link
+                to={cat.link}
+                className="group flex h-[260px] flex-col rounded-[2px] border border-border-soft bg-surface p-8 transition-colors hover:border-terracotta/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory md:h-full md:min-h-[260px]"
+              >
+                <div className="flex h-full flex-col items-start justify-between">
+                  <span className="font-semibold uppercase tracking-[0.14em] text-terracotta/90 type-caption">Explore</span>
+                  <div>
+                    <h3 className="text-gray-900 type-h2 mb-3 font-serif display-logo leading-tight">{cat.title}</h3>
+                    <span className="inline-flex min-h-11 items-center gap-1.5 font-bold uppercase tracking-[0.12em] text-gray-500 type-caption transition-colors group-hover:text-terracotta">
+                      Discover <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -144,26 +158,26 @@ export const Home = () => {
       {/* Slow Craft Process Timeline Strip */}
       <section className="bg-studio-wash/40 border-t border-b border-border-soft py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="mb-14 flex flex-col items-center text-center">
+          <Reveal className="mb-14 flex flex-col items-center text-center">
             <span className="mb-4 block text-terracotta-dark type-overline font-semibold tracking-widest">Slow Clay Craft</span>
             <h2 className="type-display text-gray-900">How goonjaa is Shaped</h2>
-          </div>
+          </Reveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12 relative">
+          <div className="relative grid grid-cols-1 gap-8 md:grid-cols-4 lg:gap-12">
             {[
               { num: '01', title: 'Shaping', desc: 'Raw clay is kneaded & sculpted, bead by bead, with water and patience.' },
               { num: '02', title: 'Sun-Drying', desc: 'Every piece dries slowly in the sun for 2–3 days to cure naturally.' },
               { num: '03', title: 'Baking', desc: 'Fired at 900°C in the kiln, transforming clay into solid terracotta.' },
               { num: '04', title: 'Painting', desc: 'Delicately detailed with fine brushes, acrylics, and brass findings.' }
             ].map((step, idx) => (
-              <div key={idx} className="relative flex flex-col items-start rounded-[2px] border border-border-soft/60 bg-studio-paper p-6">
-                <span className="font-serif text-3xl display-logo text-terracotta/30 mb-4 block font-bold">{step.num}</span>
+              <Reveal key={step.num} delay={idx * 0.08} className="relative flex flex-col items-start border-t border-border-soft/80 pt-6">
+                <span className="font-serif text-3xl display-logo text-terracotta/35 mb-4 block font-bold">{step.num}</span>
                 <h3 className="type-h3 text-gray-900 mb-2 font-serif font-bold">{step.title}</h3>
                 <p className="type-body text-gray-600 text-sm leading-relaxed">{step.desc}</p>
                 {idx < 3 && (
-                  <div className="hidden md:block absolute top-1/2 -right-6 w-12 h-px bg-border-soft/85 z-10" />
+                  <div className="absolute right-0 top-0 hidden h-px w-12 translate-x-1/2 bg-terracotta/30 md:block" />
                 )}
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -171,7 +185,7 @@ export const Home = () => {
 
       {/* New Arrivals */}
       <section className="mx-auto w-full max-w-7xl px-4 py-24 sm:px-6 lg:px-10 lg:py-28">
-        <div className="mb-14 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+        <Reveal className="mb-14 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div>
             <span className="mb-5 block text-terracotta-dark type-overline font-semibold">Fresh from the kiln</span>
             <h2 className="type-display text-gray-900">New Arrivals</h2>
@@ -179,7 +193,7 @@ export const Home = () => {
           <Link to="/shop" className="hidden items-center border-b border-terracotta pb-1 font-bold uppercase tracking-[0.12em] text-terracotta transition-colors hover:border-gray-900 hover:text-gray-900 type-caption sm:inline-flex">
             View Collection
           </Link>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-1 gap-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
           {newArrivals.map(product => (
             <ProductCard key={product.id} product={product} />
@@ -195,7 +209,7 @@ export const Home = () => {
       {/* Meet the Artist Preview */}
       <section className="mx-auto max-w-7xl border-t border-border-soft px-4 py-24 sm:px-6 lg:px-10 lg:py-30">
         <div className="flex flex-col items-center gap-14 lg:flex-row lg:gap-24">
-          <div className="w-full lg:w-5/12 flex flex-col">
+          <Reveal direction="right" className="w-full lg:w-5/12 flex flex-col">
             <span className="mb-7 block text-terracotta-dark type-overline font-semibold">Meet the Artist Behind the Jewellery</span>
             <h2 className="type-h1 text-gray-900 mb-8">A lifelong symphony of music and clay.</h2>
             <p className="type-body-large text-gray-600 mb-8 leading-relaxed">
@@ -209,9 +223,9 @@ export const Home = () => {
                 Read the Full Story <ArrowRight size={14} />
               </Link>
             </div>
-          </div>
+          </Reveal>
           
-          <div className="w-full lg:w-6/12 flex flex-col double-bezel-outer max-w-lg lg:ml-auto">
+          <Reveal direction="left" delay={0.1} className="w-full lg:w-6/12 flex flex-col double-bezel-outer max-w-lg lg:ml-auto">
             <div className="double-bezel-inner aspect-[4/5] overflow-hidden">
               <ProductImage
                 src="/images/founder_studio.png"
@@ -219,13 +233,14 @@ export const Home = () => {
                 tone="studio"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Brand Values Section */}
       <section className="bg-gray-900 py-24 text-warm-ivory lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+          <Reveal>
           <span className="mb-8 block text-antique-gold type-overline font-semibold tracking-widest">Our Philosophy</span>
           <div className="grid grid-cols-1 gap-16 border-t border-warm-ivory/12 pt-14 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-7">
@@ -251,13 +266,14 @@ export const Home = () => {
                </div>
             </div>
           </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Featured Highlight */}
       <section className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-10 lg:py-28">
         <div className="flex flex-col items-center gap-14 lg:flex-row lg:gap-24">
-          <div className="w-full lg:w-5/12 flex flex-col double-bezel-outer max-w-lg">
+          <Reveal direction="right" className="w-full lg:w-5/12 flex flex-col double-bezel-outer max-w-lg">
             <div className="double-bezel-inner aspect-[4/5] overflow-hidden">
               <ProductImage
                 src="/images/mridula_set.png"
@@ -265,8 +281,8 @@ export const Home = () => {
                 tone="detail"
               />
             </div>
-          </div>
-          <div className="w-full lg:w-6/12 flex flex-col lg:pl-12">
+          </Reveal>
+          <Reveal direction="left" delay={0.1} className="w-full lg:w-6/12 flex flex-col lg:pl-12">
             <span className="mb-7 block text-terracotta-dark type-overline font-semibold">Bulk Orders</span>
             <h2 className="type-h1 text-gray-900 mb-8">Repeat an existing design for your gathering.</h2>
             <p className="type-body-large text-gray-600 mb-12 leading-relaxed">
@@ -277,17 +293,19 @@ export const Home = () => {
                 Plan a Bulk Order
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Instagram Feed / Community */}
       <section className="border-t border-border-soft bg-studio-wash/45 py-24 lg:py-28">
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
+            <Reveal>
             <span className="mb-5 block text-terracotta-dark type-overline font-semibold">Join the community</span>
             <a href={brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="inline-block group mb-16">
               <h2 className="type-display text-gray-900 group-hover:text-terracotta transition-colors">{brand.instagramHandle}</h2>
             </a>
+            </Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
               {[
                 { label: 'Fresh kiln notes', img: '/images/hero_clay_sculpting.png' },
@@ -319,7 +337,7 @@ export const Home = () => {
           <h2 className="type-display text-gray-900">Join our Studio</h2>
           <p className="type-body-large text-gray-600 max-w-lg">Subscribe for early access to new collections, exclusive discounts, and peeks into our firing process.</p>
           {newsletterSuccess && (
-            <p className="type-caption text-terracotta-dark font-semibold" role="status">
+            <p className="type-caption text-terracotta-dark font-semibold" role="status" aria-live="polite">
               Thank you. You are on the studio list.
             </p>
           )}
@@ -342,7 +360,7 @@ export const Home = () => {
                 setNewsletterEmail(event.target.value);
                 setNewsletterSuccess(false);
               }}
-              className="min-h-14 flex-1 border-b-2 border-gray-300 bg-transparent px-6 py-4 transition-colors focus:border-terracotta focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory type-body"
+              className={inputClassName('min-h-14 flex-1 bg-transparent px-6 py-4')}
             />
             <Button type="submit" className="w-full px-8 sm:w-auto font-semibold">Subscribe</Button>
           </form>

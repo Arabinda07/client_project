@@ -131,7 +131,7 @@ export const Cart = () => {
             </div>
           </div>
           
-          <div className="shrink-0 border border-border-soft bg-surface p-6 shadow-[0_18px_48px_rgba(49,39,31,0.06)] sm:p-8 lg:sticky lg:top-32 lg:col-span-1">
+          <div className="shrink-0 border border-border-soft bg-surface p-6 clay-shadow-soft sm:p-8 lg:sticky lg:top-32 lg:col-span-1">
             <h2 className="type-h2 text-gray-900 mb-6">Order Summary</h2>
             <div className="mb-6 space-y-4 border-b border-border-soft pb-6 text-gray-600 type-body">
               <div className="flex justify-between">
