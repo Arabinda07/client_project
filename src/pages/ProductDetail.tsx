@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { mockProducts } from '../lib/data/mockProducts';
+import { fetchCatalogProductBySlug } from '../lib/catalogData';
 import { useCartStore } from '../store/cartStore';
 import { formatPrice, cn } from '../lib/utils';
 import { Button } from '../components/ui/Button';
@@ -9,14 +10,16 @@ import { Minus, Plus, Truck, RotateCcw, AlertCircle, ChevronDown, ChevronUp, Mes
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { SEO } from '../components/layout/SEO';
 import { ProductColourOption } from '../types';
+import type { Product } from '../types';
 import { ProductImage } from '../components/ui/Media';
 
 export const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const initialProduct = mockProducts.find((p) => p.slug === slug) ?? null;
   
-  // TODO: Replace with Supabase fetch using `slug`
-  const product = mockProducts.find((p) => p.slug === slug);
+  const [product, setProduct] = useState<Product | null>(() => initialProduct);
+  const [isLoadingProduct, setIsLoadingProduct] = useState(!initialProduct);
   const addItem = useCartStore((state) => state.addItem);
   
   const [quantity, setQuantity] = useState(1);
@@ -32,6 +35,27 @@ export const ProductDetail = () => {
     : { duration: 0.3, ease: [0.32, 0.72, 0, 1] as const };
 
   useEffect(() => {
+    let isMounted = true;
+
+    setProduct(mockProducts.find((p) => p.slug === slug) ?? null);
+    setActiveImage(0);
+    setSelectedColour(null);
+    setColourError('');
+    setIsLoadingProduct(true);
+
+    fetchCatalogProductBySlug(slug).then((nextProduct) => {
+      if (isMounted) {
+        setProduct(nextProduct);
+        setIsLoadingProduct(false);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [slug]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 550) {
         setShowStickyBar(true);
@@ -42,6 +66,14 @@ export const ProductDetail = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (!product && isLoadingProduct) {
+    return (
+      <div className="mx-auto flex min-h-[60vh] max-w-7xl items-center px-4 py-20 text-terracotta-dark type-overline sm:px-6 lg:px-10">
+        Preparing the piece
+      </div>
+    );
+  }
 
   if (!product) {
     return (

@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ProductCard } from '../components/product/ProductCard';
 import { mockProducts } from '../lib/data/mockProducts';
+import { fetchCatalogProducts } from '../lib/catalogData';
 import { Button } from '../components/ui/Button';
 import { SEO } from '../components/layout/SEO';
 import { brand } from '../lib/brand';
@@ -17,6 +18,7 @@ export const Shop = () => {
   const navigate = useNavigate();
   const activeCategory = resolveCategoryParam(categoryName);
   const activeCategoryName = activeCategory?.name;
+  const [catalogProducts, setCatalogProducts] = useState(mockProducts);
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<string>('latest');
 
@@ -31,15 +33,15 @@ export const Shop = () => {
   // Extract all unique subcategories for the current main category, or all if no main category
   const availableSubCategories = useMemo(() => {
     if (categoryName && !activeCategoryName) return [];
-    let products = mockProducts;
+    let products = catalogProducts;
     if (activeCategoryName) {
       products = products.filter(p => matchesCategory(p.mainCategory));
     }
     return Array.from(new Set(products.map(p => p.subCategory)));
-  }, [activeCategoryName, categoryName]);
+  }, [activeCategoryName, catalogProducts, categoryName]);
 
   const filteredProducts = useMemo(() => {
-    let result = [...mockProducts];
+    let result = [...catalogProducts];
     
     if (categoryName) {
       result = result.filter(p => matchesCategory(p.mainCategory));
@@ -63,12 +65,24 @@ export const Shop = () => {
     }
 
     return result;
-  }, [activeCategoryName, categoryName, selectedSubCategory, sortBy]);
+  }, [activeCategoryName, catalogProducts, categoryName, selectedSubCategory, sortBy]);
 
   // Reset subcategory when main category changes
   React.useEffect(() => {
     setSelectedSubCategory(null);
   }, [categoryName]);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    fetchCatalogProducts().then((products) => {
+      if (isMounted) setCatalogProducts(products);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   React.useEffect(() => {
     if (activeCategory?.isLegacyPath) {

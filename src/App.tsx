@@ -6,6 +6,8 @@
 import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
+import { AdminGuard } from './components/admin/AdminGuard';
+import { AdminLayout } from './components/admin/AdminLayout';
 
 const Home = lazy(() => import('./pages/Home').then((module) => ({ default: module.Home })));
 const Shop = lazy(() => import('./pages/Shop').then((module) => ({ default: module.Shop })));
@@ -18,6 +20,10 @@ const Testimonials = lazy(() => import('./pages/Testimonials').then((module) => 
 const Contact = lazy(() => import('./pages/Contact').then((module) => ({ default: module.Contact })));
 const Policy = lazy(() => import('./pages/Policy').then((module) => ({ default: module.Policy })));
 const NotFound = lazy(() => import('./pages/NotFound').then((module) => ({ default: module.NotFound })));
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin').then((module) => ({ default: module.AdminLogin })));
+const AdminProducts = lazy(() => import('./pages/admin/AdminProducts').then((module) => ({ default: module.AdminProducts })));
+const AdminProductEditor = lazy(() => import('./pages/admin/AdminProductEditor').then((module) => ({ default: module.AdminProductEditor })));
+const AdminSettings = lazy(() => import('./pages/admin/AdminSettings').then((module) => ({ default: module.AdminSettings })));
 
 const routeElement = (element: React.ReactNode) => (
   <Suspense
@@ -32,6 +38,23 @@ const routeElement = (element: React.ReactNode) => (
 );
 
 const router = createBrowserRouter([
+  { path: '/admin/login', element: routeElement(<AdminLogin />) },
+  {
+    path: '/admin',
+    element: routeElement(<AdminGuard />),
+    children: [
+      {
+        element: routeElement(<AdminLayout />),
+        children: [
+          { index: true, element: routeElement(<AdminProducts />) },
+          { path: 'products', element: routeElement(<AdminProducts />) },
+          { path: 'products/new', element: routeElement(<AdminProductEditor />) },
+          { path: 'products/:productId', element: routeElement(<AdminProductEditor />) },
+          { path: 'settings', element: routeElement(<AdminSettings />) },
+        ],
+      },
+    ],
+  },
   {
     path: '/',
     element: <Layout />,

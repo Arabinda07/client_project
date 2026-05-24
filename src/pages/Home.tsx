@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import { Button, buttonClassNames } from '../components/ui/Button';
 import { ProductCard } from '../components/product/ProductCard';
 import { mockProducts } from '../lib/data/mockProducts';
+import { fetchCatalogProducts } from '../lib/catalogData';
 import { ArrowRight } from 'lucide-react';
 import { SEO } from '../components/layout/SEO';
 import { brand } from '../lib/brand';
@@ -12,11 +13,10 @@ import { Reveal } from '../components/ui/Reveal';
 import { inputClassName } from '../components/ui/formStyles';
 
 export const Home = () => {
-  // TODO: Replace with Supabase fetch
-  // const { data: featuredSets } = await supabase.from('products').select('*').eq('mainCategory', 'Terracotta Set').limit(4);
-  const featuredSets = mockProducts.filter(p => p.mainCategory === 'Terracotta Set').slice(0, 4);
-  const newArrivals = mockProducts.filter(p => p.collection?.includes('New Arrivals')).slice(0, 4);
-  const bestsellers = mockProducts.filter(p => p.collection?.includes('Bestsellers')).slice(0, 4);
+  const [catalogProducts, setCatalogProducts] = useState(mockProducts);
+  const featuredSets = catalogProducts.filter(p => p.mainCategory === 'Terracotta Set').slice(0, 4);
+  const newArrivals = catalogProducts.filter(p => p.collection?.includes('New Arrivals')).slice(0, 4);
+  const bestsellers = catalogProducts.filter(p => p.collection?.includes('Bestsellers')).slice(0, 4);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
   const prefersReducedMotion = useReducedMotion();
@@ -30,6 +30,18 @@ export const Home = () => {
     delay: prefersReducedMotion ? 0 : delay,
     ease: [0.22, 1, 0.36, 1] as const,
   });
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetchCatalogProducts().then((products) => {
+      if (isMounted) setCatalogProducts(products);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div className="flex flex-col">
