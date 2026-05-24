@@ -26,6 +26,8 @@ Money is stored as INR paise integers, for example `185000` for ₹1,850. Produc
 
 ## Environment Variables
 
+Vercel and Supabase Auth URL setup is documented in [DEPLOYMENT.md](DEPLOYMENT.md).
+
 Frontend-safe:
 
 ```bash

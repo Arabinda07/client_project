@@ -22,3 +22,7 @@ View your app in AI Studio: https://ai.studio/apps/a44ae333-5b06-432e-b512-25872
 ## Supabase backend
 
 The initial Supabase schema, RLS policies, storage bucket setup, and admin bootstrap notes are documented in [docs/SUPABASE_BACKEND.md](docs/SUPABASE_BACKEND.md).
+
+## Deployment
+
+Vercel and Supabase site URL/environment-variable setup is documented in [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
