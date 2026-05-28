@@ -8,6 +8,9 @@ type ProductImageProps = {
   alt: string;
   className?: string;
   loading?: 'eager' | 'lazy';
+  fetchPriority?: 'high' | 'low' | 'auto';
+  width?: number | string;
+  height?: number | string;
   tone?: MediaTone;
   sizes?: string;
 };
@@ -111,6 +114,9 @@ export const ClayMediaFallback: React.FC<ClayMediaFallbackProps> = ({
   alt,
   className,
   loading = 'lazy',
+  fetchPriority,
+  width,
+  height,
   tone = 'studio',
   sizes,
 }) => (
@@ -118,7 +124,10 @@ export const ClayMediaFallback: React.FC<ClayMediaFallbackProps> = ({
     src={fallbackSrcByTone[tone]}
     alt={alt}
     loading={loading}
+    fetchPriority={fetchPriority}
     decoding="async"
+    width={width}
+    height={height}
     sizes={sizes}
     draggable={false}
     data-media-fallback="true"
@@ -131,6 +140,9 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   alt,
   className,
   loading = 'lazy',
+  fetchPriority,
+  width,
+  height,
   tone = 'product',
   sizes,
 }) => {
@@ -147,7 +159,10 @@ export const ProductImage: React.FC<ProductImageProps> = ({
       src={imageSrc}
       alt={alt}
       loading={loading}
+      fetchPriority={fetchPriority}
       decoding="async"
+      width={width}
+      height={height}
       sizes={sizes}
       draggable={false}
       data-media-fallback={!src || hasError ? 'true' : undefined}

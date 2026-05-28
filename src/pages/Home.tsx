@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useReducedMotion } from 'motion/react';
 import { Button, buttonClassNames } from '../components/ui/Button';
 import { ProductCard } from '../components/product/ProductCard';
 import { mockProducts } from '../lib/data/mockProducts';
-import { fetchCatalogProducts } from '../lib/catalogData';
 import { ArrowRight } from 'lucide-react';
 import { SEO } from '../components/layout/SEO';
 import { brand } from '../lib/brand';
@@ -14,36 +12,11 @@ import { Reveal } from '../components/ui/Reveal';
 import { inputClassName } from '../components/ui/formStyles';
 
 export const Home = () => {
-  const [catalogProducts, setCatalogProducts] = useState(mockProducts);
+  const catalogProducts = mockProducts;
   const brandSettings = useBrandSettings();
-  const featuredSets = catalogProducts.filter(p => p.mainCategory === 'Terracotta Set').slice(0, 4);
   const newArrivals = catalogProducts.filter(p => p.collection?.includes('New Arrivals')).slice(0, 4);
-  const bestsellers = catalogProducts.filter(p => p.collection?.includes('Bestsellers')).slice(0, 4);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-  const heroTransition = (delay: number) => ({
-    duration: prefersReducedMotion ? 0 : 0.8,
-    delay: prefersReducedMotion ? 0 : delay,
-    ease: [0.22, 1, 0.36, 1] as const,
-  });
-  const heroImageTransition = (delay: number) => ({
-    duration: prefersReducedMotion ? 0 : 1.2,
-    delay: prefersReducedMotion ? 0 : delay,
-    ease: [0.22, 1, 0.36, 1] as const,
-  });
-
-  useEffect(() => {
-    let isMounted = true;
-
-    fetchCatalogProducts().then((products) => {
-      if (isMounted) setCatalogProducts(products);
-    });
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   return (
     <div className="flex flex-col">
@@ -55,82 +28,59 @@ export const Home = () => {
       {/* Hero Section */}
       <section className="relative flex min-h-[calc(100dvh-7rem)] w-full flex-col overflow-hidden bg-warm-ivory pt-16 lg:min-h-[calc(100dvh-6rem)] lg:flex-row lg:pt-0">
         <div className="z-10 flex w-full flex-col justify-center p-6 sm:p-12 lg:w-5/12 lg:p-16 xl:p-24">
-          <motion.span 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={heroTransition(0.1)}
-            className="mb-7 block text-terracotta-dark type-overline font-semibold tracking-widest"
-          >
+          <span className="mb-7 block text-terracotta-dark type-overline font-semibold tracking-widest">
             Artisan Handcrafted Jewellery
-          </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={heroTransition(0.2)}
-            className="mb-8 text-gray-900 type-display display-normal sm:mb-10"
-          >
+          </span>
+          <h1 className="mb-8 text-gray-900 type-display display-normal sm:mb-10">
             Soulful clay,<br/>
             <span className="display-accent text-terracotta font-serif font-bold">sculpted<br className="sm:hidden"/> by hand.</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={heroTransition(0.3)}
-            className="mb-10 max-w-md text-gray-600 type-body-large sm:mb-12"
-          >
+          </h1>
+          <p className="mb-10 max-w-md text-gray-600 type-body-large sm:mb-12">
             Lightweight terracotta jewellery, sculpted and painted by hand for sarees, dresses, and every mood in between. A solo woman-led studio celebrating the raw rhythm of earth.
-          </motion.p>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={heroTransition(0.4)}
-            className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8"
-          >
+          </p>
+          <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
             <Link to="/shop" className={buttonClassNames({ size: 'lg', className: 'w-full sm:w-auto' })}>
               Explore Collection
             </Link>
             <Link to="/about" className={buttonClassNames({ variant: 'ghost', size: 'lg', className: 'w-full px-0 font-semibold hover:bg-transparent hover:text-terracotta sm:w-auto' })}>
               Our Story
             </Link>
-          </motion.div>
+          </div>
         </div>
 
         {/* Asymmetrical Split Screen Hero Images */}
         <div className="relative mt-10 min-h-[60vh] w-full lg:mt-0 lg:min-h-[calc(100dvh-6rem)] lg:w-7/12 flex items-center justify-center p-6 sm:p-12 lg:p-16">
           <div className="relative w-full h-full max-w-2xl aspect-[4/3] lg:aspect-auto lg:h-[80%] flex items-center justify-center">
             {/* Background clay sculpting frame */}
-            <motion.div
-              initial={{ opacity: 0, x: 40, y: -20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={heroImageTransition(0.2)}
-              className="absolute left-4 top-4 w-[60%] aspect-[4/5] z-10 double-bezel-outer"
-            >
+            <div className="absolute left-4 top-4 z-10 aspect-[4/5] w-[60%] double-bezel-outer">
               <div className="double-bezel-inner overflow-hidden">
                 <ProductImage
-                  src="/images/hero_clay_sculpting.png"
+                  src="/images/hero_clay_sculpting.svg"
                   alt="Clay being shaped by hand in the goonjaa studio"
                   loading="eager"
+                  fetchPriority="high"
+                  width={900}
+                  height={1125}
                   tone="studio"
+                  sizes="(min-width: 1024px) 34vw, 60vw"
                 />
               </div>
-            </motion.div>
+            </div>
             
             {/* Foreground model frame */}
-            <motion.div
-              initial={{ opacity: 0, x: -40, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={heroImageTransition(0.4)}
-              className="absolute right-4 bottom-4 w-[55%] aspect-[3/4] z-20 double-bezel-outer clay-shadow-lift"
-            >
+            <div className="absolute bottom-4 right-4 z-20 aspect-[3/4] w-[55%] double-bezel-outer clay-shadow-lift">
               <div className="double-bezel-inner overflow-hidden">
                 <ProductImage
-                  src="/images/hero_model_jewellery.png"
+                  src="/images/hero_model_jewellery.svg"
                   alt="A goonjaa terracotta jewellery piece styled with a modern outfit"
                   loading="eager"
+                  width={900}
+                  height={1200}
                   tone="detail"
+                  sizes="(min-width: 1024px) 30vw, 55vw"
                 />
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -290,7 +240,7 @@ export const Home = () => {
           <Reveal direction="right" className="w-full lg:w-5/12 flex flex-col double-bezel-outer max-w-lg">
             <div className="double-bezel-inner aspect-[4/5] overflow-hidden">
               <ProductImage
-                src="/images/mridula_set.png"
+                src="/images/mridula_set.svg"
                 alt="A featured goonjaa terracotta jewellery set"
                 tone="detail"
               />
@@ -322,9 +272,9 @@ export const Home = () => {
             </Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
               {[
-                { label: 'Fresh kiln notes', img: '/images/hero_clay_sculpting.png' },
-                { label: 'Painted clay details', img: '/images/mridula_set.png' },
-                { label: 'Earth-toned pairings', img: '/images/hero_model_jewellery.png' },
+                { label: 'Fresh kiln notes', img: '/images/hero_clay_sculpting.svg' },
+                { label: 'Painted clay details', img: '/images/mridula_set.svg' },
+                { label: 'Earth-toned pairings', img: '/images/hero_model_jewellery.svg' },
                 { label: 'Studio shelf finds', img: getStudioPhotoUrl(brandSettings) }
               ].map((item, i) => (
                 <div key={i} className={`group relative flex aspect-[4/5] flex-col overflow-hidden double-bezel-outer ${i % 2 === 0 ? 'mt-0 md:mt-10' : 'mt-0'}`}>

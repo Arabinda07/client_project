@@ -86,40 +86,51 @@ export const socialLinksFor = (settings: BrandSettings) =>
     { kind: 'email' as const, label: 'Email', url: settings.email ? `mailto:${settings.email}` : '' },
   ].filter((link) => Boolean(link.url));
 
+let brandSettingsPromise: Promise<BrandSettings> | null = null;
+
 export const fetchBrandSettings = async (): Promise<BrandSettings> => {
+  if (brandSettingsPromise) return brandSettingsPromise;
   if (!supabase) return fallbackBrandSettings;
 
-  const { data, error } = await supabase
-    .from('store_settings')
-    .select('key,value')
-    .in('key', ['brand', 'contact']);
+  brandSettingsPromise = (async () => {
+    try {
+      const { data, error } = await supabase
+        .from('store_settings')
+        .select('key,value')
+        .in('key', ['brand', 'contact']);
 
-  if (error) return fallbackBrandSettings;
+      if (error) return fallbackBrandSettings;
 
-  const rows = new Map(((data ?? []) as Array<{ key: string; value: Json | null }>).map((row) => [row.key, asRecord(row.value)]));
-  const brandRow = rows.get('brand') ?? {};
-  const contact = rows.get('contact') ?? {};
+      const rows = new Map(((data ?? []) as Array<{ key: string; value: Json | null }>).map((row) => [row.key, asRecord(row.value)]));
+      const brandRow = rows.get('brand') ?? {};
+      const contact = rows.get('contact') ?? {};
 
-  return {
-    name: asString(brandRow.name, fallbackBrandSettings.name),
-    siteUrl: asString(brandRow.site_url, fallbackBrandSettings.siteUrl),
-    description: asString(brandRow.description, fallbackBrandSettings.description),
-    currency: asString(brandRow.currency, fallbackBrandSettings.currency),
-    country: asString(brandRow.country, fallbackBrandSettings.country),
-    email: asString(contact.email, fallbackBrandSettings.email),
-    ownerEmail: asString(contact.owner_email, asString(contact.email, fallbackBrandSettings.ownerEmail)),
-    whatsappPhone: asString(contact.whatsapp_phone, fallbackBrandSettings.whatsappPhone),
-    instagramUrl: asString(contact.instagram_url, fallbackBrandSettings.instagramUrl),
-    facebookUrl: asString(contact.facebook_url, fallbackBrandSettings.facebookUrl),
-    youtubeUrl: asString(contact.youtube_url, fallbackBrandSettings.youtubeUrl),
-    primaryLogoStoragePath: asString(brandRow.primary_logo_storage_path),
-    alternateLogoStoragePath: asString(brandRow.alternate_logo_storage_path),
-    useUploadedLogo: asBoolean(brandRow.use_uploaded_logo),
-    ownerPhotoStoragePath: asString(brandRow.owner_photo_storage_path),
-    ownerPhotoAlt: asString(brandRow.owner_photo_alt, fallbackBrandSettings.ownerPhotoAlt),
-    studioPhotoStoragePath: asString(brandRow.studio_photo_storage_path),
-    studioPhotoAlt: asString(brandRow.studio_photo_alt, fallbackBrandSettings.studioPhotoAlt),
-  };
+      return {
+        name: asString(brandRow.name, fallbackBrandSettings.name),
+        siteUrl: asString(brandRow.site_url, fallbackBrandSettings.siteUrl),
+        description: asString(brandRow.description, fallbackBrandSettings.description),
+        currency: asString(brandRow.currency, fallbackBrandSettings.currency),
+        country: asString(brandRow.country, fallbackBrandSettings.country),
+        email: asString(contact.email, fallbackBrandSettings.email),
+        ownerEmail: asString(contact.owner_email, asString(contact.email, fallbackBrandSettings.ownerEmail)),
+        whatsappPhone: asString(contact.whatsapp_phone, fallbackBrandSettings.whatsappPhone),
+        instagramUrl: asString(contact.instagram_url, fallbackBrandSettings.instagramUrl),
+        facebookUrl: asString(contact.facebook_url, fallbackBrandSettings.facebookUrl),
+        youtubeUrl: asString(contact.youtube_url, fallbackBrandSettings.youtubeUrl),
+        primaryLogoStoragePath: asString(brandRow.primary_logo_storage_path),
+        alternateLogoStoragePath: asString(brandRow.alternate_logo_storage_path),
+        useUploadedLogo: asBoolean(brandRow.use_uploaded_logo),
+        ownerPhotoStoragePath: asString(brandRow.owner_photo_storage_path),
+        ownerPhotoAlt: asString(brandRow.owner_photo_alt, fallbackBrandSettings.ownerPhotoAlt),
+        studioPhotoStoragePath: asString(brandRow.studio_photo_storage_path),
+        studioPhotoAlt: asString(brandRow.studio_photo_alt, fallbackBrandSettings.studioPhotoAlt),
+      };
+    } catch {
+      return fallbackBrandSettings;
+    }
+  })();
+
+  return brandSettingsPromise;
 };
 
 export const useBrandSettings = () => {

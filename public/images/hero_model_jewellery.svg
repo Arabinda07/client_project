@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Terracotta jewellery styling</title>
+  <desc id="desc">An editorial terracotta necklace form arranged on soft fabric with warm studio light.</desc>
+  <defs>
+    <linearGradient id="linen" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#FBF7EF"/>
+      <stop offset="0.58" stop-color="#E8DED4"/>
+      <stop offset="1" stop-color="#D3C2B2"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.68" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.05"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="900" height="1200" fill="url(#linen)"/>
+  <path d="M139 1012c113-217 173-394 179-532 4-94-10-169-42-225" fill="none" stroke="#FDFBF5" stroke-width="98" stroke-linecap="round" opacity="0.5"/>
+  <path d="M716 1033c-102-204-142-377-122-519 13-90 45-169 96-237" fill="none" stroke="#FDFBF5" stroke-width="82" stroke-linecap="round" opacity="0.42"/>
+  <path d="M271 438c41 145 113 224 216 237 102 13 177-48 226-183" fill="none" stroke="#7D2E24" stroke-width="12" stroke-linecap="round" opacity="0.74"/>
+  <g>
+    <circle cx="451" cy="714" r="104" fill="#B35C38"/>
+    <circle cx="451" cy="714" r="58" fill="#FDFBF5" opacity="0.76"/>
+    <circle cx="451" cy="714" r="22" fill="#B8892E"/>
+    <circle cx="335" cy="652" r="39" fill="#7D2E24"/>
+    <circle cx="569" cy="650" r="39" fill="#7D2E24"/>
+  </g>
+  <path d="M374 854c45 45 105 44 151-2" fill="none" stroke="#B8892E" stroke-width="9" stroke-linecap="round" opacity="0.7"/>
+  <rect x="34" y="34" width="832" height="1132" fill="none" stroke="#7D2E24" stroke-width="2" opacity="0.12"/>
+  <rect width="900" height="1200" filter="url(#grain)" opacity="0.7"/>
+</svg>

@@ -89,7 +89,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                 {product.name}
               </Link>
             </h3>
-            <p className="mb-2.5 text-[0.625rem] font-bold uppercase tracking-[0.15em] text-terracotta/80">{product.subCategory}</p>
+            <p className="mb-2.5 text-[0.625rem] font-bold uppercase tracking-[0.15em] text-terracotta-dark">{product.subCategory}</p>
           </div>
           <div className="w-full">
             {availableColours.length > 0 && (

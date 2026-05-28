@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+  <title id="title">Mridula painted terracotta set</title>
+  <desc id="desc">A stylized terracotta necklace set with maroon, gold, and hand-painted clay details.</desc>
+  <defs>
+    <linearGradient id="surface" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#FDFBF5"/>
+      <stop offset="0.48" stop-color="#FBF7EF"/>
+      <stop offset="1" stop-color="#E5D9CB"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.05"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="900" height="1125" fill="url(#surface)"/>
+  <path d="M218 383c66 178 144 268 235 268 90 0 169-90 236-268" fill="none" stroke="#7D2E24" stroke-width="16" stroke-linecap="round"/>
+  <path d="M263 412c55 124 118 187 190 187 71 0 135-63 190-187" fill="none" stroke="#B8892E" stroke-width="7" stroke-linecap="round"/>
+  <g>
+    <circle cx="452" cy="682" r="126" fill="#B35C38"/>
+    <circle cx="452" cy="682" r="78" fill="#7D2E24"/>
+    <circle cx="452" cy="682" r="35" fill="#FDFBF5"/>
+    <path d="M404 682c32-40 64-40 96 0-32 40-64 40-96 0Z" fill="#B8892E" opacity="0.86"/>
+    <circle cx="302" cy="577" r="45" fill="#B35C38"/>
+    <circle cx="602" cy="577" r="45" fill="#B35C38"/>
+  </g>
+  <g fill="#7D2E24" opacity="0.92">
+    <circle cx="320" cy="822" r="37"/>
+    <circle cx="584" cy="822" r="37"/>
+  </g>
+  <path d="M289 893c37 28 76 28 116 0M497 893c37 28 76 28 116 0" fill="none" stroke="#B8892E" stroke-width="8" stroke-linecap="round"/>
+  <rect x="30" y="30" width="840" height="1065" fill="none" stroke="#B35C38" stroke-width="2" opacity="0.12"/>
+  <rect width="900" height="1125" filter="url(#grain)" opacity="0.65"/>
+</svg>

@@ -69,7 +69,7 @@ export const About = () => {
               <div className="w-full md:w-2/3 flex flex-col double-bezel-outer">
                 <div className="double-bezel-inner relative aspect-[4/3] overflow-hidden">
                   <ProductImage
-                    src="/images/hero_clay_sculpting.png"
+                    src="/images/hero_clay_sculpting.svg"
                     alt="Clay being patiently molded before drying and firing"
                     tone="studio"
                   />

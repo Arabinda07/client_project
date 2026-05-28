@@ -6,10 +6,11 @@
 import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
-import { AdminGuard } from './components/admin/AdminGuard';
-import { AdminLayout } from './components/admin/AdminLayout';
+import { RouteErrorPage } from './components/layout/RouteErrorPage';
+import { Home } from './pages/Home';
 
-const Home = lazy(() => import('./pages/Home').then((module) => ({ default: module.Home })));
+const AdminGuard = lazy(() => import('./components/admin/AdminGuard').then((module) => ({ default: module.AdminGuard })));
+const AdminLayout = lazy(() => import('./components/admin/AdminLayout').then((module) => ({ default: module.AdminLayout })));
 const Shop = lazy(() => import('./pages/Shop').then((module) => ({ default: module.Shop })));
 const ProductDetail = lazy(() => import('./pages/ProductDetail').then((module) => ({ default: module.ProductDetail })));
 const Cart = lazy(() => import('./pages/Cart').then((module) => ({ default: module.Cart })));
@@ -38,13 +39,15 @@ const routeElement = (element: React.ReactNode) => (
 );
 
 const router = createBrowserRouter([
-  { path: '/admin/login', element: routeElement(<AdminLogin />) },
+  { path: '/admin/login', element: routeElement(<AdminLogin />), errorElement: <RouteErrorPage /> },
   {
     path: '/admin',
     element: routeElement(<AdminGuard />),
+    errorElement: <RouteErrorPage />,
     children: [
       {
         element: routeElement(<AdminLayout />),
+        errorElement: <RouteErrorPage />,
         children: [
           { index: true, element: routeElement(<AdminProducts />) },
           { path: 'products', element: routeElement(<AdminProducts />) },
@@ -58,8 +61,9 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <RouteErrorPage />,
     children: [
-      { index: true, element: routeElement(<Home />) },
+      { index: true, element: <Home /> },
       { path: 'shop', element: routeElement(<Shop />) },
       { path: 'category/:categoryName', element: routeElement(<Shop />) },
       { path: 'product/:slug', element: routeElement(<ProductDetail />) },

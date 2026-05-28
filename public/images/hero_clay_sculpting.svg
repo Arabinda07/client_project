@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1125" role="img" aria-labelledby="title desc">
+  <title id="title">Clay sculpting in the goonjaa studio</title>
+  <desc id="desc">Warm terracotta clay forms, hand tools, and painted beads arranged on ivory paper.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#FDFBF5"/>
+      <stop offset="0.54" stop-color="#F7F0E7"/>
+      <stop offset="1" stop-color="#E5D9CB"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.055"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="900" height="1125" fill="url(#paper)"/>
+  <path d="M132 812c124-70 276-56 412-124 102-51 154-130 224-242" fill="none" stroke="#B35C38" stroke-width="20" stroke-linecap="round" opacity="0.16"/>
+  <ellipse cx="332" cy="598" rx="165" ry="118" fill="#B35C38" opacity="0.18"/>
+  <ellipse cx="336" cy="594" rx="98" ry="69" fill="#7D2E24" opacity="0.18"/>
+  <path d="M215 418c72-68 169-92 292-71" fill="none" stroke="#7D2E24" stroke-width="8" stroke-linecap="round" opacity="0.28"/>
+  <path d="M560 360l168 248" stroke="#3B3029" stroke-width="15" stroke-linecap="round" opacity="0.58"/>
+  <path d="M610 432l75-52" stroke="#B8892E" stroke-width="11" stroke-linecap="round" opacity="0.68"/>
+  <g opacity="0.85">
+    <circle cx="606" cy="752" r="34" fill="#B35C38"/>
+    <circle cx="681" cy="724" r="24" fill="#7D2E24"/>
+    <circle cx="724" cy="790" r="30" fill="#B8892E"/>
+    <circle cx="643" cy="827" r="20" fill="#463D36"/>
+  </g>
+  <rect x="32" y="32" width="836" height="1061" fill="none" stroke="#B35C38" stroke-width="2" opacity="0.12"/>
+  <rect width="900" height="1125" filter="url(#grain)" opacity="0.65"/>
+</svg>
