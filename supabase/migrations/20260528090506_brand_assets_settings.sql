@@ -48,7 +48,7 @@ values
       "name": "goonjaa",
       "currency": "INR",
       "country": "India",
-      "site_url": "https://goonjaa.in",
+      "site_url": "https://goonjaa.vercel.app",
       "description": "Handcrafted terracotta jewellery shaped and painted by a woman-led studio in India.",
       "primary_logo_storage_path": "",
       "alternate_logo_storage_path": "",
@@ -64,18 +64,18 @@ values
   (
     'contact',
     '{
-      "email": "hello@goonjaa.in",
-      "owner_email": "hello@goonjaa.in",
-      "whatsapp_phone": "+918910214167",
+      "email": "goonjaa.srijita@gmail.com",
+      "owner_email": "goonjaa.srijita@gmail.com",
+      "whatsapp_phone": "+918697452473",
       "instagram_url": "https://instagram.com/goonjaa.srijita",
-      "facebook_url": "",
-      "youtube_url": ""
+      "facebook_url": "https://www.facebook.com/profile.php?id=61554180150901",
+      "youtube_url": "https://www.youtube.com/@goonjaa.srijita"
     }',
     true,
     'Public customer contact channels and social links.'
   )
 on conflict (key) do update
-set value = excluded.value || public.store_settings.value,
+set value = public.store_settings.value || excluded.value,
     is_public = true,
     description = excluded.description,
     updated_at = now();

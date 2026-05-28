@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://goonjaa.in/</loc>
+    <loc>https://goonjaa.vercel.app/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://goonjaa.in/shop</loc>
+    <loc>https://goonjaa.vercel.app/shop</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://goonjaa.in/category/terracotta-set</loc>
+    <loc>https://goonjaa.vercel.app/category/terracotta-set</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://goonjaa.in/category/earring</loc>
+    <loc>https://goonjaa.vercel.app/category/earring</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://goonjaa.in/category/accessories</loc>
+    <loc>https://goonjaa.vercel.app/category/accessories</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://goonjaa.in/about</loc>
+    <loc>https://goonjaa.vercel.app/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://goonjaa.in/bulk-orders</loc>
+    <loc>https://goonjaa.vercel.app/bulk-orders</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://goonjaa.in/contact</loc>
+    <loc>https://goonjaa.vercel.app/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -3,14 +3,14 @@
 goonjaa is a small handcrafted terracotta jewellery studio in India. The work is shaped from earthen clay, dried, fired, and painted by hand. Pieces are made for people who want Indian craft in a form that feels wearable with sarees, dresses, and everyday clothes.
 
 ## Useful pages
-- Home: https://goonjaa.in/
-- Shop: https://goonjaa.in/shop
-- Terracotta sets: https://goonjaa.in/category/terracotta-set
-- Earrings: https://goonjaa.in/category/earring
-- Accessories: https://goonjaa.in/category/accessories
-- Bulk orders: https://goonjaa.in/bulk-orders
-- Contact: https://goonjaa.in/contact
-- Machine-readable catalog: https://goonjaa.in/catalog.md
+- Home: https://goonjaa.vercel.app/
+- Shop: https://goonjaa.vercel.app/shop
+- Terracotta sets: https://goonjaa.vercel.app/category/terracotta-set
+- Earrings: https://goonjaa.vercel.app/category/earring
+- Accessories: https://goonjaa.vercel.app/category/accessories
+- Bulk orders: https://goonjaa.vercel.app/bulk-orders
+- Contact: https://goonjaa.vercel.app/contact
+- Machine-readable catalog: https://goonjaa.vercel.app/catalog.md
 
 ## What to know
 - The brand name is written lowercase as goonjaa.
@@ -20,5 +20,7 @@ goonjaa is a small handcrafted terracotta jewellery studio in India. The work is
 - Bulk orders use existing catalogue designs and need at least two months of studio time.
 
 ## Contact
-- Email: hello@goonjaa.in
+- Email: goonjaa.srijita@gmail.com
 - Instagram: https://instagram.com/goonjaa.srijita
+- Facebook: https://www.facebook.com/profile.php?id=61554180150901
+- YouTube: https://www.youtube.com/@goonjaa.srijita

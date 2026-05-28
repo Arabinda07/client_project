@@ -32,7 +32,7 @@ export const AdminLayout = () => {
                 <Store size={18} />
               </span>
               <span>
-                <span className="block type-overline text-terracotta-dark">Monleaf</span>
+                <span className="block type-overline text-terracotta-dark">goonjaa</span>
                 <span className="block font-serif text-xl font-bold leading-none">Admin</span>
               </span>
             </Link>

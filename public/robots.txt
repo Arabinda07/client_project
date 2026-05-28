@@ -22,4 +22,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://goonjaa.in/sitemap.xml
+Sitemap: https://goonjaa.vercel.app/sitemap.xml

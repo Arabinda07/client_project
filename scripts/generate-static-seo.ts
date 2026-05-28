@@ -158,7 +158,10 @@ const renderLlmsTxt = () =>
     '',
     '## Contact',
     `- Email: ${brand.email}`,
+    `- WhatsApp: ${brand.whatsappPhone}`,
     `- Instagram: ${brand.instagramUrl}`,
+    `- Facebook: ${brand.facebookUrl}`,
+    `- YouTube: ${brand.youtubeUrl}`,
     '',
   ].join('\n');
 
