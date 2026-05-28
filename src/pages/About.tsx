@@ -2,7 +2,7 @@ import React from 'react';
 import { SEO } from '../components/layout/SEO';
 import { ProductImage } from '../components/ui/Media';
 import { Reveal } from '../components/ui/Reveal';
-import { getStudioPhotoUrl, useBrandSettings } from '../lib/brandSettings';
+import { getOwnerPhotoUrl, useBrandSettings } from '../lib/brandSettings';
 
 export const About = () => {
   const brandSettings = useBrandSettings();
@@ -10,27 +10,41 @@ export const About = () => {
   return (
     <>
       <SEO title="Our Story" description="Meet the artist behind goonjaa and the handmade terracotta jewellery shaped in her studio." />
-      <div className="mx-auto max-w-4xl px-4 py-20 sm:py-24 lg:py-28">
-        <Reveal className="text-center mb-16">
-          <span className="mb-6 block text-terracotta-dark type-overline font-semibold tracking-widest">Our Story</span>
-          <h1 className="type-display text-gray-900 mb-8">The Hands Behind the Clay</h1>
-        </Reveal>
-        
-        <Reveal className="mb-16 double-bezel-outer aspect-[16/9] w-full overflow-hidden">
-          <div className="double-bezel-inner relative h-full w-full overflow-hidden">
-            <ProductImage
-              src={getStudioPhotoUrl(brandSettings)}
-              alt={brandSettings.studioPhotoAlt}
-              tone="studio"
-              loading="eager"
-            />
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
+        <Reveal className="mb-20 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          <div className="max-w-2xl">
+            <span className="mb-6 block text-terracotta-dark type-overline font-semibold tracking-widest">Our Story</span>
+            <h1 className="type-display text-gray-900 mb-8">The Hands Behind the Clay</h1>
+            <p className="type-body-large text-gray-600 leading-relaxed">
+              Meet the artist behind goonjaa: a lifelong student of classical music, a patient maker, and the hands shaping each terracotta piece from earth to adornment.
+            </p>
+            <div className="mt-10 hidden border-y border-border-soft py-8 lg:block">
+              <p className="type-h2 display-italic text-terracotta-dark">
+                "For me, shaping clay is no different from singing a Raag. Both ask for patience, devotion, and respect for roots."
+              </p>
+            </div>
           </div>
-        </Reveal>
 
-        <Reveal className="mx-auto mb-20 max-w-3xl border-y border-border-soft py-10 text-center">
-          <p className="type-h2 display-italic text-terracotta-dark">
-            "For me, shaping clay is no different from singing a Raag. Both ask for patience, devotion, and respect for roots."
-          </p>
+          <div className="mx-auto w-full max-w-[26rem] lg:mr-0">
+            <div className="double-bezel-outer w-full overflow-hidden">
+              <div className="double-bezel-inner relative aspect-[4/5] overflow-hidden">
+                <ProductImage
+                  src={getOwnerPhotoUrl(brandSettings)}
+                  alt={brandSettings.ownerPhotoAlt}
+                  tone="studio"
+                  loading="eager"
+                  fetchPriority="high"
+                  sizes="(min-width: 1024px) 26rem, min(100vw, 26rem)"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="border-y border-border-soft py-8 lg:hidden">
+            <p className="type-h2 display-italic text-terracotta-dark">
+              "For me, shaping clay is no different from singing a Raag. Both ask for patience, devotion, and respect for roots."
+            </p>
+          </div>
         </Reveal>
 
         <div className="prose prose-lg mx-auto text-gray-600 space-y-16">
