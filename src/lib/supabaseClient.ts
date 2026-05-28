@@ -23,3 +23,10 @@ export const getProductImageUrl = (storagePath?: string | null) => {
   const { data } = supabase.storage.from('product-images').getPublicUrl(storagePath);
   return data.publicUrl;
 };
+
+export const getStoragePublicUrl = (bucket: string, storagePath?: string | null) => {
+  if (!storagePath || !supabase) return null;
+
+  const { data } = supabase.storage.from(bucket).getPublicUrl(storagePath);
+  return data.publicUrl;
+};

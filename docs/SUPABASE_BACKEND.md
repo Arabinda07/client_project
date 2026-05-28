@@ -20,7 +20,7 @@ The migration in `supabase/migrations/20260524152658_monleaf_backend_schema.sql`
 - Catalog: `categories`, `collections`, `products`, `product_collections`, `product_images`, and `product_colour_options`.
 - Commerce: guest `customers`, `orders`, `order_items`, `payments`, and `fulfilment_details`.
 - Operations: `inventory_movements`, `enquiries`, `store_settings`, and `audit_logs`.
-- Storage: public-read `product-images` bucket with admin/staff-only upload, update, and delete policies.
+- Storage: public-read `product-images` and `brand-assets` buckets with admin/staff-only upload, update, and delete policies.
 
 Money is stored as INR paise integers, for example `185000` for ₹1,850. Product image database rows store Storage paths such as `products/{product_id}/{timestamp}-{safe_filename}`; public URLs should be derived through Supabase Storage.
 
@@ -42,10 +42,11 @@ SUPABASE_SECRET_KEY="sb_secret_your-server-only-secret-key"
 RAZORPAY_KEY_ID="rzp_test_or_live_key_id"
 RAZORPAY_KEY_SECRET="your-server-only-razorpay-secret"
 RAZORPAY_WEBHOOK_SECRET="your-server-only-razorpay-webhook-secret"
+RESEND_API_KEY="re_your-server-only-resend-key"
 APP_URL="https://your-site.example"
 ```
 
-Never put `SUPABASE_SECRET_KEY`, Razorpay secrets, or webhook secrets in `VITE_` variables. Older Supabase projects may still expose a legacy JWT-based `SUPABASE_SERVICE_ROLE_KEY`; use it only as a server-only fallback if `SUPABASE_SECRET_KEY` is not available.
+Never put `SUPABASE_SECRET_KEY`, Razorpay secrets, webhook secrets, or `RESEND_API_KEY` in `VITE_` variables. Older Supabase projects may still expose a legacy JWT-based `SUPABASE_SERVICE_ROLE_KEY`; use it only as a server-only fallback if `SUPABASE_SECRET_KEY` is not available.
 
 ## Apply The Migration
 
@@ -67,7 +68,8 @@ npx supabase db push
 
 - All public tables have RLS enabled.
 - The `product-images` bucket exists and is public.
-- Storage policies exist on `storage.objects` for product image reads and admin/staff writes.
+- The `brand-assets` bucket exists and is public.
+- Storage policies exist on `storage.objects` for product/brand image reads and admin/staff writes.
 
 If bucket creation fails in a hosted/dashboard context, create it manually:
 
@@ -77,6 +79,13 @@ If bucket creation fails in a hosted/dashboard context, create it manually:
 - Allowed MIME types: `image/jpeg`, `image/png`, `image/webp`, `image/avif`
 
 Then apply or re-run the storage policies from the migration.
+
+Brand/editorial assets use the separate `brand-assets` bucket. Use paths such as:
+
+- `logos/{timestamp}-{safe_filename}`
+- `owners/{timestamp}-{safe_filename}`
+- `social/{timestamp}-{safe_filename}`
+- `brand/{timestamp}-{safe_filename}`
 
 ## First Admin User
 
@@ -146,6 +155,20 @@ Current admin scope:
 - Upload product images to `product-images`.
 - Replace product colour options and collection links when saving.
 - Edit public contact and checkout settings.
+- Edit public brand identity, social links, logo, owner photos, and studio photos.
+
+Owner photos, logos, and social preview assets should go in `brand-assets`; product catalog images should stay in `product-images`.
+
+## Forms and Email
+
+Contact, newsletter, bulk order, and checkout forms currently keep a lightweight frontend experience. Resend is the preferred production email provider for the next backend phase because API keys stay server-side and the same provider can support contact notifications, enquiry confirmations, and future order emails.
+
+Future form submission flow:
+
+- Public form submits to a server-side route or Supabase Edge Function.
+- Server validates input and saves an `enquiries` row.
+- Server sends email through Resend using `RESEND_API_KEY`.
+- Browser code never receives `RESEND_API_KEY` or `SUPABASE_SECRET_KEY`.
 
 ## Seed Current Products
 

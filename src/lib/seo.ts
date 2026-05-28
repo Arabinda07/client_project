@@ -81,7 +81,7 @@ export const organizationSchema = (): JsonLd => ({
   description: brand.description,
   email: brand.email,
   telephone: brand.phone,
-  sameAs: [brand.instagramUrl],
+  sameAs: [brand.instagramUrl, brand.facebookUrl, brand.youtubeUrl].filter(Boolean),
 });
 
 export const websiteSchema = (): JsonLd => ({

@@ -99,7 +99,7 @@ export const BulkOrders = () => {
           <span className="mb-5 block text-terracotta-dark type-overline">Bulk Orders</span>
           <h1 className="type-display text-gray-900 mb-8">Plan repeat pieces with the studio.</h1>
           <p className="type-body-large text-gray-600 mb-8">
-            For return gifts, group events, or small batches, choose an existing catalogue design and share the quantity you need. Bulk orders require at least two months of advance booking because every piece is sculpted and painted by hand.
+            For return gifts, group events, or small batches, choose an existing catalogue design and share the quantity you need. The studio will confirm availability, timeline, and any colour adjustments before taking payment.
           </p>
           <div className="border-y border-border-soft py-6">
             <p className="type-overline text-gray-900 mb-2">Earliest delivery date</p>
@@ -112,7 +112,7 @@ export const BulkOrders = () => {
             {isSubmitted && (
               <div className={`mb-8 ${statusPanelClassName}`} role="status" aria-live="polite">
                 <p className="type-overline mb-1 font-semibold">Inquiry received</p>
-                <p className="type-body text-sm">The studio will review the catalogue piece, quantity, and timeline before confirming availability.</p>
+                <p className="type-body text-sm">The studio will review the piece, quantity, and timeline, then reply with availability and next steps.</p>
               </div>
             )}
 
@@ -254,12 +254,15 @@ export const BulkOrders = () => {
                     rows={4}
                     value={formState.notes}
                     onChange={(event) => updateField('notes', event.target.value)}
-                    placeholder="Share event details, packaging needs, or delivery city."
+                    placeholder="Share the event type, delivery city, packaging needs, or any colour notes."
                     className={textareaClassName('bg-transparent')}
                   />
                 </div>
               </div>
-              <Button type="submit" className="w-full px-10 py-4 sm:w-auto font-semibold">Send Bulk Inquiry</Button>
+              <div>
+                <Button type="submit" className="w-full px-10 py-4 sm:w-auto font-semibold">Request Availability</Button>
+                <p className="mt-3 type-caption text-gray-500">No payment is collected here. The studio confirms feasibility before accepting a bulk order.</p>
+              </div>
             </form>
           </div>
         </div>

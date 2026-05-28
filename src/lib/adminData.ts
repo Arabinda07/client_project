@@ -1,5 +1,6 @@
 import type { Database, Json } from '../types/database';
-import { getProductImageUrl, supabase } from './supabaseClient';
+import { fallbackBrandSettings, type BrandSettings } from './brandSettings';
+import { getProductImageUrl, getStoragePublicUrl, supabase } from './supabaseClient';
 
 export type AdminProfile = Pick<Database['public']['Tables']['profiles']['Row'], 'id' | 'full_name' | 'role' | 'is_active'>;
 export type AdminProduct = Database['public']['Tables']['products']['Row'];
@@ -76,10 +77,14 @@ export type ProductSaveInput = {
 };
 
 export type StoreSettingsDraft = {
+  brand: BrandSettings;
   contact: {
     email: string;
+    owner_email: string;
     whatsapp_phone: string;
     instagram_url: string;
+    facebook_url: string;
+    youtube_url: string;
   };
   checkout: {
     free_shipping_threshold_inr_paise: number;
@@ -100,6 +105,9 @@ const ADMIN_ROLES = new Set<Database['public']['Enums']['profile_role']>(['owner
 
 export const getPublicImageUrl = (image: Pick<AdminProductImage, 'public_url' | 'storage_path'>) =>
   image.public_url ?? getProductImageUrl(image.storage_path) ?? '';
+
+export const getPublicBrandAssetUrl = (storagePath?: string | null) =>
+  getStoragePublicUrl('brand-assets', storagePath);
 
 export const getCurrentAdminProfile = async (): Promise<AdminProfile | null> => {
   const client = getClient();
@@ -354,18 +362,42 @@ const asRecord = (value: Json | null): Record<string, unknown> => {
 
 export const fetchStoreSettings = async (): Promise<StoreSettingsDraft> => {
   const client = getClient();
-  const { data, error } = await client.from('store_settings').select('key,value').in('key', ['contact', 'checkout']);
+  const { data, error } = await client.from('store_settings').select('key,value').in('key', ['brand', 'contact', 'checkout']);
   if (error) throw error;
 
   const rows = new Map(((data ?? []) as Array<{ key: string; value: Json | null }>).map((row) => [row.key, asRecord(row.value)]));
+  const brand = rows.get('brand') ?? {};
   const contact = rows.get('contact') ?? {};
   const checkout = rows.get('checkout') ?? {};
 
   return {
+    brand: {
+      name: String(brand.name ?? fallbackBrandSettings.name),
+      siteUrl: String(brand.site_url ?? fallbackBrandSettings.siteUrl),
+      description: String(brand.description ?? fallbackBrandSettings.description),
+      currency: String(brand.currency ?? fallbackBrandSettings.currency),
+      country: String(brand.country ?? fallbackBrandSettings.country),
+      email: String(contact.email ?? fallbackBrandSettings.email),
+      ownerEmail: String(contact.owner_email ?? contact.email ?? fallbackBrandSettings.ownerEmail),
+      whatsappPhone: String(contact.whatsapp_phone ?? fallbackBrandSettings.whatsappPhone),
+      instagramUrl: String(contact.instagram_url ?? fallbackBrandSettings.instagramUrl),
+      facebookUrl: String(contact.facebook_url ?? fallbackBrandSettings.facebookUrl),
+      youtubeUrl: String(contact.youtube_url ?? fallbackBrandSettings.youtubeUrl),
+      primaryLogoStoragePath: String(brand.primary_logo_storage_path ?? ''),
+      alternateLogoStoragePath: String(brand.alternate_logo_storage_path ?? ''),
+      useUploadedLogo: Boolean(brand.use_uploaded_logo ?? false),
+      ownerPhotoStoragePath: String(brand.owner_photo_storage_path ?? ''),
+      ownerPhotoAlt: String(brand.owner_photo_alt ?? fallbackBrandSettings.ownerPhotoAlt),
+      studioPhotoStoragePath: String(brand.studio_photo_storage_path ?? ''),
+      studioPhotoAlt: String(brand.studio_photo_alt ?? fallbackBrandSettings.studioPhotoAlt),
+    },
     contact: {
       email: String(contact.email ?? ''),
+      owner_email: String(contact.owner_email ?? contact.email ?? ''),
       whatsapp_phone: String(contact.whatsapp_phone ?? ''),
       instagram_url: String(contact.instagram_url ?? ''),
+      facebook_url: String(contact.facebook_url ?? ''),
+      youtube_url: String(contact.youtube_url ?? ''),
     },
     checkout: {
       free_shipping_threshold_inr_paise: Number(checkout.free_shipping_threshold_inr_paise ?? 0),
@@ -383,8 +415,34 @@ export const saveStoreSettings = async (settings: StoreSettingsDraft) => {
   const { error } = await client.from('store_settings').upsert(
     [
       {
+        key: 'brand',
+        value: {
+          name: settings.brand.name,
+          site_url: settings.brand.siteUrl,
+          description: settings.brand.description,
+          currency: settings.brand.currency,
+          country: settings.brand.country,
+          primary_logo_storage_path: settings.brand.primaryLogoStoragePath,
+          alternate_logo_storage_path: settings.brand.alternateLogoStoragePath,
+          use_uploaded_logo: settings.brand.useUploadedLogo,
+          owner_photo_storage_path: settings.brand.ownerPhotoStoragePath,
+          owner_photo_alt: settings.brand.ownerPhotoAlt,
+          studio_photo_storage_path: settings.brand.studioPhotoStoragePath,
+          studio_photo_alt: settings.brand.studioPhotoAlt,
+        },
+        is_public: true,
+        description: 'Public brand identity, logo, and owner media settings.',
+      },
+      {
         key: 'contact',
-        value: settings.contact,
+        value: {
+          email: settings.contact.email,
+          owner_email: settings.contact.owner_email,
+          whatsapp_phone: settings.contact.whatsapp_phone,
+          instagram_url: settings.contact.instagram_url,
+          facebook_url: settings.contact.facebook_url,
+          youtube_url: settings.contact.youtube_url,
+        },
         is_public: true,
         description: 'Public customer contact channels.',
       },
@@ -399,4 +457,24 @@ export const saveStoreSettings = async (settings: StoreSettingsDraft) => {
   );
 
   if (error) throw error;
+};
+
+export const uploadBrandAsset = async (folder: 'logos' | 'owners' | 'social' | 'brand', file: File) => {
+  const client = getClient();
+  const safeName = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/(^-|-$)/g, '');
+  const storagePath = `${folder}/${Date.now()}-${safeName || 'asset'}`;
+  const upload = await client.storage.from('brand-assets').upload(storagePath, file, {
+    cacheControl: '31536000',
+    upsert: false,
+  });
+
+  if (upload.error) throw upload.error;
+  return storagePath;
+};
+
+export const deleteBrandAsset = async (storagePath?: string | null) => {
+  if (!storagePath) return;
+  const client = getClient();
+  const result = await client.storage.from('brand-assets').remove([storagePath]);
+  if (result.error) throw result.error;
 };

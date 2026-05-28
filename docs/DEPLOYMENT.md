@@ -24,6 +24,7 @@ SUPABASE_SECRET_KEY=sb_secret_your-server-only-secret-key
 RAZORPAY_KEY_ID=rzp_test_or_live_key_id
 RAZORPAY_KEY_SECRET=your-server-only-razorpay-secret
 RAZORPAY_WEBHOOK_SECRET=your-server-only-razorpay-webhook-secret
+RESEND_API_KEY=re_your-server-only-resend-key
 ```
 
 Do not include quotes in Vercel dashboard values.
@@ -31,7 +32,7 @@ Do not include quotes in Vercel dashboard values.
 Security rules:
 
 - `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` are browser-safe.
-- `SUPABASE_SECRET_KEY`, Razorpay secrets, and webhook secrets are server-only.
+- `SUPABASE_SECRET_KEY`, Razorpay secrets, webhook secrets, and `RESEND_API_KEY` are server-only.
 - Never create a `VITE_SUPABASE_SECRET_KEY`.
 - The admin catalog dashboard uses Supabase Auth plus RLS with the publishable key; it does not need the secret key.
 

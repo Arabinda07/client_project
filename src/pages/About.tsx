@@ -2,8 +2,11 @@ import React from 'react';
 import { SEO } from '../components/layout/SEO';
 import { ProductImage } from '../components/ui/Media';
 import { Reveal } from '../components/ui/Reveal';
+import { getStudioPhotoUrl, useBrandSettings } from '../lib/brandSettings';
 
 export const About = () => {
+  const brandSettings = useBrandSettings();
+
   return (
     <>
       <SEO title="Our Story" description="Meet the artist behind goonjaa and the handmade terracotta jewellery shaped in her studio." />
@@ -16,8 +19,8 @@ export const About = () => {
         <Reveal className="mb-16 double-bezel-outer aspect-[16/9] w-full overflow-hidden">
           <div className="double-bezel-inner relative h-full w-full overflow-hidden">
             <ProductImage
-              src="/images/founder_studio.png"
-              alt="The goonjaa studio where terracotta jewellery is shaped and painted by hand"
+              src={getStudioPhotoUrl(brandSettings)}
+              alt={brandSettings.studioPhotoAlt}
               tone="studio"
               loading="eager"
             />

@@ -8,12 +8,14 @@ import { fetchCatalogProducts } from '../lib/catalogData';
 import { ArrowRight } from 'lucide-react';
 import { SEO } from '../components/layout/SEO';
 import { brand } from '../lib/brand';
+import { getOwnerPhotoUrl, getStudioPhotoUrl, useBrandSettings } from '../lib/brandSettings';
 import { ProductImage } from '../components/ui/Media';
 import { Reveal } from '../components/ui/Reveal';
 import { inputClassName } from '../components/ui/formStyles';
 
 export const Home = () => {
   const [catalogProducts, setCatalogProducts] = useState(mockProducts);
+  const brandSettings = useBrandSettings();
   const featuredSets = catalogProducts.filter(p => p.mainCategory === 'Terracotta Set').slice(0, 4);
   const newArrivals = catalogProducts.filter(p => p.collection?.includes('New Arrivals')).slice(0, 4);
   const bestsellers = catalogProducts.filter(p => p.collection?.includes('Bestsellers')).slice(0, 4);
@@ -228,7 +230,7 @@ export const Home = () => {
               "I have been learning classical music since I was two and a half years old. For me, shaping clay is no different from singing a Raag. Both require patience, devotion, and a deep respect for roots."
             </p>
             <p className="type-body text-gray-600 mb-12 leading-relaxed">
-              During the stillness of the pandemic, a lifelong love for drawing and design found its way into terracotta. Today, every piece of {brand.name} is a single artisan's exploration of traditional shapes crafted for modern wardrobes. No two pieces are ever exactly the same.
+              During the stillness of the pandemic, a lifelong love for drawing and design found its way into terracotta. Today, every piece of {brandSettings.name || brand.name} is a single artisan's exploration of traditional shapes crafted for modern wardrobes. No two pieces are ever exactly the same.
             </p>
             <div>
               <Link to="/about" className={buttonClassNames({ variant: 'outline', className: 'w-max gap-3 px-10 py-4 font-semibold' })}>
@@ -240,8 +242,8 @@ export const Home = () => {
           <Reveal direction="left" delay={0.1} className="w-full lg:w-6/12 flex flex-col double-bezel-outer max-w-lg lg:ml-auto">
             <div className="double-bezel-inner aspect-[4/5] overflow-hidden">
               <ProductImage
-                src="/images/founder_studio.png"
-                alt="The goonjaa artist working in her home studio"
+                src={getOwnerPhotoUrl(brandSettings)}
+                alt={brandSettings.ownerPhotoAlt}
                 tone="studio"
               />
             </div>
@@ -314,8 +316,8 @@ export const Home = () => {
          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
             <Reveal>
             <span className="mb-5 block text-terracotta-dark type-overline font-semibold">Join the community</span>
-            <a href={brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="inline-block group mb-16">
-              <h2 className="type-display text-gray-900 group-hover:text-terracotta transition-colors">{brand.instagramHandle}</h2>
+            <a href={brandSettings.instagramUrl || brand.instagramUrl} target="_blank" rel="noopener noreferrer" className="inline-block group mb-16">
+              <h2 className="type-display text-gray-900 group-hover:text-terracotta transition-colors">{brandSettings.instagramUrl ? brandSettings.instagramUrl.replace(/^https?:\/\/(www\.)?instagram\.com\//, '@').replace(/\/$/, '') : brand.instagramHandle}</h2>
             </a>
             </Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 max-w-5xl mx-auto">
@@ -323,7 +325,7 @@ export const Home = () => {
                 { label: 'Fresh kiln notes', img: '/images/hero_clay_sculpting.png' },
                 { label: 'Painted clay details', img: '/images/mridula_set.png' },
                 { label: 'Earth-toned pairings', img: '/images/hero_model_jewellery.png' },
-                { label: 'Studio shelf finds', img: '/images/founder_studio.png' }
+                { label: 'Studio shelf finds', img: getStudioPhotoUrl(brandSettings) }
               ].map((item, i) => (
                 <div key={i} className={`group relative flex aspect-[4/5] flex-col overflow-hidden double-bezel-outer ${i % 2 === 0 ? 'mt-0 md:mt-10' : 'mt-0'}`}>
                   <div className="double-bezel-inner relative overflow-hidden">
@@ -347,7 +349,7 @@ export const Home = () => {
       <section className="border-t border-border-soft bg-warm-ivory px-4 py-24 text-center lg:py-28">
         <div className="max-w-2xl mx-auto space-y-8 flex flex-col items-center">
           <h2 className="type-display text-gray-900">Join our Studio</h2>
-          <p className="type-body-large text-gray-600 max-w-lg">Subscribe for early access to new collections, exclusive discounts, and peeks into our firing process.</p>
+          <p className="type-body-large text-gray-600 max-w-lg">Subscribe for early access to new collections and quiet peeks into the studio. One useful note at a time.</p>
           {newsletterSuccess && (
             <p className="type-caption text-terracotta-dark font-semibold" role="status" aria-live="polite">
               Thank you. You are on the studio list.
@@ -365,7 +367,7 @@ export const Home = () => {
             <input 
               id="newsletter-email"
               type="email" 
-              placeholder="Enter your email address" 
+              placeholder="you@example.com" 
               required
               value={newsletterEmail}
               onChange={(event) => {
@@ -374,8 +376,9 @@ export const Home = () => {
               }}
               className={inputClassName('min-h-14 flex-1 bg-transparent px-6 py-4')}
             />
-            <Button type="submit" className="w-full px-8 sm:w-auto font-semibold">Subscribe</Button>
+            <Button type="submit" className="w-full px-8 sm:w-auto font-semibold">Join the List</Button>
           </form>
+          <p className="type-caption text-gray-500">No spam. We will use this email only for studio updates.</p>
         </div>
       </section>
     </div>

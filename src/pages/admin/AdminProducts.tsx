@@ -79,6 +79,21 @@ export const AdminProducts = () => {
         </div>
       </div>
 
+      <section className="rounded-[2px] border border-terracotta/25 bg-warm-ivory p-5">
+        <p className="mb-3 text-terracotta-dark type-overline">Store setup checklist</p>
+        <div className="grid gap-3 text-sm text-gray-700 md:grid-cols-3">
+          <Link to="/admin/settings" className="rounded-[2px] border border-border-soft bg-surface p-3 font-semibold transition-colors hover:border-terracotta/45 hover:text-terracotta-dark">
+            Add logo, owner photos, and social links
+          </Link>
+          <Link to="/admin/products/new" className="rounded-[2px] border border-border-soft bg-surface p-3 font-semibold transition-colors hover:border-terracotta/45 hover:text-terracotta-dark">
+            Create or review first product
+          </Link>
+          <span className="rounded-[2px] border border-border-soft bg-surface p-3 font-semibold">
+            Upload product photos and confirm stock
+          </span>
+        </div>
+      </section>
+
       <div className="rounded-[2px] border border-border-soft bg-surface">
         <div className="flex flex-col gap-4 border-b border-border-soft p-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="relative w-full sm:max-w-sm">

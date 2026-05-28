@@ -4,6 +4,7 @@ import { mockProducts } from '../lib/data/mockProducts';
 import { fetchCatalogProductBySlug } from '../lib/catalogData';
 import { useCartStore } from '../store/cartStore';
 import { formatPrice, cn } from '../lib/utils';
+import { getWhatsappUrl, useBrandSettings } from '../lib/brandSettings';
 import { Button } from '../components/ui/Button';
 import { ProductBadges } from '../components/product/ProductCard';
 import { Minus, Plus, Truck, RotateCcw, AlertCircle, ChevronDown, ChevronUp, MessageSquare } from 'lucide-react';
@@ -25,6 +26,7 @@ export const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [isAdded, setIsAdded] = useState(false);
+  const brandSettings = useBrandSettings();
   const [selectedColour, setSelectedColour] = useState<ProductColourOption | null>(null);
   const [colourError, setColourError] = useState('');
   const [openSection, setOpenSection] = useState<string | null>('materials');
@@ -109,7 +111,7 @@ export const ProductDetail = () => {
   // Build conversational WhatsApp link
   const colourText = selectedColour ? ` in ${selectedColour.name}` : '';
   const waMessage = `Hi Goonjaa, I am interested in purchasing ${product.name}${colourText} (Quantity: ${quantity}). Could you help me with checking out?`;
-  const whatsappUrl = `https://wa.me/918910214167?text=${encodeURIComponent(waMessage)}`;
+  const whatsappUrl = getWhatsappUrl(brandSettings, waMessage);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28 relative">

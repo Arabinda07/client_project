@@ -116,7 +116,7 @@ export const Checkout = () => {
             {/* TODO: Razorpay integration for payments */}
             <div className="rounded-[2px] border border-antique-gold/35 bg-antique-gold/10 p-6">
               <p className="text-sm text-gray-800">
-                <strong>Note:</strong> Payment gateway integration (Razorpay) will be implemented here. For this prototype, clicking "Place Order" will simulate a successful transaction.
+                <strong>Preview checkout:</strong> No real payment is collected here. The studio will confirm price, stock, and delivery before live checkout is enabled.
               </p>
             </div>
           </form>
@@ -164,8 +164,9 @@ export const Checkout = () => {
             </div>
 
             <Button form="checkout-form" type="submit" fullWidth disabled={isSubmitting}>
-              {isSubmitting ? 'Processing...' : `Pay ${formatPrice(cartTotal())}`}
+              {isSubmitting ? 'Processing...' : `Place Prototype Order (${formatPrice(cartTotal())})`}
             </Button>
+            <p className="mt-3 type-caption text-gray-500">No real payment is collected in this version.</p>
           </div>
         </div>
       </div>

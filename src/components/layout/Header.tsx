@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingBag, X, Instagram } from 'lucide-react';
+import { MessageCircle, ShoppingBag, X } from 'lucide-react';
 import { useCartStore } from '../../store/cartStore';
 import { cn } from '../../lib/utils';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { brand } from '../../lib/brand';
-import { Logo } from '../ui/Logo';
+import { getWhatsappUrl, useBrandSettings } from '../../lib/brandSettings';
+import { BrandLogo } from '../ui/BrandLogo';
 import { getCategoryPath, primaryCategoryLinks } from '../../lib/catalog';
 
 export const Header = () => {
@@ -15,6 +15,8 @@ export const Header = () => {
   const cartCount = useCartStore((state) => state.cartCount());
   const prefersReducedMotion = useReducedMotion();
   const mobileMenuId = 'goonjaa-mobile-menu';
+  const brandSettings = useBrandSettings();
+  const whatsappUrl = getWhatsappUrl(brandSettings);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,8 +90,8 @@ export const Header = () => {
             ))}
           </div>
 
-          <Link to="/" className="flex min-h-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory" aria-label="goonjaa home">
-            <Logo variant="wordmark" className="h-10 w-auto sm:h-12" />
+          <Link to="/" className="flex min-h-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory" aria-label={`${brandSettings.name} home`}>
+            <BrandLogo settings={brandSettings} variant="wordmark" className="h-10 w-auto sm:h-12" />
           </Link>
 
           <div className="flex items-center gap-6">
@@ -112,15 +114,17 @@ export const Header = () => {
                 </Link>
               ))}
             </div>
-            <a
-              href={brand.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Follow ${brand.name} on Instagram`}
-              className="hidden min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory sm:flex"
-            >
-              <Instagram size={18} strokeWidth={2.2} />
-            </a>
+            {whatsappUrl && (
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Message ${brandSettings.name} on WhatsApp`}
+                className="hidden min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory sm:flex"
+              >
+                <MessageCircle size={19} strokeWidth={2.2} />
+              </a>
+            )}
             <Link
               to="/cart"
               className="relative flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
@@ -159,8 +163,8 @@ export const Header = () => {
             >
               <div className="p-7">
                 <div className="flex justify-between items-center mb-10">
-                  <Link to="/" className="flex min-h-11 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper" onClick={() => setIsMobileMenuOpen(false)} aria-label="goonjaa home">
-                    <Logo variant="wordmark" className="h-10 w-auto" />
+                  <Link to="/" className="flex min-h-11 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper" onClick={() => setIsMobileMenuOpen(false)} aria-label={`${brandSettings.name} home`}>
+                    <BrandLogo settings={brandSettings} variant="wordmark" className="h-10 w-auto" />
                   </Link>
                   <button
                     type="button"
@@ -192,21 +196,23 @@ export const Header = () => {
                     </motion.div>
                   ))}
                   <div className="w-full h-px bg-border-soft my-5" />
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: navLinks.length * 0.05 + 0.1, duration: 0.3 }}
-                  >
-                    <a
-                      href={brand.instagramUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex min-h-11 items-center gap-3 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper type-nav"
+                  {whatsappUrl && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: navLinks.length * 0.05 + 0.1, duration: 0.3 }}
                     >
-                      <Instagram size={18} />
-                      <span>Follow on Instagram</span>
-                    </a>
-                  </motion.div>
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex min-h-11 items-center gap-3 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper type-nav"
+                      >
+                        <MessageCircle size={18} />
+                        <span>Message on WhatsApp</span>
+                      </a>
+                    </motion.div>
+                  )}
                 </nav>
               </div>
             </motion.div>
