@@ -47,7 +47,7 @@ Output Directory: dist
 Install Command: npm install
 ```
 
-The repository includes `vercel.json` so direct visits to React Router routes such as `/shop`, `/product/:slug`, and `/admin/products` serve `index.html` instead of returning a 404. Static public assets under `/assets`, `/fonts`, `/images`, `robots.txt`, `sitemap.xml`, and `llms.txt` are excluded from that SPA rewrite.
+The repository includes `vercel.json` so direct visits to React Router routes such as `/shop`, `/product/:slug`, and `/admin/products` serve `index.html` instead of returning a 404. Static public assets under `/assets`, `/fonts`, `/images`, `robots.txt`, `sitemap.xml`, `llms.txt`, and `catalog.md` are excluded from that SPA rewrite.
 
 After changing any Vercel environment variable, redeploy the Production deployment.
 

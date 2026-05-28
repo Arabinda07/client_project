@@ -20,6 +20,7 @@ const distDir = path.join(rootDir, 'dist');
 const templatePath = path.join(distDir, 'index.html');
 const seoStart = '<!-- goonjaa-seo:start -->';
 const seoEnd = '<!-- goonjaa-seo:end -->';
+const googleSiteVerification = 'fveZCgknZzwBAwwK1uwqRI0HGyM6Qb35SYhO-SP9BxU';
 
 const escapeHtml = (value: string) =>
   value
@@ -64,14 +65,21 @@ const renderMetaHead = (entry: SeoEntry) => {
 
 const injectSeo = (template: string, entry: SeoEntry) => {
   const head = renderMetaHead(entry);
-  const startIndex = template.indexOf(seoStart);
-  const endIndex = template.indexOf(seoEnd);
+  const verificationTag = `<meta name="google-site-verification" content="${googleSiteVerification}" />`;
+  const withVerification = template.includes('name="google-site-verification"')
+    ? template.replace(
+        /<meta\s+name="google-site-verification"\s+content="[^"]*"\s*\/?>/,
+        verificationTag
+      )
+    : template.replace('<meta name="viewport" content="width=device-width, initial-scale=1.0" />', `<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n    ${verificationTag}`);
+  const startIndex = withVerification.indexOf(seoStart);
+  const endIndex = withVerification.indexOf(seoEnd);
 
   if (startIndex >= 0 && endIndex > startIndex) {
-    return `${template.slice(0, startIndex)}${head}${template.slice(endIndex + seoEnd.length)}`;
+    return `${withVerification.slice(0, startIndex)}${head}${withVerification.slice(endIndex + seoEnd.length)}`;
   }
 
-  return template.replace('</head>', `    ${head}\n  </head>`);
+  return withVerification.replace('</head>', `    ${head}\n  </head>`);
 };
 
 const outputPathForRoute = (routePath: string) => {
