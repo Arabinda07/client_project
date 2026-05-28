@@ -1,5 +1,7 @@
 export const brand = {
   name: 'goonjaa',
+  ownerName: 'Srijita Roy',
+  ownerDisplayName: 'Srijita',
   siteUrl: 'https://goonjaa.vercel.app',
   description: 'Handcrafted terracotta jewellery shaped and painted by a woman-led studio in India.',
   instagramHandle: '@goonjaa.srijita',
@@ -11,7 +13,7 @@ export const brand = {
   phone: '+91 86974 52473',
   whatsappPhone: '+918697452473',
   ownerPhoto: '/images/founder_studio.png',
-  ownerPhotoAlt: 'The goonjaa artist working in her home studio',
-  studioPhoto: '/images/founder_studio.png',
+  ownerPhotoAlt: 'Srijita Roy, the goonjaa artist, working in her home studio',
+  studioPhoto: '/images/hero_clay_sculpting.svg',
   studioPhotoAlt: 'The goonjaa studio where terracotta jewellery is shaped and painted by hand',
 } as const;

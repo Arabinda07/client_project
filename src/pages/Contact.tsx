@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '../components/ui/Button';
-import { Facebook, Instagram, Mail, MessageCircle, Youtube } from 'lucide-react';
+import { AtSign, Facebook, Instagram, Mail, MessageCircle, Youtube, type LucideIcon } from 'lucide-react';
 import { brand } from '../lib/brand';
 import { getWhatsappUrl, socialLinksFor, useBrandSettings } from '../lib/brandSettings';
 import { SEO } from '../components/layout/SEO';
@@ -34,26 +34,15 @@ export const Contact = () => {
           </div>
           
           <div className="space-y-8 border-t border-border-soft pt-8">
-            <div className="flex items-start gap-4">
-              <Mail className="text-terracotta mt-1 h-5 w-5" />
-              <div>
-                <h3 className="type-overline text-gray-900 mb-1 block">Email</h3>
+            <ContactInfoRow icon={Mail} title="Email">
                 <a href={`mailto:${brandSettings.email}`} className="inline-flex min-h-11 items-center type-body text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">{brandSettings.email}</a>
-              </div>
-            </div>
+            </ContactInfoRow>
             {whatsappUrl && (
-              <div className="flex items-start gap-4">
-                <MessageCircle className="text-terracotta mt-1 h-5 w-5" />
-                <div>
-                  <h3 className="type-overline text-gray-900 mb-1 block">WhatsApp</h3>
+              <ContactInfoRow icon={MessageCircle} title="WhatsApp">
                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center type-body text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">Message the studio</a>
-                </div>
-              </div>
+              </ContactInfoRow>
             )}
-            <div className="flex items-start gap-4">
-              <Instagram className="text-terracotta mt-1 h-5 w-5" />
-              <div>
-                <h3 className="type-overline text-gray-900 mb-1 block">Socials</h3>
+            <ContactInfoRow icon={AtSign} title="Socials">
                 <div className="flex flex-wrap gap-3">
                   {socials.filter((social) => social.kind !== 'whatsapp' && social.kind !== 'email').map((social) => (
                     <a key={social.kind} href={social.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 type-body text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory">
@@ -62,8 +51,7 @@ export const Contact = () => {
                     </a>
                   ))}
                 </div>
-              </div>
-            </div>
+            </ContactInfoRow>
           </div>
         </div>
 
@@ -115,6 +103,26 @@ export const Contact = () => {
     </>
   );
 };
+
+const contactInfoIconClassName = 'mt-1 h-5 w-5 flex-none text-terracotta';
+
+const ContactInfoRow = ({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: LucideIcon;
+  title: string;
+  children: React.ReactNode;
+}) => (
+  <div className="flex items-start gap-4">
+    <Icon className={contactInfoIconClassName} aria-hidden="true" />
+    <div>
+      <h3 className="type-overline text-gray-900 mb-1 block">{title}</h3>
+      {children}
+    </div>
+  </div>
+);
 
 const ContactSocialIcon = ({ kind }: { kind: ReturnType<typeof socialLinksFor>[number]['kind'] }) => {
   if (kind === 'facebook') return <Facebook size={16} />;

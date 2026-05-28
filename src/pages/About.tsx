@@ -1,47 +1,45 @@
 import React from 'react';
 import { SEO } from '../components/layout/SEO';
+import { FounderName } from '../components/ui/FounderName';
 import { ProductImage } from '../components/ui/Media';
 import { Reveal } from '../components/ui/Reveal';
-import { getOwnerPhotoUrl, useBrandSettings } from '../lib/brandSettings';
+import { brand } from '../lib/brand';
+import { getStudioPhotoUrl, useBrandSettings } from '../lib/brandSettings';
 
 export const About = () => {
   const brandSettings = useBrandSettings();
 
   return (
     <>
-      <SEO title="Our Story" description="Meet the artist behind goonjaa and the handmade terracotta jewellery shaped in her studio." />
+      <SEO title="Our Story" description={`Meet ${brand.ownerName}, the artist behind goonjaa and the handmade terracotta jewellery shaped in her studio.`} />
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28">
-        <Reveal className="mb-20 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
-          <div className="max-w-2xl">
+        <Reveal className="mb-24 grid gap-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(19rem,0.75fr)] lg:items-end lg:gap-16">
+          <div className="max-w-4xl lg:col-start-2 lg:max-w-none">
             <span className="mb-6 block text-terracotta-dark type-overline font-semibold tracking-widest">Our Story</span>
             <h1 className="type-display text-gray-900 mb-8">The Hands Behind the Clay</h1>
             <p className="type-body-large text-gray-600 leading-relaxed">
-              Meet the artist behind goonjaa: a lifelong student of classical music, a patient maker, and the hands shaping each terracotta piece from earth to adornment.
+              Meet <FounderName />, the artist behind goonjaa: a lifelong student of classical music, a patient maker, and the hands shaping each terracotta piece from earth to adornment.
             </p>
-            <div className="mt-10 hidden border-y border-border-soft py-8 lg:block">
-              <p className="type-h2 display-italic text-terracotta-dark">
-                "For me, shaping clay is no different from singing a Raag. Both ask for patience, devotion, and respect for roots."
-              </p>
-            </div>
           </div>
 
-          <div className="mx-auto w-full max-w-[26rem] lg:mr-0">
+          <div className="w-full lg:col-start-1 lg:row-span-2 lg:row-start-1">
             <div className="double-bezel-outer w-full overflow-hidden">
-              <div className="double-bezel-inner relative aspect-[4/5] overflow-hidden">
+              <div className="double-bezel-inner relative aspect-[4/5] overflow-hidden bg-studio-wash sm:aspect-[5/6] lg:min-h-[42rem]">
                 <ProductImage
-                  src={getOwnerPhotoUrl(brandSettings)}
-                  alt={brandSettings.ownerPhotoAlt}
+                  src={getStudioPhotoUrl(brandSettings)}
+                  alt={brandSettings.studioPhotoAlt}
                   tone="studio"
                   loading="eager"
                   fetchPriority="high"
-                  sizes="(min-width: 1024px) 26rem, min(100vw, 26rem)"
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  className="object-cover object-center"
                 />
               </div>
             </div>
           </div>
 
-          <div className="border-y border-border-soft py-8 lg:hidden">
-            <p className="type-h2 display-italic text-terracotta-dark">
+          <div className="border-y border-border-soft py-7 sm:py-8 lg:col-start-2 lg:py-10">
+            <p className="display-italic font-serif text-[1.55rem] leading-[1.28] text-terracotta-dark sm:text-[2.1rem] sm:leading-[1.22]">
               "For me, shaping clay is no different from singing a Raag. Both ask for patience, devotion, and respect for roots."
             </p>
           </div>
@@ -133,12 +131,16 @@ export const About = () => {
           </Reveal>
 
           {/* Why Terracotta */}
-          <Reveal className="mt-12 flex flex-col items-center space-y-6 border-t border-border-soft pt-12 text-center">
-            <span className="mb-4 block text-terracotta-dark type-overline font-semibold">Why Terracotta?</span>
-            <h2 className="type-h1 text-gray-900 mb-6">Rooted in Indian craft.</h2>
-            <p className="leading-relaxed max-w-2xl">
-              Terracotta is an eco-conscious, skin-friendly, and surprisingly lightweight art form. By choosing it, you are supporting slow fashion and wearing a piece of earth that will eventually return to nature. No molds, no mass production, just soulful clay, sculpted by hand.
-            </p>
+          <Reveal className="mt-12 border-t border-border-soft pt-12">
+            <div className="grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:gap-10">
+              <div>
+                <span className="mb-4 block text-terracotta-dark type-overline font-semibold">Why Terracotta?</span>
+                <h2 className="type-h1 text-gray-900">Rooted in Indian craft.</h2>
+              </div>
+              <p className="leading-relaxed">
+                Terracotta is an eco-conscious, skin-friendly, and surprisingly lightweight art form. By choosing it, you are supporting slow fashion and wearing a piece of earth that will eventually return to nature. No molds, no mass production, just soulful clay, sculpted by hand.
+              </p>
+            </div>
           </Reveal>
         </div>
       </div>

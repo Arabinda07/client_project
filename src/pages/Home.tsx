@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { SEO } from '../components/layout/SEO';
 import { brand } from '../lib/brand';
 import { getOwnerPhotoUrl, getStudioPhotoUrl, useBrandSettings } from '../lib/brandSettings';
+import { FounderName } from '../components/ui/FounderName';
 import { ProductImage } from '../components/ui/Media';
 import { Reveal } from '../components/ui/Reveal';
 import { inputClassName } from '../components/ui/formStyles';
@@ -180,7 +181,7 @@ export const Home = () => {
               "I have been learning classical music since I was two and a half years old. For me, shaping clay is no different from singing a Raag. Both require patience, devotion, and a deep respect for roots."
             </p>
             <p className="type-body text-gray-600 mb-12 leading-relaxed">
-              During the stillness of the pandemic, a lifelong love for drawing and design found its way into terracotta. Today, every piece of {brandSettings.name || brand.name} is a single artisan's exploration of traditional shapes crafted for modern wardrobes. No two pieces are ever exactly the same.
+              During the stillness of the pandemic, <FounderName />'s lifelong love for drawing and design found its way into terracotta. Today, every piece of {brandSettings.name || brand.name} is a single artisan's exploration of traditional shapes crafted for modern wardrobes. No two pieces are ever exactly the same.
             </p>
             <div>
               <Link to="/about" className={buttonClassNames({ variant: 'outline', className: 'w-max gap-3 px-10 py-4 font-semibold' })}>
@@ -190,11 +191,13 @@ export const Home = () => {
           </Reveal>
           
           <Reveal direction="left" delay={0.1} className="w-full lg:w-6/12 flex flex-col double-bezel-outer max-w-lg lg:ml-auto">
-            <div className="double-bezel-inner aspect-[4/5] overflow-hidden">
+            <div className="double-bezel-inner aspect-[3/4] overflow-hidden">
               <ProductImage
                 src={getOwnerPhotoUrl(brandSettings)}
                 alt={brandSettings.ownerPhotoAlt}
                 tone="studio"
+                sizes="(min-width: 1024px) 32rem, 100vw"
+                className="object-cover object-[50%_28%]"
               />
             </div>
           </Reveal>

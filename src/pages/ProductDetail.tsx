@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { mockProducts } from '../lib/data/mockProducts';
+import { brand } from '../lib/brand';
 import { fetchCatalogProductBySlug } from '../lib/catalogData';
 import { useCartStore } from '../store/cartStore';
 import { formatPrice, cn } from '../lib/utils';
@@ -110,7 +111,7 @@ export const ProductDetail = () => {
 
   // Build conversational WhatsApp link
   const colourText = selectedColour ? ` in ${selectedColour.name}` : '';
-  const waMessage = `Hi Goonjaa, I am interested in purchasing ${product.name}${colourText} (Quantity: ${quantity}). Could you help me with checking out?`;
+  const waMessage = `Hi ${brand.name}, I am interested in purchasing ${product.name}${colourText} (Quantity: ${quantity}). Could you help me with checking out?`;
   const whatsappUrl = getWhatsappUrl(brandSettings, waMessage);
 
   return (

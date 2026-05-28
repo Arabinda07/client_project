@@ -170,7 +170,7 @@ const pageSeo: Record<string, SeoEntry> = {
   '/about': {
     path: '/about',
     title: 'Our Story',
-    description: 'Meet the artist behind goonjaa and the handmade terracotta jewellery shaped in her studio.',
+    description: `Meet ${brand.ownerName}, the artist behind goonjaa and the handmade terracotta jewellery shaped in her studio.`,
   },
   '/bulk-orders': {
     path: '/bulk-orders',

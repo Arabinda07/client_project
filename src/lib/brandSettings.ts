@@ -62,7 +62,7 @@ export const getOwnerPhotoUrl = (settings: BrandSettings) =>
   getBrandAssetUrl(settings.ownerPhotoStoragePath) ?? brand.ownerPhoto;
 
 export const getStudioPhotoUrl = (settings: BrandSettings) =>
-  getBrandAssetUrl(settings.studioPhotoStoragePath) ?? getOwnerPhotoUrl(settings);
+  getBrandAssetUrl(settings.studioPhotoStoragePath) ?? brand.studioPhoto;
 
 export const getPrimaryLogoUrl = (settings: BrandSettings) =>
   settings.useUploadedLogo ? getBrandAssetUrl(settings.primaryLogoStoragePath) : null;
