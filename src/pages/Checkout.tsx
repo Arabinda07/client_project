@@ -15,7 +15,7 @@ export const Checkout = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
+    // Live checkout will replace this request preview.
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
@@ -36,9 +36,9 @@ export const Checkout = () => {
         {seo}
         <div className="mx-auto max-w-3xl px-4 py-24 text-center">
           <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-terracotta/25 bg-surface text-3xl text-terracotta-dark">✓</div>
-          <h1 className="mb-4 text-gray-900 type-h1">Order Confirmed</h1>
+          <h1 className="mb-4 text-gray-900 type-h1">Request Sent</h1>
           <p className="mx-auto mb-8 text-gray-600 type-body-large">
-            Thank you for supporting our handmade business. We will start working on your beautiful terracotta pieces right away.
+            Thank you for supporting our handmade business. The studio will confirm stock, price, delivery timing, and payment details before anything is finalized.
           </p>
           <Link to="/shop" className={buttonClassNames()}>
             Continue Shopping
@@ -112,11 +112,9 @@ export const Checkout = () => {
               </div>
             </div>
 
-            {/* TODO: Supabase integration for order saving */}
-            {/* TODO: Razorpay integration for payments */}
             <div className="rounded-[2px] border border-antique-gold/35 bg-antique-gold/10 p-6">
               <p className="text-sm text-gray-800">
-                <strong>Preview checkout:</strong> No real payment is collected here. The studio will confirm price, stock, and delivery before live checkout is enabled.
+                <strong>Order request preview:</strong> No real payment is collected here. The studio will confirm price, stock, and delivery before finalizing your order.
               </p>
             </div>
           </form>
@@ -164,7 +162,7 @@ export const Checkout = () => {
             </div>
 
             <Button form="checkout-form" type="submit" fullWidth disabled={isSubmitting}>
-              {isSubmitting ? 'Processing...' : `Place Prototype Order (${formatPrice(cartTotal())})`}
+              {isSubmitting ? 'Sending request...' : `Send Order Request (${formatPrice(cartTotal())})`}
             </Button>
             <p className="mt-3 type-caption text-gray-500">No real payment is collected in this version.</p>
           </div>

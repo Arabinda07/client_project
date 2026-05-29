@@ -94,7 +94,7 @@ export const About = () => {
                 <div className="flex flex-col double-bezel-outer">
                   <div className="double-bezel-inner relative aspect-[4/5] overflow-hidden">
                     <ProductImage
-                      src="/images/sun_drying_firing.png"
+                      src="/images/hero_clay_sculpting.svg"
                       alt="Terracotta pieces drying and preparing for firing"
                       tone="studio"
                     />
@@ -106,7 +106,7 @@ export const About = () => {
                 <div className="flex flex-col double-bezel-outer">
                   <div className="double-bezel-inner relative aspect-square overflow-hidden">
                     <ProductImage
-                      src="/images/hand_painting_details.png"
+                      src="/images/mridula_set.svg"
                       alt="Fine hand-painted details on a goonjaa terracotta piece"
                       tone="detail"
                     />

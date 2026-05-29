@@ -275,7 +275,7 @@ export const ProductDetail = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex min-h-14 flex-1 items-center justify-center gap-2.5 rounded-[2px] border border-[#075E54] bg-transparent px-6 py-3.5 text-sm font-semibold text-[#075E54] transition-colors duration-300 hover:bg-[#075E54] hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075E54] focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                className="flex min-h-14 flex-1 items-center justify-center gap-2.5 rounded-[2px] border border-whatsapp bg-transparent px-6 py-3.5 text-sm font-semibold text-whatsapp transition-colors duration-300 hover:bg-whatsapp hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
               >
                 <MessageSquare size={16} />
                 Order via WhatsApp
@@ -418,7 +418,7 @@ export const ProductDetail = () => {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex min-h-12 w-full items-center justify-center gap-2 rounded-[2px] bg-[#075E54] py-3 text-sm font-semibold text-warm-ivory transition-colors hover:bg-[#064E46] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075E54] focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+          className="flex min-h-12 w-full items-center justify-center gap-2 rounded-[2px] bg-whatsapp py-3 text-sm font-semibold text-warm-ivory transition-colors hover:bg-whatsapp-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-whatsapp focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
         >
           <MessageSquare size={16} />
           Order via WhatsApp

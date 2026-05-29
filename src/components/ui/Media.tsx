@@ -147,12 +147,13 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   sizes,
 }) => {
   const [hasError, setHasError] = useState(false);
+  const usesRemotePlaceholder = src?.includes('placehold.co') ?? false;
 
   useEffect(() => {
     setHasError(false);
   }, [src]);
 
-  const imageSrc = src && !hasError ? src : fallbackSrcByTone[tone];
+  const imageSrc = src && !usesRemotePlaceholder && !hasError ? src : fallbackSrcByTone[tone];
 
   return (
     <img
@@ -165,7 +166,7 @@ export const ProductImage: React.FC<ProductImageProps> = ({
       height={height}
       sizes={sizes}
       draggable={false}
-      data-media-fallback={!src || hasError ? 'true' : undefined}
+      data-media-fallback={!src || usesRemotePlaceholder || hasError ? 'true' : undefined}
       onError={() => {
         if (!hasError) setHasError(true);
       }}

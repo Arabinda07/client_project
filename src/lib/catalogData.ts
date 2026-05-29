@@ -62,6 +62,8 @@ type ProductCollectionRow = {
 
 const fromPaise = (value?: number | null) => (value ? value / 100 : undefined);
 
+const isPublicCatalogFetchEnabled = import.meta.env.VITE_SUPABASE_CATALOG_ENABLED === 'true';
+
 const displayStockQuantity = (stockStatus: Product['stockStatus']) =>
   stockStatus === 'in_stock' ? 1 : 0;
 
@@ -140,7 +142,7 @@ const mapCatalogProducts = ({
 };
 
 export const fetchCatalogProducts = async (): Promise<Product[]> => {
-  if (!supabase) return mockProducts;
+  if (!supabase || !isPublicCatalogFetchEnabled) return mockProducts;
 
   try {
     const [

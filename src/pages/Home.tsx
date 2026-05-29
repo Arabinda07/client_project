@@ -205,31 +205,31 @@ export const Home = () => {
       </section>
 
       {/* Brand Values Section */}
-      <section className="bg-gray-900 py-24 text-warm-ivory lg:py-28">
+      <section className="bg-deep-maroon py-24 text-warm-ivory lg:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           <Reveal>
-          <span className="mb-8 block text-antique-gold type-overline font-semibold tracking-widest">Our Philosophy</span>
-          <div className="grid grid-cols-1 gap-16 border-t border-warm-ivory/12 pt-14 lg:grid-cols-12 lg:gap-8">
+          <span className="mb-8 block text-antique-gold-light type-overline font-semibold tracking-widest">Our Philosophy</span>
+          <div className="grid grid-cols-1 gap-16 border-t border-warm-ivory/16 pt-14 lg:grid-cols-12 lg:gap-8">
             <div className="lg:col-span-7">
                <h2 className="type-h2 mb-12 display-normal leading-relaxed text-warm-ivory">
-                 Each piece is a <span className="display-accent display-italic text-antique-gold font-bold">labor of love</span>, carefully molded, sun-dried, baked, and painted by a single woman artisan preserving the heritage of Indian terracotta art.
+                 Each piece is a <span className="display-accent display-italic text-antique-gold-light font-bold">labor of love</span>, carefully molded, sun-dried, baked, and painted by a single woman artisan preserving the heritage of Indian terracotta art.
                </h2>
             </div>
             <div className="lg:col-span-4 lg:col-start-9 flex flex-col gap-12">
                <div className="flex flex-col">
-                  <span className="type-h2 mb-2 text-antique-gold">01</span>
+                  <span className="type-h2 mb-2 text-antique-gold-light">01</span>
                   <span className="type-h3 mb-2 text-warm-ivory font-serif">Hand Molded</span>
-                  <span className="type-body text-warm-ivory/70 text-sm">No molds are ever used. Every shape is sculpted from raw earth.</span>
+                  <span className="type-body text-warm-ivory/78 text-sm">No molds are ever used. Every shape is sculpted from raw earth.</span>
                </div>
                <div className="flex flex-col">
-                  <span className="type-h2 mb-2 text-antique-gold">02</span>
+                  <span className="type-h2 mb-2 text-antique-gold-light">02</span>
                   <span className="type-h3 mb-2 text-warm-ivory font-serif">Earth Friendly</span>
-                  <span className="type-body text-warm-ivory/70 text-sm">Organic materials that eventually return to nature.</span>
+                  <span className="type-body text-warm-ivory/78 text-sm">Organic materials that eventually return to nature.</span>
                </div>
                <div className="flex flex-col">
-                  <span className="type-h2 mb-2 text-antique-gold">03</span>
+                  <span className="type-h2 mb-2 text-antique-gold-light">03</span>
                   <span className="type-h3 mb-2 text-warm-ivory font-serif">Skin Safe</span>
-                  <span className="type-body text-warm-ivory/70 text-sm">Naturally hypoallergenic, ultra-lightweight, and comfortable all day.</span>
+                  <span className="type-body text-warm-ivory/78 text-sm">Naturally hypoallergenic, ultra-lightweight, and comfortable all day.</span>
                </div>
             </div>
           </div>

@@ -3,10 +3,19 @@ import type { BrandSettings } from '../../lib/brandSettings';
 import { cn } from '../../lib/utils';
 import { Logo } from './Logo';
 
-const logoUrlByPlacement = {
-  header: '/images/goonjaa-logo-header.png',
-  mobileMenu: '/images/goonjaa-logo-header.png',
-  footer: '/images/goonjaa-logo-footer.png',
+const logoAssetByPlacement = {
+  header: {
+    webp: '/images/goonjaa-logo-header.webp',
+    png: '/images/goonjaa-logo-header.png',
+  },
+  mobileMenu: {
+    webp: '/images/goonjaa-logo-header.webp',
+    png: '/images/goonjaa-logo-header.png',
+  },
+  footer: {
+    webp: '/images/goonjaa-logo-footer.webp',
+    png: '/images/goonjaa-logo-footer.png',
+  },
 } as const;
 
 type BrandLogoProps = {
@@ -32,17 +41,20 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
 }) => {
   const [hasImageError, setHasImageError] = useState(false);
   const sizingClassName = placementClassNames[placement];
-  const logoUrl = logoUrlByPlacement[placement];
+  const logoAsset = logoAssetByPlacement[placement];
 
   if (!hasImageError) {
     return (
-      <img
-        src={logoUrl}
-        alt={`${settings.name} logo`}
-        className={cn('block h-auto shrink-0 select-none object-contain', sizingClassName, className)}
-        decoding="async"
-        onError={() => setHasImageError(true)}
-      />
+      <picture className={cn('block shrink-0', sizingClassName, className)}>
+        <source srcSet={logoAsset.webp} type="image/webp" />
+        <img
+          src={logoAsset.png}
+          alt={`${settings.name} logo`}
+          className="block h-auto w-full select-none object-contain"
+          decoding="async"
+          onError={() => setHasImageError(true)}
+        />
+      </picture>
     );
   }
 

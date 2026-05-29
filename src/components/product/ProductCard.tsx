@@ -84,7 +84,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             <h3 className="mb-1 line-clamp-2 min-h-[2.8rem] font-sans text-[0.98rem] font-semibold leading-[1.38]">
               <Link
                 to={`/product/${product.slug}`}
-                className="text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
+                className="inline-flex min-h-11 items-start text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
               >
                 {product.name}
               </Link>

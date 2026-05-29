@@ -12,7 +12,7 @@ export const brand = {
   ownerEmail: 'goonjaa.srijita@gmail.com',
   phone: '+91 86974 52473',
   whatsappPhone: '+918697452473',
-  ownerPhoto: '/images/founder_studio.png',
+  ownerPhoto: '/images/hero_model_jewellery.svg',
   ownerPhotoAlt: 'Srijita Roy, the goonjaa artist, working in her home studio',
   studioPhoto: '/images/hero_clay_sculpting.svg',
   studioPhotoAlt: 'The goonjaa studio where terracotta jewellery is shaped and painted by hand',
