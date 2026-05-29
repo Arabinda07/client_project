@@ -18,7 +18,7 @@ goonjaa is wearable art. Type should feel like a studio note or gallery label: w
 ### Body And Functional UI
 
 - **Purpose:** Product descriptions, cart, checkout, forms, filters, prices, labels, and navigation.
-- **Family:** Pilcrow Rounded.
+- **Family:** Lora.
 - **Behavior:** Clear, warm, and readable. Use softer ink instead of pure black.
 - **Classes:** `type-body`, `type-body-large`, `text-gray-600`.
 

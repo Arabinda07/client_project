@@ -91,7 +91,7 @@ export const Header = () => {
           </div>
 
           <Link to="/" className="flex min-h-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory" aria-label={`${brandSettings.name} home`}>
-            <BrandLogo settings={brandSettings} variant="wordmark" className="h-10 w-auto sm:h-12" />
+            <BrandLogo settings={brandSettings} variant="wordmark" placement="header" />
           </Link>
 
           <div className="flex items-center gap-6">
@@ -164,7 +164,7 @@ export const Header = () => {
               <div className="p-7">
                 <div className="flex justify-between items-center mb-10">
                   <Link to="/" className="flex min-h-11 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper" onClick={() => setIsMobileMenuOpen(false)} aria-label={`${brandSettings.name} home`}>
-                    <BrandLogo settings={brandSettings} variant="wordmark" className="h-10 w-auto" />
+                    <BrandLogo settings={brandSettings} variant="wordmark" placement="mobileMenu" />
                   </Link>
                   <button
                     type="button"

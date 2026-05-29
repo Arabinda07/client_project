@@ -25,10 +25,10 @@ The palette is rooted in fired clay and traditional Indian artistry.
 
 ## Typography
 
-The current pairing is **Boska + Pilcrow Rounded**. It should feel like handmade jewellery with a fashion-label edge: expressive enough for a boutique, but still warm and clay-led rather than cold showroom luxury.
+The current pairing is **Boska + Lora**. It should feel like handmade jewellery with a fashion-label edge: expressive enough for a boutique, but still warm and clay-led rather than cold showroom luxury.
 
 - **Display:** Boska for logo, hero lines, section titles, poetic placeholders, and category moments. Use the local variable files with role-based weights: airy display for the hero, normal weight for full headings, logo/category weight for compact display text, and a stronger accent weight for short terracotta or antique-gold phrases.
-- **Body and UI:** Pilcrow Rounded for body copy, navigation, filters, prices, forms, cart, and checkout.
+- **Body and UI:** Lora for body copy, navigation, filters, prices, forms, cart, and checkout.
 - **Accents:** Uppercase labels with moderate tracking. Keep them short; don't turn body copy into all-caps. Boska has a real italic file, so use italic only for short brand moments such as the logo, hero accent, and poetic placeholders. Never use it for full headings or functional commerce text.
 
 ## Layout & Shapes

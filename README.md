@@ -15,7 +15,7 @@ View your app in AI Studio: https://ai.studio/apps/a44ae333-5b06-432e-b512-25872
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+2. Copy [.env.example](.env.example) to `.env.local` and fill in the Supabase values when using the admin/catalog backend.
 3. Run the app:
    `npm run dev`
 
