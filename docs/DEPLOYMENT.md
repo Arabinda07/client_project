@@ -1,3 +1,18 @@
+---
+type: Operations Playbook
+title: Vercel & Supabase Deployment Guide
+description: Production and preview deployment setup, environment variable configuration, and custom domain routing for Vercel and Supabase.
+tags: [deployment, vercel, devops, environment-variables, production]
+lifecycle: active
+verified:
+  by: human:lead-dev
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: supabase-backend
+    resource: docs/SUPABASE_BACKEND.md
+    title: Supabase Backend Architecture & RLS Security
+---
+
 # Vercel And Supabase Deployment Setup
 
 This app is a Vite React single-page app. Vercel builds the static frontend, while Supabase provides Auth, database, RLS, and Storage.

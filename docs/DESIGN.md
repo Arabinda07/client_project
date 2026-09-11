@@ -1,3 +1,21 @@
+---
+type: Design System
+title: goonjaa Studio Visual Design System
+description: Warm handmade-luxury design language, clay and earthen palette tokens, typography rules, and layout aesthetics.
+tags: [design, styling, colors, layout, design-tokens, aesthetic]
+lifecycle: active
+verified:
+  by: human:founder
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: product-foundation
+    resource: docs/PRODUCT.md
+    title: goonjaa Product & Brand Foundation
+  - id: typography-spec
+    resource: docs/TYPOGRAPHY.md
+    title: goonjaa Typography Specification
+---
+
 # DESIGN.md
 
 ## Overview

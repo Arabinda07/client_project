@@ -1,3 +1,21 @@
+---
+type: Voice Architecture
+title: goonjaa Studio Voice Architecture
+description: Stable personality traits, artistic accessibility, patience of craft, and practical voice guidelines for buttons and empty states.
+tags: [voice, personality, copy-principles, brand-voice, empty-states]
+lifecycle: active
+verified:
+  by: human:founder
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: product-foundation
+    resource: docs/PRODUCT.md
+    title: goonjaa Product & Brand Foundation
+  - id: tone-map
+    resource: docs/TONE.md
+    title: goonjaa Tone Map & Contextual Register
+---
+
 # Voice
 
 Voice is the stable personality of **goonjaa**. Tone changes by situation, but the voice stays warm, grounded, and human.

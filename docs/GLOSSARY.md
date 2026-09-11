@@ -1,3 +1,21 @@
+---
+type: Domain Glossary
+title: goonjaa Canonical Brand & Product Glossary
+description: Canonical terms, approved vocabulary, craft terminology, and words to avoid across UI, copy, and code.
+tags: [glossary, vocabulary, brand-rules, craft, terminology]
+lifecycle: active
+verified:
+  by: human:founder
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: product-foundation
+    resource: docs/PRODUCT.md
+    title: goonjaa Product & Brand Foundation
+  - id: writing-rules
+    resource: docs/WRITING.md
+    title: goonjaa Copywriting Rules & Brand Lines
+---
+
 # Glossary
 
 This glossary defines canonical product and brand terms for **goonjaa**. Use these terms in UI, docs, onboarding, marketing, and support copy.

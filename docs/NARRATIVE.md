@@ -1,3 +1,18 @@
+---
+type: Brand Story
+title: goonjaa Studio Narrative Principles
+description: Core narrative, brand promise, slow-craft pillars, and the classical vocal background grounding the craft.
+tags: [narrative, storytelling, brand-identity, slow-craft, pillars]
+lifecycle: active
+verified:
+  by: human:founder
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: product-foundation
+    resource: docs/PRODUCT.md
+    title: goonjaa Product & Brand Foundation
+---
+
 # Narrative Principles
 
 This document defines what **goonjaa** is, what it believes, what it refuses to become, and how brand decisions should be framed.

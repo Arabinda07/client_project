@@ -1,3 +1,21 @@
+---
+type: Growth Strategy
+title: goonjaa SEO Audit & Growth Strategy
+description: Search engine optimization, structured JSON-LD schemas, static metadata generation, and local discovery plan.
+tags: [seo, marketing, search-console, schema, json-ld, local-growth]
+lifecycle: active
+verified:
+  by: human:growth-lead
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: seo-prerender-script
+    resource: scripts/generate-static-seo.ts
+    title: Static SEO Generation Script
+  - id: product-foundation
+    resource: docs/PRODUCT.md
+    title: goonjaa Product & Brand Foundation
+---
+
 # goonjaa SEO Audit And Local Growth Plan
 
 Last updated: 2026-05-28

@@ -1,3 +1,21 @@
+---
+type: Voice & Tone Guide
+title: goonjaa Tone Map & Contextual Register
+description: How the studio voice adapts across user moments (landing, catalog, about, checkout, empty states) and surface rules.
+tags: [tone, voice, register, user-moments, surface-rules]
+lifecycle: active
+verified:
+  by: human:founder
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: product-foundation
+    resource: docs/PRODUCT.md
+    title: goonjaa Product & Brand Foundation
+  - id: voice-architecture
+    resource: docs/VOICE.md
+    title: goonjaa Voice Architecture
+---
+
 # Tone
 
 Tone is how the voice adapts to context. **goonjaa** should stay recognizable across the shop, the artist story, checkout, and support.

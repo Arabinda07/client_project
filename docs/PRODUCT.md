@@ -1,3 +1,18 @@
+---
+type: Brand Vision
+title: goonjaa Product & Brand Foundation
+description: Handcrafted terracotta jewellery storefront guidelines, audience definition, and core artisan truths.
+tags: [brand, product, core-truths, artisans, slow-fashion]
+lifecycle: active
+verified:
+  by: human:founder
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: founder-studio-manifesto
+    resource: docs/PRODUCT.md
+    title: Founder Studio Manifesto
+---
+
 # PRODUCT.md
 
 ## Product

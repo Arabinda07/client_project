@@ -1,3 +1,18 @@
+---
+type: Typography Spec
+title: goonjaa Typography & Interface Language
+description: Font pairings (Boska + Lora), display weights, role-based usage, spacing rhythm, and interface elements.
+tags: [typography, fonts, interface, styling, design-system]
+lifecycle: active
+verified:
+  by: human:founder
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: design-system
+    resource: docs/DESIGN.md
+    title: goonjaa Studio Visual Design System
+---
+
 # Typography And Interface Language
 
 This document defines how **goonjaa** uses type, spacing, hierarchy, and interface language for a handmade, high-end e-commerce experience.

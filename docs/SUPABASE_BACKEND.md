@@ -1,3 +1,21 @@
+---
+type: Database Architecture
+title: Supabase Backend Architecture & RLS Security
+description: Supabase database schema, migration steps, Row Level Security policies, storage buckets, and auth bootstrap.
+tags: [database, supabase, postgresql, rls, security, schema, migrations]
+lifecycle: active
+verified:
+  by: human:lead-dev
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: migration-schema
+    resource: supabase/migrations/20260524152658_monleaf_backend_schema.sql
+    title: Supabase Monleaf Backend Schema Migration
+  - id: deployment-guide
+    resource: docs/DEPLOYMENT.md
+    title: Vercel and Supabase Deployment Guide
+---
+
 # Supabase Backend Setup
 
 This project is currently a Vite React storefront with mock catalog data. The Supabase backend is introduced incrementally so the public pages keep working while catalog, order, admin, and image workflows move to the database.

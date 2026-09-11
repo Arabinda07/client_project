@@ -1,3 +1,21 @@
+---
+type: Copywriting Rules
+title: goonjaa Copywriting Rules & Brand Lines
+description: Practical rules for product copy, approved brand lines, category narratives, and copy blacklist.
+tags: [copywriting, guidelines, brand-lines, category-copy, rules]
+lifecycle: active
+verified:
+  by: human:founder
+  at: 2026-09-11T00:00:00Z
+sources:
+  - id: product-foundation
+    resource: docs/PRODUCT.md
+    title: goonjaa Product & Brand Foundation
+  - id: tone-map
+    resource: docs/TONE.md
+    title: goonjaa Tone Map & Contextual Register
+---
+
 # Writing Guidelines
 
 This document turns the **goonjaa** voice into practical rules for product copy, marketing copy, and UI states.
