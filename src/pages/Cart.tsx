@@ -65,7 +65,7 @@ export const Cart = () => {
                             type="button"
                             onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
                             aria-label={`Decrease quantity for ${item.name}`}
-                            className="flex h-full w-10 items-center justify-center text-gray-500 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                            className="hit-area-44 flex h-full w-10 items-center justify-center text-gray-500 transition-colors hover:text-terracotta active:scale-[0.96]"
                           >
                             <Minus size={12} />
                           </button>
@@ -74,7 +74,7 @@ export const Cart = () => {
                             type="button"
                             onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
                             aria-label={`Increase quantity for ${item.name}`}
-                            className="flex h-full w-10 items-center justify-center text-gray-500 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                            className="hit-area-44 flex h-full w-10 items-center justify-center text-gray-500 transition-colors hover:text-terracotta active:scale-[0.96]"
                           >
                             <Plus size={12} />
                           </button>
@@ -82,7 +82,7 @@ export const Cart = () => {
                         <button 
                           type="button"
                           onClick={() => removeItem(item.cartItemId)}
-                          className="flex min-h-11 min-w-11 items-center justify-center text-gray-400 transition-colors hover:text-terracotta-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                          className="flex min-h-11 min-w-11 items-center justify-center text-gray-400 transition-colors hover:text-terracotta-dark active:scale-[0.96]"
                           aria-label="Remove item"
                         >
                           <Trash2 size={16} />
@@ -97,18 +97,18 @@ export const Cart = () => {
                       <button 
                         type="button"
                         onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
-                            aria-label={`Decrease quantity for ${item.name}`}
-                            className="flex h-full flex-1 items-center justify-center text-gray-500 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
-                          >
+                        aria-label={`Decrease quantity for ${item.name}`}
+                        className="flex h-full flex-1 items-center justify-center text-gray-500 transition-colors hover:text-terracotta active:scale-[0.96]"
+                      >
                         <Minus size={14} />
                       </button>
                       <span className="numeric-tabular w-8 text-center text-sm font-medium">{item.quantity}</span>
                       <button 
                         type="button"
                         onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
-                            aria-label={`Increase quantity for ${item.name}`}
-                            className="flex h-full flex-1 items-center justify-center text-gray-500 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
-                          >
+                        aria-label={`Increase quantity for ${item.name}`}
+                        className="flex h-full flex-1 items-center justify-center text-gray-500 transition-colors hover:text-terracotta active:scale-[0.96]"
+                      >
                         <Plus size={14} />
                       </button>
                     </div>
@@ -120,7 +120,7 @@ export const Cart = () => {
                     <button 
                       type="button"
                       onClick={() => removeItem(item.cartItemId)}
-                      className="flex h-11 w-11 items-center justify-center text-gray-400 transition-colors hover:text-terracotta-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                      className="flex h-11 w-11 items-center justify-center text-gray-400 transition-colors hover:text-terracotta-dark active:scale-[0.96]"
                       aria-label={`Remove ${item.name} from cart`}
                     >
                       <Trash2 size={18} />

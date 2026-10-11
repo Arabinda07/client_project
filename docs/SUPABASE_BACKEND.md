@@ -32,13 +32,15 @@ This project is currently a Vite React storefront with mock catalog data. The Su
 
 ## Backend Shape
 
-The migration in `supabase/migrations/20260524152658_monleaf_backend_schema.sql` creates:
+The migrations create:
 
 - Admin auth support: `profiles` linked to `auth.users`, with `owner`, `admin`, and `staff` roles.
 - Catalog: `categories`, `collections`, `products`, `product_collections`, `product_images`, and `product_colour_options`.
 - Commerce: guest `customers`, `orders`, `order_items`, `payments`, and `fulfilment_details`.
 - Operations: `inventory_movements`, `enquiries`, `store_settings`, and `audit_logs`.
-- Storage: public-read `product-images` and `brand-assets` buckets with admin/staff-only upload, update, and delete policies.
+- Bespoke Studio Engine (`20261011153000_bespoke_orders_and_studio_economics.sql`): `custom_orders` state machine (`inquiry` → `quote_sent` → `advance_paid` → `in_crafting` → `photo_proof_ready` → `customer_approved` → `balance_paid` → `dispatched` → `completed`), `custom_order_payments` milestone ledger, and `custom-orders` proofing storage bucket.
+- Studio Unit Economics: `estimated_crafting_cost_inr_paise`, `estimated_packaging_cost_inr_paise`, `actual_shipping_cost_inr_paise`, `gateway_fee_inr_paise`, and relational views `v_order_net_margins` and `v_custom_order_net_margins` for zero-overhead artisan net profit tracking.
+- Storage: public-read `product-images`, `brand-assets`, and `custom-orders` buckets with admin/staff-only upload, update, and delete policies.
 
 Money is stored as INR paise integers, for example `185000` for ₹1,850. Product image database rows store Storage paths such as `products/{product_id}/{timestamp}-{safe_filename}`; public URLs should be derived through Supabase Storage.
 

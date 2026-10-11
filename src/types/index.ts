@@ -90,3 +90,52 @@ export interface Testimonial {
   image?: string;
   date?: string;
 }
+
+export type CustomOrderStatus =
+  | 'inquiry'
+  | 'quote_sent'
+  | 'advance_pending'
+  | 'advance_paid'
+  | 'in_crafting'
+  | 'photo_proof_ready'
+  | 'customer_approved'
+  | 'balance_pending'
+  | 'balance_paid'
+  | 'dispatched'
+  | 'completed'
+  | 'cancelled';
+
+export interface CustomOrder {
+  id: string;
+  customOrderNumber: string;
+  customerName: string;
+  phone: string;
+  whatsappPhone?: string;
+  email?: string;
+  title: string;
+  description: string;
+  referenceImageUrls: string[];
+  occasion?: string;
+  targetDeliveryDate?: string;
+  status: CustomOrderStatus;
+  quoteAmountInrPaise: number;
+  advanceRequiredInrPaise: number;
+  advancePaidInrPaise: number;
+  balanceDueInrPaise: number;
+  shippingFeeInrPaise: number;
+  proofImageUrls: string[];
+  proofSharedAt?: string;
+  customerFeedbackNotes?: string;
+  customerApprovedAt?: string;
+  shippingAddressLine1?: string;
+  shippingCity?: string;
+  shippingState?: string;
+  shippingPincode?: string;
+  courierName?: string;
+  trackingNumber?: string;
+  trackingUrl?: string;
+  artisanNotes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+

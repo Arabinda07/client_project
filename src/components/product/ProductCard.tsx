@@ -43,22 +43,16 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   };
 
   return (
-    <article className="group relative flex h-full flex-col">
-      <div className="flex h-full flex-col border border-border-soft bg-surface p-3 transition-colors duration-300 hover:border-terracotta/45">
-        <div className="relative mb-4.5 aspect-[4/5] overflow-hidden rounded-[2px] bg-studio-wash">
-          <Link
-            to={`/product/${product.slug}`}
-            className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-            aria-label={`View ${product.name}`}
-          >
-            <ProductBadges product={product} />
-            <ProductImage
-              src={product.images?.[0]}
-              alt={`${product.name}, handmade terracotta jewellery`}
-              sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-              className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.015]"
-            />
-          </Link>
+    <article className="clickable-card card-subgrid-item group relative h-full">
+      <div className="card-subgrid-item h-full border border-border-soft bg-surface p-3 transition-colors duration-300 hover:border-terracotta/45">
+        <div className="relative aspect-[4/5] overflow-clip rounded-[2px] bg-studio-wash">
+          <ProductBadges product={product} />
+          <ProductImage
+            src={product.images?.[0]}
+            alt={`${product.name}, handmade terracotta jewellery`}
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.015]"
+          />
           <div className="absolute inset-x-0 bottom-0 z-20 translate-y-0 p-3 opacity-100 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
             <button
               type="button"
@@ -66,7 +60,7 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               disabled={product.stockStatus === 'out_of_stock'}
               aria-label={availableColours.length > 1 ? `Choose a colour for ${product.name}` : `Add ${product.name} to cart`}
               className={cn(
-                "flex min-h-11 w-full items-center justify-center gap-2 rounded-[2px] border border-border-soft bg-studio-paper/95 px-3 py-2.5 text-gray-900 type-overline transition-colors duration-300 hover:border-terracotta hover:bg-terracotta hover:text-warm-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+                "flex min-h-11 w-full items-center justify-center gap-2 rounded-[2px] border border-border-soft bg-studio-paper/95 px-3 py-2.5 text-gray-900 type-overline transition-colors duration-300 hover:border-terracotta hover:bg-terracotta hover:text-warm-ivory active:scale-[0.98]",
                 product.stockStatus === 'out_of_stock' && "cursor-not-allowed opacity-60 hover:border-border-soft hover:bg-studio-paper/95 hover:text-gray-900"
               )}
             >
@@ -79,37 +73,37 @@ export const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             </button>
           </div>
         </div>
-        <div className="flex flex-grow flex-col items-start justify-between px-0.5 text-left">
-          <div>
-            <h3 className="mb-1 line-clamp-2 min-h-[2.8rem] font-sans text-[0.98rem] font-semibold leading-[1.38]">
-              <Link
-                to={`/product/${product.slug}`}
-                className="inline-flex min-h-11 items-start text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
-              >
-                {product.name}
-              </Link>
-            </h3>
-            <p className="mb-2.5 text-[0.625rem] font-bold uppercase tracking-[0.15em] text-terracotta-dark">{product.subCategory}</p>
-          </div>
-          <div className="w-full">
-            {availableColours.length > 0 && (
-              <div className="mb-3.5 flex items-center gap-1.5" aria-label={`Available colours for ${product.name}`}>
-                {availableColours.slice(0, 4).map((colour) => (
-                  <span
-                    key={colour.id}
-                    title={colour.name}
-                    className="h-3 w-3 rounded-full border border-gray-300/60"
-                    style={{ background: colour.swatch }}
-                  />
-                ))}
-              </div>
-            )}
-            <div className="flex items-center gap-2 border-t border-border-soft/30 pt-1">
-              <span className="numeric-tabular text-sm font-bold text-gray-900">{formatPrice(product.price)}</span>
-              {product.originalPrice && (
-                <span className="numeric-tabular text-[10px] text-gray-400 line-through">{formatPrice(product.originalPrice)}</span>
-              )}
+
+        <div className="flex flex-col justify-start px-0.5 text-left">
+          <h3 className="font-sans text-[0.98rem] font-semibold leading-[1.38]">
+            <Link
+              to={`/product/${product.slug}`}
+              className="card-link inline-flex min-h-8 items-start text-gray-900 transition-colors hover:text-terracotta"
+            >
+              {product.name}
+            </Link>
+          </h3>
+          <p className="mt-1 text-[0.625rem] font-bold uppercase tracking-[0.15em] text-terracotta-dark">{product.subCategory}</p>
+        </div>
+
+        <div className="flex flex-col justify-end px-0.5 text-left">
+          {availableColours.length > 0 && (
+            <div className="relative z-10 mb-2.5 flex items-center gap-2" aria-label={`Available colours for ${product.name}`}>
+              {availableColours.slice(0, 4).map((colour) => (
+                <span
+                  key={colour.id}
+                  title={colour.name}
+                  className="hit-area-44 h-3 w-3 rounded-full border border-gray-300/60"
+                  style={{ background: colour.swatch }}
+                />
+              ))}
             </div>
+          )}
+          <div className="flex items-center gap-2 border-t border-border-soft/30 pt-2">
+            <span className="numeric-tabular text-sm font-bold text-gray-900">{formatPrice(product.price)}</span>
+            {product.originalPrice && (
+              <span className="numeric-tabular text-[10px] text-gray-400 line-through">{formatPrice(product.originalPrice)}</span>
+            )}
           </div>
         </div>
       </div>

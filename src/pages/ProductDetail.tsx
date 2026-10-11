@@ -138,6 +138,7 @@ export const ProductDetail = () => {
                   src={product.images[activeImage]}
                   alt={`${product.name}, handmade terracotta jewellery`}
                   loading="eager"
+                  fetchPriority="high"
                   tone="detail"
                   sizes="(min-width: 1024px) 42vw, 100vw"
                 />
@@ -209,7 +210,7 @@ export const ProductDetail = () => {
                           setColourError('');
                         }}
                         aria-pressed={isSelected}
-                        className={`min-h-11 rounded-[2px] border px-4 py-2 font-medium type-caption transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory ${
+                        className={`min-h-11 rounded-[2px] border px-4 py-2 font-medium type-caption transition-colors active:scale-[0.98] ${
                           isSelected
                             ? 'border-terracotta bg-terracotta text-warm-ivory'
                             : 'border-gray-300 bg-transparent text-gray-700 hover:border-terracotta'
@@ -239,7 +240,7 @@ export const ProductDetail = () => {
                   type="button"
                   onClick={() => setQuantity(q => Math.max(1, q - 1))}
                   aria-label={`Decrease quantity for ${product.name}`}
-                  className="min-h-11 min-w-11 p-3 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                  className="min-h-11 min-w-11 p-3 text-gray-600 transition-colors hover:text-terracotta active:scale-[0.96]"
                 >
                   <Minus size={16} />
                 </button>
@@ -248,7 +249,7 @@ export const ProductDetail = () => {
                   type="button"
                   onClick={() => setQuantity(q => q + 1)}
                   aria-label={`Increase quantity for ${product.name}`}
-                  className="min-h-11 min-w-11 p-3 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+                  className="min-h-11 min-w-11 p-3 text-gray-600 transition-colors hover:text-terracotta active:scale-[0.96]"
                 >
                   <Plus size={16} />
                 </button>

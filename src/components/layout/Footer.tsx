@@ -12,6 +12,7 @@ type FooterLink = {
 };
 
 type FooterGroup = {
+  key?: React.Key;
   title: string;
   links: readonly FooterLink[];
 };

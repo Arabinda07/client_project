@@ -64,7 +64,7 @@ export const Header = () => {
       key={link.name}
       to={link.path}
       className={cn(
-        'type-nav group relative inline-flex min-h-11 items-center text-gray-900 transition-opacity duration-300 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory',
+        'type-nav group relative inline-flex min-h-11 items-center text-gray-900 transition-opacity duration-300 hover:opacity-70 active:scale-[0.98]',
         location.pathname === link.path && 'text-terracotta'
       )}
       aria-current={location.pathname === link.path ? 'page' : undefined}
@@ -99,7 +99,7 @@ export const Header = () => {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 p-2 text-gray-900 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+              className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 p-2 text-gray-900 transition-colors hover:text-terracotta active:scale-[0.96]"
               aria-label={isMobileMenuOpen ? 'Close Menu' : 'Open Menu'}
               aria-controls={isMobileMenuOpen ? mobileMenuId : undefined}
               aria-expanded={isMobileMenuOpen}
@@ -116,7 +116,7 @@ export const Header = () => {
 
           <Link
             to="/"
-            className="flex min-h-11 shrink-0 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+            className="flex min-h-11 shrink-0 items-center justify-center active:scale-[0.98]"
             aria-label={`${brandSettings.name} home`}
           >
             <BrandLogo settings={brandSettings} variant="wordmark" placement="header" />
@@ -132,14 +132,14 @@ export const Header = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Message ${brandSettings.name} on WhatsApp`}
-                className="hidden min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory sm:flex"
+                className="hidden min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-opacity hover:opacity-70 active:scale-[0.96] sm:flex"
               >
                 <MessageCircle size={19} strokeWidth={2.2} />
               </a>
             )}
             <Link
               to="/cart"
-              className="relative flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory"
+              className="relative flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-900 transition-opacity hover:opacity-70 active:scale-[0.96]"
               aria-label="View Cart"
             >
               <ShoppingBag size={20} strokeWidth={2.2} />
@@ -177,7 +177,7 @@ export const Header = () => {
                 <div className="mb-10 flex items-center justify-between">
                   <Link
                     to="/"
-                    className="flex min-h-11 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper"
+                    className="flex min-h-11 items-center active:scale-[0.98]"
                     onClick={() => setIsMobileMenuOpen(false)}
                     aria-label={`${brandSettings.name} home`}
                   >
@@ -186,7 +186,7 @@ export const Header = () => {
                   <button
                     type="button"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper"
+                    className="flex min-h-11 min-w-11 items-center justify-center p-2 text-gray-600 transition-colors hover:text-terracotta active:scale-[0.96]"
                     aria-label="Close Menu"
                   >
                     <X size={20} />
@@ -204,7 +204,7 @@ export const Header = () => {
                       <Link
                         to={link.path}
                         className={cn(
-                          'flex min-h-11 items-center py-1 type-nav text-gray-800 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper',
+                          'flex min-h-11 items-center py-1 type-nav text-gray-800 transition-colors hover:text-terracotta active:scale-[0.98]',
                           location.pathname === link.path && 'text-terracotta'
                         )}
                         aria-current={location.pathname === link.path ? 'page' : undefined}
@@ -224,7 +224,7 @@ export const Header = () => {
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex min-h-11 items-center gap-3 text-gray-600 transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-studio-paper type-nav"
+                        className="flex min-h-11 items-center gap-3 text-gray-600 transition-colors hover:text-terracotta active:scale-[0.98] type-nav"
                       >
                         <MessageCircle size={18} />
                         <span>Message on WhatsApp</span>

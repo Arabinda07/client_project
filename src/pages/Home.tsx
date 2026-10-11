@@ -103,7 +103,7 @@ export const Home = () => {
             <Reveal key={cat.title} delay={i * 0.06} className={cat.gridClass}>
               <Link
                 to={cat.link}
-                className="group flex h-[260px] flex-col rounded-[2px] border border-border-soft bg-surface p-8 transition-colors hover:border-terracotta/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory md:h-full md:min-h-[260px]"
+                className="group flex h-[260px] flex-col rounded-[2px] border border-border-soft bg-surface p-8 transition-colors hover:border-terracotta/45 active:scale-[0.98] md:h-full md:min-h-[260px]"
               >
                 <div className="flex h-full flex-col items-start justify-between">
                   <span className="font-semibold uppercase tracking-[0.14em] text-terracotta/90 type-caption">Explore</span>
@@ -159,7 +159,7 @@ export const Home = () => {
             View Collection
           </Link>
         </Reveal>
-        <div className="grid grid-cols-1 gap-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+        <div className="grid-intrinsic-cards">
           {newArrivals.map(product => (
             <ProductCard key={product.id} product={product} />
           ))}

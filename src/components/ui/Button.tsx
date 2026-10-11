@@ -38,7 +38,7 @@ export const buttonClassNames = ({
   className,
 }: ButtonClassOptions = {}) =>
   cn(
-    'inline-flex items-center justify-center rounded-[2px] transition-[background-color,border-color,color,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-warm-ivory disabled:cursor-not-allowed disabled:opacity-60',
+    'inline-flex items-center justify-center rounded-[2px] transition-[background-color,border-color,color,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60',
     variants[variant],
     sizes[size],
     fullWidth && 'w-full',

@@ -6,3 +6,4 @@ coverage/
 *.log
 .env*
 !.env.example
+srijita_catalog_handover.md

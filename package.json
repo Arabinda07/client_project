@@ -9,7 +9,7 @@
     "postbuild": "tsx scripts/generate-static-seo.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit",
+    "lint": "tsc --noEmit && oxlint",
     "validate:docs": "tsx scripts/validate-okf.ts",
     "seed:catalog": "tsx scripts/seed-supabase-catalog.ts"
   },
@@ -26,9 +26,11 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@shadcn/lint": "^0.2.1",
     "@tailwindcss/vite": "^4.1.14",
-    "@vitejs/plugin-react": "^5.0.4",
     "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "oxlint": "^1.87.0",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",

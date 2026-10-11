@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ImagePlus, Save, Star, Trash2 } from 'lucide-react';
-import { Button, buttonClassNames } from '../../components/ui/Button';
+import { Button } from '../../components/ui/Button';
 import {
   errorTextClassName,
   fieldGroupClassName,

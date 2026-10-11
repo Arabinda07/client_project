@@ -1,5 +1,5 @@
 import { brand } from './brand';
-import { accessoryCategory, getCategoryLabel, getCategoryPath, primaryCategoryLinks, resolveCategoryParam } from './catalog';
+import { accessoryCategory, getCategoryPath, primaryCategoryLinks, resolveCategoryParam } from './catalog';
 import { categories, mockProducts } from './data/mockProducts';
 import type { Product } from '../types';
 

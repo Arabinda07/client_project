@@ -113,33 +113,37 @@ const fallbackSrcByTone = Object.fromEntries(
 export const ClayMediaFallback: React.FC<ClayMediaFallbackProps> = ({
   alt,
   className,
-  loading = 'lazy',
+  loading,
   fetchPriority,
   width,
   height,
   tone = 'studio',
   sizes,
-}) => (
-  <img
-    src={fallbackSrcByTone[tone]}
-    alt={alt}
-    loading={loading}
-    fetchPriority={fetchPriority}
-    decoding="async"
-    width={width}
-    height={height}
-    sizes={sizes}
-    draggable={false}
-    data-media-fallback="true"
-    className={cn('h-full w-full object-cover', className)}
-  />
-);
+}) => {
+  const resolvedLoading = loading ?? (fetchPriority === 'high' ? 'eager' : 'lazy');
+
+  return (
+    <img
+      src={fallbackSrcByTone[tone]}
+      alt={alt}
+      loading={resolvedLoading}
+      fetchPriority={fetchPriority}
+      decoding="async"
+      width={width}
+      height={height}
+      sizes={sizes}
+      draggable={false}
+      data-media-fallback="true"
+      className={cn('h-full w-full object-cover', className)}
+    />
+  );
+};
 
 export const ProductImage: React.FC<ProductImageProps> = ({
   src,
   alt,
   className,
-  loading = 'lazy',
+  loading,
   fetchPriority,
   width,
   height,
@@ -154,12 +158,13 @@ export const ProductImage: React.FC<ProductImageProps> = ({
   }, [src]);
 
   const imageSrc = src && !usesRemotePlaceholder && !hasError ? src : fallbackSrcByTone[tone];
+  const resolvedLoading = loading ?? (fetchPriority === 'high' ? 'eager' : 'lazy');
 
   return (
     <img
       src={imageSrc}
       alt={alt}
-      loading={loading}
+      loading={resolvedLoading}
       fetchPriority={fetchPriority}
       decoding="async"
       width={width}

@@ -19,6 +19,8 @@
 | [VOICE.md](./VOICE.md) | `Voice Architecture` | `human:founder` | Stable personality traits, artistic accessibility, patience of craft, and practical voice guidelines. |
 | [WRITING.md](./WRITING.md) | `Copywriting Rules` | `human:founder` | Practical rules for product descriptions, approved brand lines, category narratives, and copy blacklist. |
 | [GLOSSARY.md](./GLOSSARY.md) | `Domain Glossary` | `human:founder` | Canonical terms, approved vocabulary, craft terminology, and words to avoid across UI, copy, and code. |
+| [CATALOG_ONBOARDING.md](./CATALOG_ONBOARDING.md) | `Catalog Operations` | `human:founder` | Guidelines, template specifications, image standards, and instructions for artisan catalog handover. |
+
 
 ---
 
